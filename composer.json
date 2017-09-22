@@ -2,6 +2,7 @@
     "name": "loevgaard/dandomain-foundation-entities",
     "type": "hostnet-entity",
     "license": "MIT",
+    "minimum-stability": "dev",
     "require": {
         "hostnet/entity-plugin-lib": "1.*",
         "doctrine/orm": "^2.5",

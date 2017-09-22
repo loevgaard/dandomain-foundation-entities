@@ -1,0 +1,16 @@
+{
+    "name": "loevgaard/dandomain-foundation-entities",
+    "type": "hostnet-entity",
+    "license": "MIT",
+    "require": {
+        "hostnet/entity-plugin-lib": "1.*",
+        "doctrine/orm": "^2.5",
+        "doctrine/common": "^2.6",
+        "loevgaard/dandomain-pay-php-sdk": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Loevgaard\\Dandomain\\": "src"
+        }
+    }
+}

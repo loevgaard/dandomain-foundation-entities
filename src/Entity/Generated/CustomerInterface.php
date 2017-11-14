@@ -15,29 +15,29 @@ interface CustomerInterface
      * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/CustomerService/help/operations/GetCustomer
      *
      * @param \stdClass|array $data
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
-    public function populateFromApiResponse($data);
+    public function populateFromApiResponse($data): \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
 
     /**
      * @return int
      */
-    public function getId();
+    public function getId(): int;
 
     /**
      * @param int $id
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setId($id);
 
     /**
      * @return int
      */
-    public function getExternalId();
+    public function getExternalId(): int;
 
     /**
      * @param int $externalId
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setExternalId($externalId);
 
@@ -48,7 +48,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $address
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setAddress($address);
 
@@ -59,7 +59,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $address2
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setAddress2($address2);
 
@@ -70,7 +70,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $attention
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setAttention($attention);
 
@@ -81,7 +81,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $city
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setCity($city);
 
@@ -92,7 +92,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $country
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setCountry($country);
 
@@ -103,7 +103,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $ean
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setEan($ean);
 
@@ -114,7 +114,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $email
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setEmail($email);
 
@@ -125,7 +125,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $fax
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setFax($fax);
 
@@ -136,7 +136,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $name
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setName($name);
 
@@ -147,7 +147,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $phone
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setPhone($phone);
 
@@ -158,7 +158,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $state
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setState($state);
 
@@ -169,7 +169,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $zipCode
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setZipCode($zipCode);
 
@@ -180,7 +180,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $cvr
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setCvr($cvr);
 
@@ -191,7 +191,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $b2bGroupId
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setB2bGroupId($b2bGroupId);
 
@@ -202,7 +202,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $comments
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setComments($comments);
 
@@ -213,7 +213,7 @@ interface CustomerInterface
 
     /**
      * @param int|null $countryId
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setCountryId($countryId);
 
@@ -224,7 +224,7 @@ interface CustomerInterface
 
     /**
      * @param \DateTimeImmutable|null $createdDate
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setCreatedDate($createdDate);
 
@@ -235,7 +235,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $customerGroupId
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setCustomerGroupId($customerGroupId);
 
@@ -246,7 +246,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $customerType
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setCustomerType($customerType);
 
@@ -257,7 +257,7 @@ interface CustomerInterface
 
     /**
      * @param bool|null $b2b
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setB2b($b2b);
 
@@ -268,7 +268,7 @@ interface CustomerInterface
 
     /**
      * @param \DateTimeImmutable|null $lastLoginDate
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setLastLoginDate($lastLoginDate);
 
@@ -279,7 +279,7 @@ interface CustomerInterface
 
     /**
      * @param int|null $loginCount
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setLoginCount($loginCount);
 
@@ -290,7 +290,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $password
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setPassword($password);
 
@@ -301,7 +301,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $reservedField1
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setReservedField1($reservedField1);
 
@@ -312,7 +312,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $reservedField2
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setReservedField2($reservedField2);
 
@@ -323,7 +323,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $reservedField3
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setReservedField3($reservedField3);
 
@@ -334,7 +334,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $reservedField4
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setReservedField4($reservedField4);
 
@@ -345,7 +345,7 @@ interface CustomerInterface
 
     /**
      * @param null|string $reservedField5
-     * @return CustomerInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setReservedField5($reservedField5);
 }

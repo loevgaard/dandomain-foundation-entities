@@ -15,29 +15,29 @@ interface StateInterface
      * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/OrderService/help/operations/GetOrder
      *
      * @param \stdClass|array $data
-     * @return StateInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface
      */
-    public function populateFromApiResponse($data);
+    public function populateFromApiResponse($data): \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface;
 
     /**
      * @return int
      */
-    public function getId();
+    public function getId(): int;
 
     /**
      * @param int $id
-     * @return StateInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface
      */
     public function setId($id);
 
     /**
      * @return int
      */
-    public function getExternalId();
+    public function getExternalId(): int;
 
     /**
      * @param int $externalId
-     * @return StateInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface
      */
     public function setExternalId($externalId);
 
@@ -48,7 +48,7 @@ interface StateInterface
 
     /**
      * @param bool|null $exclStatistics
-     * @return StateInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface
      */
     public function setExclStatistics($exclStatistics);
 
@@ -59,7 +59,7 @@ interface StateInterface
 
     /**
      * @param bool|null $isDefault
-     * @return StateInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface
      */
     public function setIsDefault($isDefault);
 
@@ -70,7 +70,7 @@ interface StateInterface
 
     /**
      * @param null|string $name
-     * @return StateInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface
      */
     public function setName($name);
 }

@@ -16,42 +16,42 @@ interface PaymentMethodInterface
      *
      * @param \stdClass|array $data
      * @param string $currency
-     * @return PaymentMethodInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface
      */
-    public function populateFromApiResponse($data, $currency);
+    public function populateFromApiResponse($data, $currency): \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface;
 
     /**
      * @return int
      */
-    public function getId();
+    public function getId(): int;
 
     /**
      * @param int $id
-     * @return PaymentMethodInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface
      */
     public function setId($id);
 
     /**
      * @return int
      */
-    public function getExternalId();
+    public function getExternalId(): int;
 
     /**
      * @param int $externalId
-     * @return PaymentMethodInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface
      */
     public function setExternalId($externalId);
 
     /**
-     * @return Money|null
+     * @return \Money\Money|null
      */
-    public function getFee();
+    public function getFee(): ?\Money\Money;
 
     /**
-     * @param Money $money
-     * @return PaymentMethodInterface
+     * @param \Money\Money $money
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface
      */
-    public function setFee(\Money\Money $money);
+    public function setFee(\Money\Money $money): \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface;
 
     /**
      * @return bool|null
@@ -60,7 +60,7 @@ interface PaymentMethodInterface
 
     /**
      * @param bool|null $feeInclVat
-     * @return PaymentMethodInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface
      */
     public function setFeeInclVat($feeInclVat);
 
@@ -71,7 +71,7 @@ interface PaymentMethodInterface
 
     /**
      * @param null|string $name
-     * @return PaymentMethodInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface
      */
     public function setName($name);
 }

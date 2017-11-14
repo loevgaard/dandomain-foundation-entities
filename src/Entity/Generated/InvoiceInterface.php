@@ -15,18 +15,18 @@ interface InvoiceInterface
      * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/OrderService/help/operations/GetOrder
      *
      * @param \stdClass|array $data
-     * @return InvoiceInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface
      */
-    public function populateFromApiResponse($data);
+    public function populateFromApiResponse($data): \Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface;
 
     /**
      * @return int
      */
-    public function getId();
+    public function getId(): int;
 
     /**
      * @param int $id
-     * @return Invoice
+     * @return \Loevgaard\DandomainFoundation\Entity\Invoice
      */
     public function setId($id);
 
@@ -37,7 +37,7 @@ interface InvoiceInterface
 
     /**
      * @param null|string $creditNoteNumber
-     * @return Invoice
+     * @return \Loevgaard\DandomainFoundation\Entity\Invoice
      */
     public function setCreditNoteNumber($creditNoteNumber);
 
@@ -48,7 +48,7 @@ interface InvoiceInterface
 
     /**
      * @param \DateTimeImmutable|null $date
-     * @return Invoice
+     * @return \Loevgaard\DandomainFoundation\Entity\Invoice
      */
     public function setDate($date);
 
@@ -59,7 +59,7 @@ interface InvoiceInterface
 
     /**
      * @param bool|null $isPaid
-     * @return Invoice
+     * @return \Loevgaard\DandomainFoundation\Entity\Invoice
      */
     public function setIsPaid($isPaid);
 
@@ -70,7 +70,7 @@ interface InvoiceInterface
 
     /**
      * @param int|null $number
-     * @return Invoice
+     * @return \Loevgaard\DandomainFoundation\Entity\Invoice
      */
     public function setNumber($number);
 
@@ -81,7 +81,7 @@ interface InvoiceInterface
 
     /**
      * @param null|string $state
-     * @return Invoice
+     * @return \Loevgaard\DandomainFoundation\Entity\Invoice
      */
     public function setState($state);
 }

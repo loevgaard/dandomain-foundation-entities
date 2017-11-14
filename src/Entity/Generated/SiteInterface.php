@@ -11,22 +11,22 @@ interface SiteInterface
     /**
      * @return int
      */
-    public function getId();
+    public function getId(): int;
 
     /**
      * @param int $id
-     * @return SiteInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface
      */
     public function setId($id);
 
     /**
      * @return int
      */
-    public function getExternalId();
+    public function getExternalId(): int;
 
     /**
      * @param int $externalId
-     * @return SiteInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface
      */
     public function setExternalId($externalId);
 
@@ -37,7 +37,7 @@ interface SiteInterface
 
     /**
      * @param int|null $countryId
-     * @return SiteInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface
      */
     public function setCountryId($countryId);
 
@@ -48,7 +48,7 @@ interface SiteInterface
 
     /**
      * @param null|string $currencyCode
-     * @return SiteInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface
      */
     public function setCurrencyCode($currencyCode);
 
@@ -59,7 +59,7 @@ interface SiteInterface
 
     /**
      * @param null|string $name
-     * @return SiteInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface
      */
     public function setName($name);
 }

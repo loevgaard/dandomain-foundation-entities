@@ -16,42 +16,42 @@ interface ShippingMethodInterface
      *
      * @param \stdClass|array $data
      * @param string $currency
-     * @return ShippingMethodInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface
      */
-    public function populateFromApiResponse($data, $currency);
+    public function populateFromApiResponse($data, $currency): \Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface;
 
     /**
      * @return int
      */
-    public function getId();
+    public function getId(): int;
 
     /**
      * @param int $id
-     * @return ShippingMethod
+     * @return \Loevgaard\DandomainFoundation\Entity\ShippingMethod
      */
     public function setId($id);
 
     /**
      * @return int
      */
-    public function getExternalId();
+    public function getExternalId(): int;
 
     /**
      * @param int $externalId
-     * @return ShippingMethod
+     * @return \Loevgaard\DandomainFoundation\Entity\ShippingMethod
      */
     public function setExternalId($externalId);
 
     /**
-     * @return Money|null
+     * @return \Money\Money|null
      */
-    public function getFee();
+    public function getFee(): ?\Money\Money;
 
     /**
-     * @param Money $money
-     * @return ShippingMethodInterface
+     * @param \Money\Money $money
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface
      */
-    public function setFee(\Money\Money $money);
+    public function setFee(\Money\Money $money): \Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface;
 
     /**
      * @return bool|null
@@ -60,7 +60,7 @@ interface ShippingMethodInterface
 
     /**
      * @param bool|null $feeInclVat
-     * @return ShippingMethodInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface
      */
     public function setFeeInclVat($feeInclVat);
 
@@ -71,7 +71,7 @@ interface ShippingMethodInterface
 
     /**
      * @param null|string $name
-     * @return ShippingMethodInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface
      */
     public function setName($name);
 }

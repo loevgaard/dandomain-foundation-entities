@@ -15,18 +15,18 @@ interface DeliveryInterface
      * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/OrderService/help/operations/GetOrder
      *
      * @param \stdClass|array $data
-     * @return DeliveryInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface
      */
-    public function populateFromApiResponse($data);
+    public function populateFromApiResponse($data): \Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface;
 
     /**
-     * @return integer
+     * @return \Loevgaard\DandomainFoundation\Entity\integer
      */
-    public function getId();
+    public function getId(): int;
 
     /**
-     * @param integer $id
-     * @return Delivery
+     * @param \Loevgaard\DandomainFoundation\Entity\integer $id
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setId($id);
 
@@ -37,7 +37,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $address
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setAddress($address);
 
@@ -48,7 +48,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $address2
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setAddress2($address2);
 
@@ -59,7 +59,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $attention
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setAttention($attention);
 
@@ -70,7 +70,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $city
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setCity($city);
 
@@ -81,7 +81,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $country
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setCountry($country);
 
@@ -92,7 +92,7 @@ interface DeliveryInterface
 
     /**
      * @param int|null $countryId
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setCountryId($countryId);
 
@@ -103,7 +103,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $cvr
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setCvr($cvr);
 
@@ -114,7 +114,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $ean
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setEan($ean);
 
@@ -125,7 +125,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $email
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setEmail($email);
 
@@ -136,7 +136,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $fax
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setFax($fax);
 
@@ -147,7 +147,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $name
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setName($name);
 
@@ -158,7 +158,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $phone
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setPhone($phone);
 
@@ -169,7 +169,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $state
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setState($state);
 
@@ -180,7 +180,7 @@ interface DeliveryInterface
 
     /**
      * @param null|string $zipCode
-     * @return Delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setZipCode($zipCode);
 }

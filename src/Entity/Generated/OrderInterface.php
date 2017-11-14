@@ -16,172 +16,172 @@ interface OrderInterface
      *
      * @param \stdClass|array $data
      * @param bool $populateEmbedded
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
-    public function populateFromApiResponse($data, $populateEmbedded);
+    public function populateFromApiResponse($data, $populateEmbedded): \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
 
     /**
-     * @return Money|null
+     * @return \Money\Money|null
      */
-    public function getTotalPrice();
+    public function getTotalPrice(): ?\Money\Money;
 
     /**
-     * @param Money $money
-     * @return OrderInterface
+     * @param \Money\Money $money
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
-    public function setTotalPrice(\Money\Money $money = null);
+    public function setTotalPrice(\Money\Money $money = null): \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
 
     /**
-     * @return Money|null
+     * @return \Money\Money|null
      */
-    public function getSalesDiscount();
+    public function getSalesDiscount(): ?\Money\Money;
 
     /**
-     * @param Money $money
-     * @return OrderInterface
+     * @param \Money\Money $money
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
-    public function setSalesDiscount(\Money\Money $money = null);
+    public function setSalesDiscount(\Money\Money $money = null): \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
 
     /**
-     * @return Money|null
+     * @return \Money\Money|null
      */
-    public function getGiftCertificateAmount();
+    public function getGiftCertificateAmount(): ?\Money\Money;
 
     /**
-     * @param Money $money
-     * @return OrderInterface
+     * @param \Money\Money $money
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
-    public function setGiftCertificateAmount(\Money\Money $money = null);
+    public function setGiftCertificateAmount(\Money\Money $money = null): \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
 
     /**
-     * @return Money|null
+     * @return \Money\Money|null
      */
-    public function getShippingMethodFee();
+    public function getShippingMethodFee(): ?\Money\Money;
 
     /**
-     * @param Money $money
-     * @return OrderInterface
+     * @param \Money\Money $money
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
-    public function setShippingMethodFee(\Money\Money $money = null);
+    public function setShippingMethodFee(\Money\Money $money = null): \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
 
     /**
-     * @return Money|null
+     * @return \Money\Money|null
      */
-    public function getPaymentMethodFee();
+    public function getPaymentMethodFee(): ?\Money\Money;
 
     /**
-     * @param Money $money
-     * @return OrderInterface
+     * @param \Money\Money $money
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
-    public function setPaymentMethodFee(\Money\Money $money = null);
+    public function setPaymentMethodFee(\Money\Money $money = null): \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
 
     /**
      * @return int
      */
-    public function getId();
+    public function getId(): int;
 
     /**
      * @param int $id
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setId($id);
 
     /**
      * @return int
      */
-    public function getExternalId();
+    public function getExternalId(): int;
 
     /**
      * @param int $externalId
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setExternalId($externalId);
 
     /**
-     * @return CustomerInterface|null
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface|null
      */
     public function getCustomer();
 
     /**
-     * @param CustomerInterface|null $customer
-     * @return OrderInterface
+     * @param \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface|null $customer
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setCustomer($customer);
 
     /**
-     * @return DeliveryInterface|null
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface|null
      */
     public function getDelivery();
 
     /**
-     * @param DeliveryInterface|null $delivery
-     * @return OrderInterface
+     * @param \Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface|null $delivery
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setDelivery($delivery);
 
     /**
-     * @return InvoiceInterface|null
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface|null
      */
     public function getInvoice();
 
     /**
-     * @param InvoiceInterface|null $invoice
-     * @return OrderInterface
+     * @param \Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface|null $invoice
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setInvoice($invoice);
 
     /**
-     * @return ArrayCollection|null
+     * @return \Doctrine\Common\Collections\ArrayCollection|null
      */
     public function getOrderLines();
 
     /**
-     * @param ArrayCollection|null $orderLines
-     * @return OrderInterface
+     * @param \Doctrine\Common\Collections\ArrayCollection|null $orderLines
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setOrderLines($orderLines);
 
     /**
-     * @return PaymentMethodInterface|null
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface|null
      */
     public function getPaymentMethod();
 
     /**
-     * @param PaymentMethodInterface|null $paymentMethod
-     * @return OrderInterface
+     * @param \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface|null $paymentMethod
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setPaymentMethod($paymentMethod);
 
     /**
-     * @return ShippingMethodInterface|null
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface|null
      */
     public function getShippingMethod();
 
     /**
-     * @param ShippingMethodInterface|null $shippingMethod
-     * @return OrderInterface
+     * @param \Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface|null $shippingMethod
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setShippingMethod($shippingMethod);
 
     /**
-     * @return SiteInterface|null
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface|null
      */
     public function getSite();
 
     /**
-     * @param SiteInterface|null $site
-     * @return OrderInterface
+     * @param \Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface|null $site
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setSite($site);
 
     /**
-     * @return StateInterface|null
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface|null
      */
     public function getState();
 
     /**
-     * @param StateInterface|null $state
-     * @return OrderInterface
+     * @param \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface|null $state
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setState($state);
 
@@ -192,7 +192,7 @@ interface OrderInterface
 
     /**
      * @param null|string $comment
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setComment($comment);
 
@@ -203,7 +203,7 @@ interface OrderInterface
 
     /**
      * @param \DateTimeImmutable|null $createdDate
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setCreatedDate($createdDate);
 
@@ -214,7 +214,7 @@ interface OrderInterface
 
     /**
      * @param null|string $creditNoteNumber
-     * @return Order
+     * @return \Loevgaard\DandomainFoundation\Entity\Order
      */
     public function setCreditNoteNumber($creditNoteNumber);
 
@@ -225,7 +225,7 @@ interface OrderInterface
 
     /**
      * @param null|string $currencyCode
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setCurrencyCode($currencyCode);
 
@@ -236,7 +236,7 @@ interface OrderInterface
 
     /**
      * @param null|string $customerComment
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setCustomerComment($customerComment);
 
@@ -247,7 +247,7 @@ interface OrderInterface
 
     /**
      * @param null|string $giftCertificateNumber
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setGiftCertificateNumber($giftCertificateNumber);
 
@@ -258,7 +258,7 @@ interface OrderInterface
 
     /**
      * @param bool|null $incomplete
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setIncomplete($incomplete);
 
@@ -269,7 +269,7 @@ interface OrderInterface
 
     /**
      * @param null|string $ip
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setIp($ip);
 
@@ -280,7 +280,7 @@ interface OrderInterface
 
     /**
      * @param bool|null $modified
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setModified($modified);
 
@@ -291,7 +291,7 @@ interface OrderInterface
 
     /**
      * @param \DateTimeImmutable|null $modifiedDate
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setModifiedDate($modifiedDate);
 
@@ -302,7 +302,7 @@ interface OrderInterface
 
     /**
      * @param null|string $referenceNumber
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setReferenceNumber($referenceNumber);
 
@@ -313,7 +313,7 @@ interface OrderInterface
 
     /**
      * @param null|string $referrer
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setReferrer($referrer);
 
@@ -324,7 +324,7 @@ interface OrderInterface
 
     /**
      * @param null|string $reservedField1
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setReservedField1($reservedField1);
 
@@ -335,7 +335,7 @@ interface OrderInterface
 
     /**
      * @param null|string $reservedField2
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setReservedField2($reservedField2);
 
@@ -346,7 +346,7 @@ interface OrderInterface
 
     /**
      * @param null|string $reservedField3
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setReservedField3($reservedField3);
 
@@ -357,7 +357,7 @@ interface OrderInterface
 
     /**
      * @param null|string $reservedField4
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setReservedField4($reservedField4);
 
@@ -368,7 +368,7 @@ interface OrderInterface
 
     /**
      * @param null|string $reservedField5
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setReservedField5($reservedField5);
 
@@ -379,7 +379,7 @@ interface OrderInterface
 
     /**
      * @param float|null $totalWeight
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setTotalWeight($totalWeight);
 
@@ -390,7 +390,7 @@ interface OrderInterface
 
     /**
      * @param null|string $trackingNumber
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setTrackingNumber($trackingNumber);
 
@@ -401,7 +401,7 @@ interface OrderInterface
 
     /**
      * @param int|null $transactionNumber
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setTransactionNumber($transactionNumber);
 
@@ -412,7 +412,7 @@ interface OrderInterface
 
     /**
      * @param float|null $vatPct
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setVatPct($vatPct);
 
@@ -423,7 +423,7 @@ interface OrderInterface
 
     /**
      * @param null|string $vatRegNumber
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setVatRegNumber($vatRegNumber);
 
@@ -434,7 +434,7 @@ interface OrderInterface
 
     /**
      * @param null|string $xmlParams
-     * @return OrderInterface
+     * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setXmlParams($xmlParams);
 }

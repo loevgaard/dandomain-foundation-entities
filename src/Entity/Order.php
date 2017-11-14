@@ -1,0 +1,1151 @@
+<?php
+
+namespace Loevgaard\DandomainFoundation\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Loevgaard\DandomainDateTime\DateTimeImmutable;
+use Loevgaard\DandomainFoundation;
+use Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\OrderTraits;
+use Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\StateInterface;
+use Money\Currency;
+use Money\Money;
+
+/**
+ * We use the Money library for amounts, and we use a shared currency, namely the property $currencyCode
+ *
+ * @ORM\Entity()
+ * @ORM\Table(name="loevgaard_dandomain_orders")
+ */
+class Order implements OrderInterface
+{
+    use OrderTraits;
+
+    /**
+     * @var int
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     **/
+    protected $id;
+
+    /**
+     * This is the order id in Dandomain
+     *
+     * @var int
+     *
+     * @ORM\Column(type="integer", unique=true)
+     */
+    protected $externalId;
+
+    /**
+     * @var CustomerInterface|null
+     *
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="Customer", cascade={"persist", "remove"})
+     */
+    protected $customer;
+
+    /**
+     * @var DeliveryInterface|null
+     *
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="Delivery", cascade={"persist", "remove"})
+     */
+    protected $delivery;
+
+    /**
+     * @var InvoiceInterface|null
+     *
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="Invoice", cascade={"persist", "remove"})
+     */
+    protected $invoice;
+
+    /**
+     * @var ArrayCollection|null
+     *
+     * @ORM\OneToMany(mappedBy="order", targetEntity="OrderLine", cascade={"persist", "remove"})
+     */
+    protected $orderLines;
+
+    /**
+     * @var PaymentMethodInterface|null
+     *
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="PaymentMethod", cascade={"persist", "remove"})
+     */
+    protected $paymentMethod;
+
+    /**
+     * Because the fee can change on the payment method we have a field for here for the fee on this order
+     *
+     * @var integer|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $paymentMethodFee;
+
+    /**
+     * @var ShippingMethodInterface|null
+     *
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="ShippingMethod", cascade={"persist", "remove"})
+     */
+    protected $shippingMethod;
+
+    /**
+     * Because the fee can change on the shipping method we have a field for here for the fee on this order
+     *
+     * @var integer|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $shippingMethodFee;
+
+    /**
+     * @var SiteInterface|null
+     *
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="Site", cascade={"persist", "remove"})
+     */
+    protected $site;
+
+    /**
+     * @var StateInterface|null
+     *
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="State", cascade={"persist", "remove"})
+     */
+    protected $state;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="text")
+     */
+    protected $comment;
+
+    /**
+     * @var \DateTimeImmutable|null
+     *
+     * @ORM\Column(nullable=true, type="datetime_immutable")
+     */
+    protected $createdDate;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $creditNoteNumber;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=3, nullable=true)
+     */
+    protected $currencyCode;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="text")
+     */
+    protected $customerComment;
+
+    /**
+     * @var integer|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $giftCertificateAmount;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $giftCertificateNumber;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $incomplete;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $ip;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $modified;
+
+    /**
+     * @var \DateTimeImmutable|null
+     *
+     * @ORM\Column(nullable=true, type="datetime_immutable")
+     */
+    protected $modifiedDate;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $referenceNumber;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $referrer;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $reservedField1;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $reservedField2;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $reservedField3;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $reservedField4;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $reservedField5;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $salesDiscount;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $totalPrice;
+
+    /**
+     * @var float|null
+     *
+     * @ORM\Column(nullable=true, type="decimal", precision=12, scale=2)
+     */
+    protected $totalWeight;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $trackingNumber;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $transactionNumber;
+
+    /**
+     * @var float|null
+     *
+     * @ORM\Column(nullable=true, type="decimal", precision=5, scale=2)
+     */
+    protected $vatPct;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="string", length=191)
+     */
+    protected $vatRegNumber;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true, type="text")
+     */
+    protected $xmlParams;
+
+    public function __construct()
+    {
+        $this->orderLines = new ArrayCollection();
+    }
+
+    /**
+     * Populates an order based on the response from the Dandomain API
+     *
+     * See the properties here:
+     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/OrderService/help/operations/GetOrder
+     *
+     * @param \stdClass|array $data
+     * @param bool $populateEmbedded
+     * @return OrderInterface
+     */
+    public function populateFromApiResponse($data, $populateEmbedded) : OrderInterface
+    {
+        $data = DandomainFoundation\objectToArray($data);
+
+        // set currency because we use the currency to create Money objects
+        $this->setCurrencyCode($data['currencyCode']);
+
+        // set shortcuts for embedded objects
+        $orderLinesData = $data['orderLines'] ?? [];
+        $paymentData = $data['paymentInfo'] ?? [];
+        $shippingData = $data['shippingInfo'] ?? [];
+
+        $createdDate = DateTimeImmutable::createFromJson($data['createdDate']);
+        $modifiedDate = DateTimeImmutable::createFromJson($data['modifiedDate']);
+
+        $giftCertificateAmount = $this->createMoneyFromFloat($data['giftCertificateAmount']);
+        $totalPrice = $this->createMoneyFromFloat($data['totalPrice']);
+        $salesDiscount = $this->createMoneyFromFloat($data['salesDiscount']);
+        $paymentMethodFee = $this->createMoneyFromFloat($paymentData['fee'] ?? 0.0);
+        $shippingMethodFee = $this->createMoneyFromFloat($shippingData['fee'] ?? 0.0);
+
+        $this
+            ->setExternalId($data['id'])
+            ->setComment($data['comment'])
+            ->setCreatedDate($createdDate)
+            ->setCustomerComment($data['customerComment'])
+            ->setGiftCertificateAmount($giftCertificateAmount)
+            ->setGiftCertificateNumber($data['giftCertificateNumber'])
+            ->setIncomplete($data['incomplete'])
+            ->setIp($data['ip'])
+            ->setModified($data['modified'])
+            ->setModifiedDate($modifiedDate)
+            ->setReferenceNumber($data['referenceNumber'])
+            ->setReferrer($data['referrer'])
+            ->setReservedField1($data['reservedField1'])
+            ->setReservedField2($data['reservedField2'])
+            ->setReservedField3($data['reservedField3'])
+            ->setReservedField4($data['reservedField4'])
+            ->setReservedField5($data['reservedField5'])
+            ->setSalesDiscount($salesDiscount)
+            ->setTotalPrice($totalPrice)
+            ->setTotalWeight($data['totalWeight'])
+            ->setTrackingNumber($data['trackingNumber'])
+            ->setTransactionNumber($data['transactionNumber'])
+            ->setVatPct($data['vatPct'])
+            ->setVatRegNumber($data['vatRegNumber'])
+            ->setXmlParams($data['xmlParams'])
+            ->setShippingMethodFee($shippingMethodFee)
+            ->setPaymentMethodFee($paymentMethodFee)
+        ;
+
+        if ($populateEmbedded) {
+            // populate customer
+            $customer = $this->getCustomer();
+            if (!$customer) {
+                $customer = new Customer();
+                $this->setCustomer($customer);
+            }
+            $customer->populateFromApiResponse($data['customerInfo']);
+
+            // populate delivery info
+            $delivery = $this->getDelivery();
+            if (!$delivery) {
+                $delivery = new Delivery();
+                $this->setDelivery($delivery);
+            }
+            $delivery->populateFromApiResponse($data['deliveryInfo']);
+
+            // populate invoice info
+            $invoice = $this->getInvoice();
+            if (!$invoice) {
+                $invoice = new Invoice();
+                $this->setInvoice($invoice);
+            }
+            $invoice->populateFromApiResponse($data['invoiceInfo']);
+
+            // populate payment info
+            $paymentMethod = $this->getPaymentMethod();
+            if (!$paymentMethod) {
+                $paymentMethod = new PaymentMethod();
+                $paymentMethod->populateFromApiResponse($data['paymentInfo'], (string)$data['currencyCode']);
+            }
+            $this->setPaymentMethod($paymentMethod);
+
+            // populate shipping info
+            $shippingMethod = $this->getShippingMethod();
+            if (!$shippingMethod) {
+                $shippingMethod = new ShippingMethod();
+                $shippingMethod->populateFromApiResponse($data['shippingInfo'], (string)$data['currencyCode']);
+            }
+            $this->setShippingMethod($shippingMethod);
+
+            // populate site
+            $site = $this->getSite();
+            if (!$site) {
+                $site = new Site();
+                $site->setExternalId($data['siteId']);
+            }
+            $this->setSite($site);
+
+            // populate state
+            $state = $this->getState();
+            if (!$state) {
+                $state = new State();
+                $state->populateFromApiResponse($data['orderState']);
+            }
+            $this->setState($state);
+
+            // @todo create order lines
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Money|null
+     */
+    public function getTotalPrice() : ?Money
+    {
+        return $this->createMoney((int)$this->totalPrice);
+    }
+
+    /**
+     * @param Money $money
+     * @return OrderInterface
+     */
+    public function setTotalPrice(Money $money = null) : OrderInterface
+    {
+        $this->totalPrice = $money->getAmount();
+
+        return $this;
+    }
+
+    /**
+     * @return Money|null
+     */
+    public function getSalesDiscount() : ?Money
+    {
+        return $this->createMoney((int)$this->salesDiscount);
+    }
+
+    /**
+     * @param Money $money
+     * @return OrderInterface
+     */
+    public function setSalesDiscount(Money $money = null) : OrderInterface
+    {
+        $this->salesDiscount = $money->getAmount();
+
+        return $this;
+    }
+
+    /**
+     * @return Money|null
+     */
+    public function getGiftCertificateAmount() : ?Money
+    {
+        return $this->createMoney((int)$this->giftCertificateAmount);
+    }
+
+    /**
+     * @param Money $money
+     * @return OrderInterface
+     */
+    public function setGiftCertificateAmount(Money $money = null) : OrderInterface
+    {
+        $this->giftCertificateAmount = $money->getAmount();
+
+        return $this;
+    }
+
+    /**
+     * @return Money|null
+     */
+    public function getShippingMethodFee() : ?Money
+    {
+        return $this->createMoney((int)$this->shippingMethodFee);
+    }
+
+    /**
+     * @param Money $money
+     * @return OrderInterface
+     */
+    public function setShippingMethodFee(Money $money = null) : OrderInterface
+    {
+        $this->shippingMethodFee = $money->getAmount();
+
+        return $this;
+    }
+
+    /**
+     * @return Money|null
+     */
+    public function getPaymentMethodFee() : ?Money
+    {
+        return $this->createMoney((int)$this->paymentMethodFee);
+    }
+
+    /**
+     * @param Money $money
+     * @return OrderInterface
+     */
+    public function setPaymentMethodFee(Money $money = null) : OrderInterface
+    {
+        $this->paymentMethodFee = $money->getAmount();
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return OrderInterface
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getExternalId(): int
+    {
+        return $this->externalId;
+    }
+
+    /**
+     * @param int $externalId
+     * @return OrderInterface
+     */
+    public function setExternalId($externalId)
+    {
+        $this->externalId = $externalId;
+        return $this;
+    }
+
+    /**
+     * @return CustomerInterface|null
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param CustomerInterface|null $customer
+     * @return OrderInterface
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+        return $this;
+    }
+
+    /**
+     * @return DeliveryInterface|null
+     */
+    public function getDelivery()
+    {
+        return $this->delivery;
+    }
+
+    /**
+     * @param DeliveryInterface|null $delivery
+     * @return OrderInterface
+     */
+    public function setDelivery($delivery)
+    {
+        $this->delivery = $delivery;
+        return $this;
+    }
+
+    /**
+     * @return InvoiceInterface|null
+     */
+    public function getInvoice()
+    {
+        return $this->invoice;
+    }
+
+    /**
+     * @param InvoiceInterface|null $invoice
+     * @return OrderInterface
+     */
+    public function setInvoice($invoice)
+    {
+        $this->invoice = $invoice;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|null
+     */
+    public function getOrderLines()
+    {
+        return $this->orderLines;
+    }
+
+    /**
+     * @param ArrayCollection|null $orderLines
+     * @return OrderInterface
+     */
+    public function setOrderLines($orderLines)
+    {
+        $this->orderLines = $orderLines;
+        return $this;
+    }
+
+    /**
+     * @return PaymentMethodInterface|null
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param PaymentMethodInterface|null $paymentMethod
+     * @return OrderInterface
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
+        return $this;
+    }
+
+    /**
+     * @return ShippingMethodInterface|null
+     */
+    public function getShippingMethod()
+    {
+        return $this->shippingMethod;
+    }
+
+    /**
+     * @param ShippingMethodInterface|null $shippingMethod
+     * @return OrderInterface
+     */
+    public function setShippingMethod($shippingMethod)
+    {
+        $this->shippingMethod = $shippingMethod;
+        return $this;
+    }
+
+    /**
+     * @return SiteInterface|null
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * @param SiteInterface|null $site
+     * @return OrderInterface
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+        return $this;
+    }
+
+    /**
+     * @return StateInterface|null
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param StateInterface|null $state
+     * @return OrderInterface
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param null|string $comment
+     * @return OrderInterface
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
+    /**
+     * @param \DateTimeImmutable|null $createdDate
+     * @return OrderInterface
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->createdDate = $createdDate;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCreditNoteNumber()
+    {
+        return $this->creditNoteNumber;
+    }
+
+    /**
+     * @param null|string $creditNoteNumber
+     * @return Order
+     */
+    public function setCreditNoteNumber($creditNoteNumber)
+    {
+        $this->creditNoteNumber = $creditNoteNumber;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCurrencyCode()
+    {
+        return $this->currencyCode;
+    }
+
+    /**
+     * @param null|string $currencyCode
+     * @return OrderInterface
+     */
+    public function setCurrencyCode($currencyCode)
+    {
+        $this->currencyCode = $currencyCode;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCustomerComment()
+    {
+        return $this->customerComment;
+    }
+
+    /**
+     * @param null|string $customerComment
+     * @return OrderInterface
+     */
+    public function setCustomerComment($customerComment)
+    {
+        $this->customerComment = $customerComment;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getGiftCertificateNumber()
+    {
+        return $this->giftCertificateNumber;
+    }
+
+    /**
+     * @param null|string $giftCertificateNumber
+     * @return OrderInterface
+     */
+    public function setGiftCertificateNumber($giftCertificateNumber)
+    {
+        $this->giftCertificateNumber = $giftCertificateNumber;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getIncomplete()
+    {
+        return $this->incomplete;
+    }
+
+    /**
+     * @param bool|null $incomplete
+     * @return OrderInterface
+     */
+    public function setIncomplete($incomplete)
+    {
+        $this->incomplete = $incomplete;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    /**
+     * @param null|string $ip
+     * @return OrderInterface
+     */
+    public function setIp($ip)
+    {
+        $this->ip = $ip;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
+
+    /**
+     * @param bool|null $modified
+     * @return OrderInterface
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getModifiedDate()
+    {
+        return $this->modifiedDate;
+    }
+
+    /**
+     * @param \DateTimeImmutable|null $modifiedDate
+     * @return OrderInterface
+     */
+    public function setModifiedDate($modifiedDate)
+    {
+        $this->modifiedDate = $modifiedDate;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getReferenceNumber()
+    {
+        return $this->referenceNumber;
+    }
+
+    /**
+     * @param null|string $referenceNumber
+     * @return OrderInterface
+     */
+    public function setReferenceNumber($referenceNumber)
+    {
+        $this->referenceNumber = $referenceNumber;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getReferrer()
+    {
+        return $this->referrer;
+    }
+
+    /**
+     * @param null|string $referrer
+     * @return OrderInterface
+     */
+    public function setReferrer($referrer)
+    {
+        $this->referrer = $referrer;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getReservedField1()
+    {
+        return $this->reservedField1;
+    }
+
+    /**
+     * @param null|string $reservedField1
+     * @return OrderInterface
+     */
+    public function setReservedField1($reservedField1)
+    {
+        $this->reservedField1 = $reservedField1;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getReservedField2()
+    {
+        return $this->reservedField2;
+    }
+
+    /**
+     * @param null|string $reservedField2
+     * @return OrderInterface
+     */
+    public function setReservedField2($reservedField2)
+    {
+        $this->reservedField2 = $reservedField2;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getReservedField3()
+    {
+        return $this->reservedField3;
+    }
+
+    /**
+     * @param null|string $reservedField3
+     * @return OrderInterface
+     */
+    public function setReservedField3($reservedField3)
+    {
+        $this->reservedField3 = $reservedField3;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getReservedField4()
+    {
+        return $this->reservedField4;
+    }
+
+    /**
+     * @param null|string $reservedField4
+     * @return OrderInterface
+     */
+    public function setReservedField4($reservedField4)
+    {
+        $this->reservedField4 = $reservedField4;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getReservedField5()
+    {
+        return $this->reservedField5;
+    }
+
+    /**
+     * @param null|string $reservedField5
+     * @return OrderInterface
+     */
+    public function setReservedField5($reservedField5)
+    {
+        $this->reservedField5 = $reservedField5;
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getTotalWeight()
+    {
+        return $this->totalWeight;
+    }
+
+    /**
+     * @param float|null $totalWeight
+     * @return OrderInterface
+     */
+    public function setTotalWeight($totalWeight)
+    {
+        $this->totalWeight = $totalWeight;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getTrackingNumber()
+    {
+        return $this->trackingNumber;
+    }
+
+    /**
+     * @param null|string $trackingNumber
+     * @return OrderInterface
+     */
+    public function setTrackingNumber($trackingNumber)
+    {
+        $this->trackingNumber = $trackingNumber;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTransactionNumber()
+    {
+        return $this->transactionNumber;
+    }
+
+    /**
+     * @param int|null $transactionNumber
+     * @return OrderInterface
+     */
+    public function setTransactionNumber($transactionNumber)
+    {
+        $this->transactionNumber = $transactionNumber;
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getVatPct()
+    {
+        return $this->vatPct;
+    }
+
+    /**
+     * @param float|null $vatPct
+     * @return OrderInterface
+     */
+    public function setVatPct($vatPct)
+    {
+        $this->vatPct = $vatPct;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getVatRegNumber()
+    {
+        return $this->vatRegNumber;
+    }
+
+    /**
+     * @param null|string $vatRegNumber
+     * @return OrderInterface
+     */
+    public function setVatRegNumber($vatRegNumber)
+    {
+        $this->vatRegNumber = $vatRegNumber;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getXmlParams()
+    {
+        return $this->xmlParams;
+    }
+
+    /**
+     * @param null|string $xmlParams
+     * @return OrderInterface
+     */
+    public function setXmlParams($xmlParams)
+    {
+        $this->xmlParams = $xmlParams;
+        return $this;
+    }
+
+    /**
+     * A helper method for creating a Money object from a float based on the shared currency
+     *
+     * @param int $amount
+     * @return Money|null
+     */
+    private function createMoney(int $amount = 0) : ?Money
+    {
+        return DandomainFoundation\createMoney((string)$this->currencyCode, $amount);
+    }
+
+    /**
+     * A helper method for creating a Money object from a float based on the shared currency
+     *
+     * @param float|string $amount
+     * @return Money|null
+     */
+    private function createMoneyFromFloat($amount = 0.0) : ?Money
+    {
+        return DandomainFoundation\createMoneyFromFloat((string)$this->currencyCode, $amount);
+    }
+}

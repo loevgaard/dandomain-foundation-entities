@@ -1,0 +1,101 @@
+{
+    "comment": "",
+    "createdDate": "/Date(1509972409000+0100)/",
+    "creditNoteNumber": null,
+    "currencyCode": "DKK",
+    "customerComment": "",
+    "customerInfo": {
+        "address": "test 10",
+        "address2": "",
+        "attention": "test 2",
+        "city": "København Ø",
+        "country": "Belgium",
+        "countryId": 2363,
+        "ean": "",
+        "email": "info@example.dk",
+        "fax": "",
+        "id": "220739",
+        "name": "test 5",
+        "phone": "21212121",
+        "state": "",
+        "zipCode": "2100"
+    },
+    "deliveryInfo": {
+        "address": "Banegårdsgade 1B",
+        "address2": "Pakkeshop: 95864",
+        "attention": "test 10",
+        "city": "Aarhus C",
+        "country": "Danmark",
+        "countryId": 2397,
+        "cvr": "",
+        "ean": "",
+        "email": "",
+        "fax": "",
+        "name": "Fit4Fight",
+        "phone": "",
+        "state": "",
+        "zipCode": "8000"
+    },
+    "giftCertificateAmount": 0,
+    "giftCertificateNumber": null,
+    "id": 295591,
+    "incomplete": false,
+    "invoiceInfo": {
+        "creditNoteNumber": null,
+        "date": null,
+        "isPaid": false,
+        "number": null,
+        "state": "RECIEVED"
+    },
+    "ip": "77.68.168.135",
+    "modified": false,
+    "modifiedDate": "/Date(1509972423000+0100)/",
+    "orderLines": [
+        {
+            "fileUrl": "",
+            "id": 1151610,
+            "productId": "4009249-0001-12",
+            "productName": "D-XEL - Matti T-shirt",
+            "quantity": 1,
+            "totalPrice": 103.96,
+            "unitPrice": 103.96,
+            "variant": "Størrelse 0-16 år:152 cm - 12 år",
+            "vatPct": "25",
+            "xmlParams": null
+        }
+    ],
+    "orderState": {
+        "exclStatistics": false,
+        "id": 1,
+        "isDefault": true,
+        "name": "Nye"
+    },
+    "paymentInfo": {
+        "fee": 0,
+        "feeInclVat": false,
+        "id": 60,
+        "name": "Betalingskort"
+    },
+    "referenceNumber": "",
+    "referrer": "https://www.example.dk/shop/frontpage.html?BypassShopClosed=1",
+    "reservedField1": "",
+    "reservedField2": "",
+    "reservedField3": "",
+    "reservedField4": "",
+    "reservedField5": "",
+    "salesDiscount": 0,
+    "shippingInfo": {
+        "fee": 29,
+        "feeInclVat": false,
+        "id": 67,
+        "name": "GLS pakkeshop"
+    },
+    "siteId": 26,
+    "totalPrice": 158.95,
+    "totalWeight": 0.6,
+    "trackingNumber": "",
+    "transactionNumber": null,
+    "vatPct": "25",
+    "vatRegNumber": "",
+    "xmlParams": null
+}

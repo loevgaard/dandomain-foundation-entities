@@ -10,12 +10,11 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\OrderTraits;
+use Loevgaard\DandomainFoundation\Entity\Generated\OrderTrait;
 use Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\StateInterface;
-use Money\Currency;
 use Money\Money;
 
 /**
@@ -26,7 +25,7 @@ use Money\Money;
  */
 class Order implements OrderInterface
 {
-    use OrderTraits;
+    use OrderTrait;
 
     /**
      * @var int

@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryTraits;
+use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryTrait;
 
 /**
  * @ORM\Entity()
@@ -13,7 +13,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryTraits;
  */
 class Delivery implements DeliveryInterface
 {
-    use DeliveryTraits;
+    use DeliveryTrait;
 
     /**
      * @var int

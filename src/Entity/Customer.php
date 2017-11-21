@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\CustomerTraits;
+use Loevgaard\DandomainFoundation\Entity\Generated\CustomerTrait;
 
 /**
  * @ORM\Entity()
@@ -15,7 +15,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CustomerTraits;
  */
 class Customer implements CustomerInterface
 {
-    use CustomerTraits;
+    use CustomerTrait;
 
     /**
      * @var int

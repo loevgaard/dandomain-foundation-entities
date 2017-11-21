@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodTraits;
+use Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodTrait;
 use Money\Currency;
 use Money\Money;
 
@@ -15,7 +15,7 @@ use Money\Money;
  */
 class PaymentMethod implements PaymentMethodInterface
 {
-    use PaymentMethodTraits;
+    use PaymentMethodTrait;
 
     /**
      * @var int

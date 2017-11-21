@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceTraits;
+use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceTrait;
 
 /**
  * @ORM\Entity()
@@ -14,7 +14,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceTraits;
  */
 class Invoice implements InvoiceInterface
 {
-    use InvoiceTraits;
+    use InvoiceTrait;
 
     /**
      * @var int

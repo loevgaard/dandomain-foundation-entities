@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodTraits;
+use Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodTrait;
 use Money\Currency;
 use Money\Money;
 
@@ -15,7 +15,7 @@ use Money\Money;
  */
 class ShippingMethod implements ShippingMethodInterface
 {
-    use ShippingMethodTraits;
+    use ShippingMethodTrait;
 
     /**
      * @var int

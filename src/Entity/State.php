@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\StateInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\StateTraits;
+use Loevgaard\DandomainFoundation\Entity\Generated\StateTrait;
 
 /**
  * @ORM\Entity()
@@ -13,7 +13,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\StateTraits;
  */
 class State implements StateInterface
 {
-    use StateTraits;
+    use StateTrait;
 
     /**
      * @var int

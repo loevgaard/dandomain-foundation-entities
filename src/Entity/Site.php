@@ -4,7 +4,7 @@ namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\SiteTraits;
+use Loevgaard\DandomainFoundation\Entity\Generated\SiteTrait;
 
 /**
  * @ORM\Entity()
@@ -12,7 +12,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\SiteTraits;
  */
 class Site implements SiteInterface
 {
-    use SiteTraits;
+    use SiteTrait;
 
     /**
      * @var int

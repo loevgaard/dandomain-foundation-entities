@@ -18,7 +18,7 @@ interface OrderInterface
      * @param bool $populateEmbedded
      * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
-    public function populateFromApiResponse($data, $populateEmbedded): \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
+    public function populateFromApiResponse($data, bool $populateEmbedded = false): \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
 
     /**
      * @return \Money\Money|null

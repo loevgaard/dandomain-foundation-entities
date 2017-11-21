@@ -70,7 +70,7 @@ class Order implements OrderInterface
     protected $invoice;
 
     /**
-     * @var ArrayCollection|null
+     * @var OrderLine[]|ArrayCollection
      *
      * @ORM\OneToMany(mappedBy="order", targetEntity="OrderLine", cascade={"persist", "remove"})
      */
@@ -323,7 +323,7 @@ class Order implements OrderInterface
      * @param bool $populateEmbedded
      * @return OrderInterface
      */
-    public function populateFromApiResponse($data, $populateEmbedded) : OrderInterface
+    public function populateFromApiResponse($data, bool $populateEmbedded = false) : OrderInterface
     {
         $data = DandomainFoundation\objectToArray($data);
 
@@ -537,7 +537,7 @@ class Order implements OrderInterface
      */
     public function getId(): int
     {
-        return $this->id;
+        return (int)$this->id;
     }
 
     /**

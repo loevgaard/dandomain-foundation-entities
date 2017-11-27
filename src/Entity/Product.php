@@ -4,8 +4,18 @@ namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\VariantInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\ProductTrait;
+use Loevgaard\DandomainFoundation\Entity\Generated\MediumInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\CategoryInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\PriceInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\ProductRelationInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\SegmentInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\VariantGroupInterface;
+use Loevgaard\DandomainFoundation;
 
 /**
  * @ORM\Entity()
@@ -303,7 +313,7 @@ class Product implements ProductInterface
     /**
      * @var Medium[]|ArrayCollection
      */
-    protected $medias;
+    protected $media;
 
     /**
      * @var Price[]|ArrayCollection
@@ -340,12 +350,308 @@ class Product implements ProductInterface
         $this->categories = new ArrayCollection();
         $this->disabledVariants = new ArrayCollection();
         $this->manufacturers = new ArrayCollection();
-        $this->medias = new ArrayCollection();
+        $this->media = new ArrayCollection();
         $this->prices = new ArrayCollection();
         $this->productRelations = new ArrayCollection();
         $this->segments = new ArrayCollection();
         $this->variants = new ArrayCollection();
         $this->variantGroups = new ArrayCollection();
+    }
+
+    public function addDisabledVariant(VariantInterface $variant) : ProductInterface
+    {
+        if(!$this->disabledVariants->contains($variant)) {
+            $this->disabledVariants->add($variant);
+        }
+
+        return $this;
+    }
+
+    public function addMedium(MediumInterface $medium) : ProductInterface
+    {
+        if(!$this->media->contains($medium)) {
+            $this->media->add($medium);
+        }
+    }
+
+    public function addCategory(CategoryInterface $category) : ProductInterface
+    {
+        if(!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+    }
+
+    public function addManufacturer(ManufacturerInterface $manufacturer) : ProductInterface
+    {
+        if(!$this->manufacturers->contains($manufacturer)) {
+            $this->manufacturers->add($manufacturer);
+        }
+    }
+
+    public function addPrice(PriceInterface $price) : ProductInterface
+    {
+        if(!$this->prices->contains($price)) {
+            $this->prices->add($price);
+        }
+    }
+
+    public function addProductRelation(ProductRelationInterface $productRelation) : ProductInterface
+    {
+        if(!$this->productRelations->contains($productRelation)) {
+            $this->productRelations->add($productRelation);
+        }
+    }
+
+    public function addSegment(SegmentInterface $segment) : ProductInterface
+    {
+        if(!$this->segments->contains($segment)) {
+            $this->segments->add($segment);
+        }
+    }
+
+    public function addVariant(VariantInterface $variant) : ProductInterface
+    {
+        if(!$this->variants->contains($variant)) {
+            $this->variants->add($variant);
+        }
+    }
+
+    public function addVariantGroup(VariantGroupInterface $variantGroup) : ProductInterface
+    {
+        if(!$this->variantGroups->contains($variantGroup)) {
+            $this->variantGroups->add($variantGroup);
+        }
+    }
+
+    /**
+     * Populates a product based on the response from the Dandomain API
+     *
+     * See the properties here:
+     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/ProductDataService/help/operations/GetDataProduct
+     *
+     * @param \stdClass|array $data
+     */
+    public function populateFromApiResponse($data)
+    {
+        $data = DandomainFoundation\objectToArray($data);
+
+        if ($data['created']) {
+            $this->created = DateTimeImmutable::createFromJson($data['created']);
+        }
+
+        if ($data['updated']) {
+            $this->updated = DateTimeImmutable::createFromJson($data['updated']);
+        }
+
+        $this
+            ->setBarCodeNumber($data['barCodeNumber'])
+            ->setCategoryIdList($data['categoryIdList'])
+            ->setComments($data['comments'])
+            ->setCostPrice($data['costPrice'])
+            ->setCreatedBy($data['createdBy'])
+            ->setDefaultCategoryId($data['defaultCategoryId'])
+            ->setDisabledVariantIdList($data['disabledVariantIdList'])
+            ->setEdbPriserProductNumber($data['edbPriserProductNumber'])
+            ->setExternalId($data['id'])
+            ->setFileSaleLink($data['fileSaleLink'])
+            ->setGoogleFeedCategory($data['googleFeedCategory'])
+            ->setIsGiftCertificate($data['isGiftCertificate'])
+            ->setIsModified($data['isModified'])
+            ->setIsRateVariants($data['isRateVariants'])
+            ->setIsReviewVariants($data['isReviewVariants'])
+            ->setIsVariantMaster($data['isVariantMaster'])
+            ->setLocationNumber($data['locationNumber'])
+            ->setManufacturereIdList($data['manufacturereIdList'])
+            ->setMaxBuyAmount($data['maxBuyAmount'])
+            ->setMinBuyAmount($data['minBuyAmount'])
+            ->setMinBuyAmountB2B($data['minBuyAmountB2B'])
+            ->setNumber($data['number'])
+            ->setPicture($data['picture'])
+            ->setSalesCount($data['salesCount'])
+            ->setSegmentIdList($data['segmentIdList'])
+            ->setSortOrder($data['sortOrder'])
+            ->setStockCount($data['stockCount'])
+            ->setStockLimit($data['stockLimit'])
+            ->setTypeId($data['typeId'])
+            ->setUpdatedBy($data['updatedBy'])
+            ->setVariantGroupIdList($data['variantGroupIdList'])
+            ->setVariantIdList($data['variantIdList'])
+            ->setVariantMasterId($data['variantMasterId'])
+            ->setVendorNumber($data['vendorNumber'])
+            ->setWeight($data['weight'])
+        ;
+
+        if (is_array($data['disabledVariants'])) {
+            foreach ($data['disabledVariants'] as $disabledVariantData) {
+                $disabledVariant = new Variant();
+                $disabledVariant->populateFromApiResponse($disabledVariantData);
+                $this->addDisabledVariant($disabledVariant);
+            }
+        }
+
+        if (is_array($data['media'])) {
+            foreach ($data['media'] as $mediaTmp) {
+                $medium = new Medium();
+                $medium->populateFromApiResponse($mediaTmp);
+                $this->addMedium($medium);
+            }
+        }
+
+        if (is_array($data['productCategories'])) {
+            foreach ($data['productCategories'] as $categoryData) {
+                $category = new Category();
+                $category->populateFromApiResponse($categoryData);
+                $this->addCategory($category);
+            }
+        }
+
+        if (is_array($data['manufacturers'])) {
+            foreach ($data['manufacturers'] as $manufacturerData) {
+                $manufacturer = new Manufacturer();
+                $manufacturer->populateFromApiResponse($manufacturerData);
+                $this->addManufacturer($manufacturer);
+            }
+        }
+
+        if (is_array($data['prices'])) {
+            foreach ($data['prices'] as $priceData) {
+                $price = new Price();
+                $price->populateFromApiResponse($priceData);
+                $this->addPrice($price);
+            }
+        }
+
+        if (is_array($data['productRelations'])) {
+            foreach ($data['productRelations'] as $productRelationData) {
+                $productRelation = new ProductRelation();
+                $productRelation->populateFromApiResponse($productRelationData);
+                $this->addProductRelation($productRelation);
+            }
+        }
+
+        if ($data['productType']) {
+            $productType = new ProductType();
+            $productType->$productRelation($data['productType']);
+            $this->setProductType($productType);
+        }
+
+        if (is_array($data['segments'])) {
+            foreach ($data['segments'] as $segmentData) {
+                $segment = new Segment();
+                $segment->$productRelation($segmentData);
+                $this->addSegment($segment);
+            }
+        }
+
+        if (is_array($data['variants'])) {
+            foreach ($data['variants'] as $variantData) {
+                $variant = new Variant();
+                $variant->$productRelation($variantData);
+                $this->addVariant($variant);
+            }
+        }
+
+        if (is_array($data['variantGroups'])) {
+            foreach ($data['variantGroups'] as $variantGroupData) {
+                $variantGroup = new VariantGroup();
+                $variantGroup->$productRelation($variantGroupData);
+                $this->addVariantGroup($variantGroup);
+            }
+        }
+
+        /*
+        if (($entity instanceof TranslatableInterface) && is_array($data['siteSettings'])) {
+            foreach ($data['siteSettings'] as $siteSettingTmp) {
+                if ($siteSettingTmp->expectedDeliveryTime) {
+                    try {
+                        $expectedDeliveryTime = \Dandomain\Api\jsonDateToDate($siteSettingTmp->expectedDeliveryTime);
+                        $expectedDeliveryTime->setTimezone(new \DateTimeZone('Europe/Copenhagen'));
+                    } catch (\Exception $e) {
+                        $expectedDeliveryTime = null;
+                    }
+                } else {
+                    $expectedDeliveryTime = null;
+                }
+
+                if ($siteSettingTmp->expectedDeliveryTimeNotInStock) {
+                    try {
+                        $expectedDeliveryTimeNotInStock = \Dandomain\Api\jsonDateToDate($siteSettingTmp->expectedDeliveryTimeNotInStock);
+                        $expectedDeliveryTimeNotInStock->setTimezone(new \DateTimeZone('Europe/Copenhagen'));
+                    } catch (\Exception $e) {
+                        $expectedDeliveryTimeNotInStock = null;
+                    }
+                } else {
+                    $expectedDeliveryTimeNotInStock = null;
+                }
+
+                $entity->translate($siteSettingTmp->siteID)->setCustomField01($siteSettingTmp->customField01);
+                $entity->translate($siteSettingTmp->siteID)->setCustomField02($siteSettingTmp->customField02);
+                $entity->translate($siteSettingTmp->siteID)->setCustomField03($siteSettingTmp->customField03);
+                $entity->translate($siteSettingTmp->siteID)->setCustomField04($siteSettingTmp->customField04);
+                $entity->translate($siteSettingTmp->siteID)->setCustomField05($siteSettingTmp->customField05);
+                $entity->translate($siteSettingTmp->siteID)->setCustomField06($siteSettingTmp->customField06);
+                $entity->translate($siteSettingTmp->siteID)->setCustomField07($siteSettingTmp->customField07);
+                $entity->translate($siteSettingTmp->siteID)->setCustomField08($siteSettingTmp->customField08);
+                $entity->translate($siteSettingTmp->siteID)->setCustomField09($siteSettingTmp->customField09);
+                $entity->translate($siteSettingTmp->siteID)->setCustomField10($siteSettingTmp->customField10);
+                $entity->translate($siteSettingTmp->siteID)->setGiftCertificatePdfBackgroundImage($siteSettingTmp->giftCertificatePdfBackgroundImage);
+                $entity->translate($siteSettingTmp->siteID)->setHidden($siteSettingTmp->hidden);
+                $entity->translate($siteSettingTmp->siteID)->setHiddenForMobile($siteSettingTmp->hiddenForMobile);
+                $entity->translate($siteSettingTmp->siteID)->setImageAltText($siteSettingTmp->imageAltText);
+                $entity->translate($siteSettingTmp->siteID)->setIsToplistHidden($siteSettingTmp->isToplistHidden);
+                $entity->translate($siteSettingTmp->siteID)->setKeyWords($siteSettingTmp->keyWords);
+                $entity->translate($siteSettingTmp->siteID)->setLongDescription($siteSettingTmp->longDescription);
+                $entity->translate($siteSettingTmp->siteID)->setLongDescription2($siteSettingTmp->longDescription2);
+                $entity->translate($siteSettingTmp->siteID)->setMetaDescription($siteSettingTmp->metaDescription);
+                $entity->translate($siteSettingTmp->siteID)->setName($siteSettingTmp->name);
+                $entity->translate($siteSettingTmp->siteID)->setPageTitle($siteSettingTmp->pageTitle);
+                $entity->translate($siteSettingTmp->siteID)->setRememberToBuyTextHeading($siteSettingTmp->rememberToBuyTextHeading);
+                $entity->translate($siteSettingTmp->siteID)->setRememberToBuyTextSubheading($siteSettingTmp->rememberToBuyTextSubheading);
+                $entity->translate($siteSettingTmp->siteID)->setRetailSalesPrice($siteSettingTmp->retailSalesPrice);
+                $entity->translate($siteSettingTmp->siteID)->setShortDescription($siteSettingTmp->shortDescription);
+                $entity->translate($siteSettingTmp->siteID)->setShowAsNew($siteSettingTmp->showAsNew);
+                $entity->translate($siteSettingTmp->siteID)->setShowOnFrontPage($siteSettingTmp->showOnFrontPage);
+                $entity->translate($siteSettingTmp->siteID)->setSiteId($siteSettingTmp->siteID);
+                $entity->translate($siteSettingTmp->siteID)->setSortOrder($siteSettingTmp->sortOrder);
+                $entity->translate($siteSettingTmp->siteID)->setTechDocLink($siteSettingTmp->techDocLink);
+                $entity->translate($siteSettingTmp->siteID)->setTechDocLink2($siteSettingTmp->techDocLink2);
+                $entity->translate($siteSettingTmp->siteID)->setTechDocLink3($siteSettingTmp->techDocLink3);
+                $entity->translate($siteSettingTmp->siteID)->setUnitNumber($siteSettingTmp->unitNumber);
+                $entity->translate($siteSettingTmp->siteID)->setUrlname($siteSettingTmp->urlname);
+
+                if (null !== $expectedDeliveryTime) {
+                    $entity->translate($siteSettingTmp->siteID)->setExpectedDeliveryTime($expectedDeliveryTime);
+                }
+
+                if (null !== $expectedDeliveryTimeNotInStock) {
+                    $entity->translate($siteSettingTmp->siteID)->setExpectedDeliveryTimeNotInStock($expectedDeliveryTimeNotInStock);
+                }
+
+                if ($siteSettingTmp->periodFrontPage) {
+                    $periodFrontPage = $this->periodSynchronizer->syncPeriod($siteSettingTmp->periodFrontPage, $flush);
+                    $entity->translate($siteSettingTmp->siteID)->setPeriodFrontPage($periodFrontPage);
+                }
+
+                if ($siteSettingTmp->periodHidden) {
+                    $periodHidden = $this->periodSynchronizer->syncPeriod($siteSettingTmp->periodHidden, $flush);
+                    $entity->translate($siteSettingTmp->siteID)->setPeriodHidden($periodHidden);
+                }
+
+                if ($siteSettingTmp->periodNew) {
+                    $periodNew = $this->periodSynchronizer->syncPeriod($siteSettingTmp->periodNew, $flush);
+                    $entity->translate($siteSettingTmp->siteID)->setPeriodNew($periodNew);
+                }
+
+                if ($siteSettingTmp->unit) {
+                    $unit = $this->unitSynchronizer->syncUnit($siteSettingTmp->unit, $flush);
+                    $entity->translate($siteSettingTmp->siteID)->setUnit($unit);
+                }
+
+                $entity->mergeNewTranslations();
+            }
+        }
+
+        */
     }
 
     /**
@@ -1089,18 +1395,18 @@ class Product implements ProductInterface
     /**
      * @return ArrayCollection|Medium[]
      */
-    public function getMedias()
+    public function getMedia()
     {
-        return $this->medias;
+        return $this->media;
     }
 
     /**
-     * @param ArrayCollection|Medium[] $medias
+     * @param ArrayCollection|Medium[] $media
      * @return Product
      */
-    public function setMedias($medias)
+    public function setMedia($media)
     {
-        $this->medias = $medias;
+        $this->media = $media;
         return $this;
     }
 

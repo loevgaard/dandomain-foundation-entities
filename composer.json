@@ -6,9 +6,9 @@
         "php": "~7.0",
         "doctrine/common": "^2.6",
         "doctrine/orm": "^2.5",
-        "hostnet/entity-plugin-lib": "~2.1.0",
+        "hostnet/entity-plugin-lib": "^2.1",
         "loevgaard/dandomain-datetime": "^0.1.0",
-        "loevgaard/dandomain-pay-php-sdk": "~1.0",
+        "loevgaard/dandomain-pay-php-sdk": "^1.0",
         "moneyphp/money": "^3.0"
     },
     "require-dev": {

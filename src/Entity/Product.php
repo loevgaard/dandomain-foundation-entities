@@ -314,7 +314,7 @@ class Product implements ProductInterface
     /**
      * @var Manufacturer[]|ArrayCollection
      *
-     * @ORM\JoinTable(name="product_manufacturer")
+     * @ORM\JoinTable(name="loevgaard_dandomain_product_manufacturer")
      * @ORM\ManyToMany(cascade={"persist"}, inversedBy="products", targetEntity="Manufacturer")
      */
     protected $manufacturers;

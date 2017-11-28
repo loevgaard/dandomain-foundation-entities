@@ -396,7 +396,9 @@ class Product implements ProductInterface
 
     public function addManufacturer(ManufacturerInterface $manufacturer) : ProductInterface
     {
-        if(!$this->manufacturers->contains($manufacturer)) {
+        if(!$this->manufacturers->exists(function($key, ManufacturerInterface $element) use ($manufacturer) {
+            return $element->getExternalId() === $manufacturer->getExternalId();
+        })) {
             $this->manufacturers->add($manufacturer);
         }
 

@@ -403,11 +403,9 @@ class Product implements ProductInterface
         return $this;
     }
 
-    public function removeManufacturer(ManufacturerInterface $manufacturer) : ProductInterface
+    public function removeManufacturer(ManufacturerInterface $manufacturer) : bool
     {
-        $this->manufacturers->removeElement($manufacturer);
-
-        return $this;
+        return $this->manufacturers->removeElement($manufacturer);
     }
 
     public function addPrice(PriceInterface $price) : ProductInterface

@@ -372,6 +372,8 @@ class Product implements ProductInterface
         if(!$this->media->contains($medium)) {
             $this->media->add($medium);
         }
+
+        return $this;
     }
 
     public function addCategory(CategoryInterface $category) : ProductInterface
@@ -379,6 +381,8 @@ class Product implements ProductInterface
         if(!$this->categories->contains($category)) {
             $this->categories->add($category);
         }
+
+        return $this;
     }
 
     public function addManufacturer(ManufacturerInterface $manufacturer) : ProductInterface
@@ -386,6 +390,8 @@ class Product implements ProductInterface
         if(!$this->manufacturers->contains($manufacturer)) {
             $this->manufacturers->add($manufacturer);
         }
+
+        return $this;
     }
 
     public function addPrice(PriceInterface $price) : ProductInterface
@@ -393,6 +399,8 @@ class Product implements ProductInterface
         if(!$this->prices->contains($price)) {
             $this->prices->add($price);
         }
+
+        return $this;
     }
 
     public function addProductRelation(ProductRelationInterface $productRelation) : ProductInterface
@@ -400,6 +408,8 @@ class Product implements ProductInterface
         if(!$this->productRelations->contains($productRelation)) {
             $this->productRelations->add($productRelation);
         }
+
+        return $this;
     }
 
     public function addSegment(SegmentInterface $segment) : ProductInterface
@@ -407,6 +417,8 @@ class Product implements ProductInterface
         if(!$this->segments->contains($segment)) {
             $this->segments->add($segment);
         }
+
+        return $this;
     }
 
     public function addVariant(VariantInterface $variant) : ProductInterface
@@ -421,6 +433,8 @@ class Product implements ProductInterface
         if(!$this->variantGroups->contains($variantGroup)) {
             $this->variantGroups->add($variantGroup);
         }
+
+        return $this;
     }
 
     /**
@@ -481,6 +495,9 @@ class Product implements ProductInterface
             ->setWeight($data['weight'])
         ;
 
+        /*
+         * @todo outcomment this and fix it
+         *
         if (is_array($data['disabledVariants'])) {
             foreach ($data['disabledVariants'] as $disabledVariantData) {
                 $disabledVariant = new Variant();
@@ -558,6 +575,7 @@ class Product implements ProductInterface
                 $this->addVariantGroup($variantGroup);
             }
         }
+        */
 
         /*
         if (($entity instanceof TranslatableInterface) && is_array($data['siteSettings'])) {

@@ -462,8 +462,9 @@ class Product implements ProductInterface
      * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/ProductDataService/help/operations/GetDataProduct
      *
      * @param \stdClass|array $data
+     * @param bool $populateEmbedded
      */
-    public function populateFromApiResponse($data)
+    public function populateFromApiResponse($data, bool $populateEmbedded = false)
     {
         $data = DandomainFoundation\objectToArray($data);
 
@@ -513,9 +514,10 @@ class Product implements ProductInterface
             ->setWeight($data['weight'])
         ;
 
-        /*
-         * @todo outcomment this and fix it
-         */
+        if($populateEmbedded) {
+            /*
+             * @todo outcomment this and fix it
+             */
 
 //        if (is_array($data['disabledVariants'])) {
 //            foreach ($data['disabledVariants'] as $disabledVariantData) {
@@ -541,13 +543,13 @@ class Product implements ProductInterface
 //            }
 //        }
 //
-        if (is_array($data['manufacturers'])) {
-            foreach ($data['manufacturers'] as $manufacturerData) {
-                $manufacturer = new Manufacturer();
-                $manufacturer->populateFromApiResponse($manufacturerData);
-                $this->addManufacturer($manufacturer);
+            if (is_array($data['manufacturers'])) {
+                foreach ($data['manufacturers'] as $manufacturerData) {
+                    $manufacturer = new Manufacturer();
+                    $manufacturer->populateFromApiResponse($manufacturerData);
+                    $this->addManufacturer($manufacturer);
+                }
             }
-        }
 //
 //        if (is_array($data['prices'])) {
 //            foreach ($data['prices'] as $priceData) {
@@ -594,6 +596,8 @@ class Product implements ProductInterface
 //                $this->addVariantGroup($variantGroup);
 //            }
 //        }
+
+        }
 
         /*
         if (($entity instanceof TranslatableInterface) && is_array($data['siteSettings'])) {

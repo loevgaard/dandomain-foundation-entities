@@ -4,6 +4,9 @@ namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
+use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\VariantInterface;
@@ -24,6 +27,9 @@ use Loevgaard\DandomainFoundation;
 class Product implements ProductInterface
 {
     use ProductTrait;
+    use Timestampable;
+    use SoftDeletable;
+    use Translatable;
 
     /**
      * @var int
@@ -72,14 +78,14 @@ class Product implements ProductInterface
     /**
      * @var \DateTimeImmutable|null
      *
-     * @ORM\Column(nullable=true, type="datetime_immutable")
+     * @ORM\Column(nullable=true, type="datetime_immutable", options={"comment"="Created info from Dandomain"})
      */
     protected $created;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="string", length=191, options={"comment"="Created by info from Dandomain"})
      */
     protected $createdBy;
 
@@ -249,14 +255,14 @@ class Product implements ProductInterface
     /**
      * @var \DateTimeImmutable|null
      *
-     * @ORM\Column(nullable=true, type="datetime_immutable")
+     * @ORM\Column(nullable=true, type="datetime_immutable", options={"comment"="Updated info from Dandomain"})
      */
     protected $updated;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="string", length=191, options={"comment"="Updated by info from Dandomain"})
      */
     protected $updatedBy;
 
@@ -307,6 +313,9 @@ class Product implements ProductInterface
 
     /**
      * @var Manufacturer[]|ArrayCollection
+     *
+     * @ORM\JoinTable(name="product_manufacturer")
+     * @ORM\ManyToMany(cascade={"persist"}, inversedBy="products", targetEntity="Manufacturer")
      */
     protected $manufacturers;
 
@@ -394,6 +403,13 @@ class Product implements ProductInterface
         return $this;
     }
 
+    public function removeManufacturer(ManufacturerInterface $manufacturer) : ProductInterface
+    {
+        $this->manufacturers->removeElement($manufacturer);
+
+        return $this;
+    }
+
     public function addPrice(PriceInterface $price) : ProductInterface
     {
         if(!$this->prices->contains($price)) {
@@ -426,6 +442,8 @@ class Product implements ProductInterface
         if(!$this->variants->contains($variant)) {
             $this->variants->add($variant);
         }
+
+        return $this;
     }
 
     public function addVariantGroup(VariantGroupInterface $variantGroup) : ProductInterface
@@ -497,31 +515,32 @@ class Product implements ProductInterface
 
         /*
          * @todo outcomment this and fix it
-         *
-        if (is_array($data['disabledVariants'])) {
-            foreach ($data['disabledVariants'] as $disabledVariantData) {
-                $disabledVariant = new Variant();
-                $disabledVariant->populateFromApiResponse($disabledVariantData);
-                $this->addDisabledVariant($disabledVariant);
-            }
-        }
+         */
 
-        if (is_array($data['media'])) {
-            foreach ($data['media'] as $mediaTmp) {
-                $medium = new Medium();
-                $medium->populateFromApiResponse($mediaTmp);
-                $this->addMedium($medium);
-            }
-        }
-
-        if (is_array($data['productCategories'])) {
-            foreach ($data['productCategories'] as $categoryData) {
-                $category = new Category();
-                $category->populateFromApiResponse($categoryData);
-                $this->addCategory($category);
-            }
-        }
-
+//        if (is_array($data['disabledVariants'])) {
+//            foreach ($data['disabledVariants'] as $disabledVariantData) {
+//                $disabledVariant = new Variant();
+//                $disabledVariant->populateFromApiResponse($disabledVariantData);
+//                $this->addDisabledVariant($disabledVariant);
+//            }
+//        }
+//
+//        if (is_array($data['media'])) {
+//            foreach ($data['media'] as $mediaTmp) {
+//                $medium = new Medium();
+//                $medium->populateFromApiResponse($mediaTmp);
+//                $this->addMedium($medium);
+//            }
+//        }
+//
+//        if (is_array($data['productCategories'])) {
+//            foreach ($data['productCategories'] as $categoryData) {
+//                $category = new Category();
+//                $category->populateFromApiResponse($categoryData);
+//                $this->addCategory($category);
+//            }
+//        }
+//
         if (is_array($data['manufacturers'])) {
             foreach ($data['manufacturers'] as $manufacturerData) {
                 $manufacturer = new Manufacturer();
@@ -529,53 +548,52 @@ class Product implements ProductInterface
                 $this->addManufacturer($manufacturer);
             }
         }
+//
+//        if (is_array($data['prices'])) {
+//            foreach ($data['prices'] as $priceData) {
+//                $price = new Price();
+//                $price->populateFromApiResponse($priceData);
+//                $this->addPrice($price);
+//            }
+//        }
+//
+//        if (is_array($data['productRelations'])) {
+//            foreach ($data['productRelations'] as $productRelationData) {
+//                $productRelation = new ProductRelation();
+//                $productRelation->populateFromApiResponse($productRelationData);
+//                $this->addProductRelation($productRelation);
+//            }
+//        }
+//
+//        if ($data['productType']) {
+//            $productType = new ProductType();
+//            $productType->populateFromApiResponse($data['productType']);
+//            $this->setProductType($productType);
+//        }
 
-        if (is_array($data['prices'])) {
-            foreach ($data['prices'] as $priceData) {
-                $price = new Price();
-                $price->populateFromApiResponse($priceData);
-                $this->addPrice($price);
-            }
-        }
-
-        if (is_array($data['productRelations'])) {
-            foreach ($data['productRelations'] as $productRelationData) {
-                $productRelation = new ProductRelation();
-                $productRelation->populateFromApiResponse($productRelationData);
-                $this->addProductRelation($productRelation);
-            }
-        }
-
-        if ($data['productType']) {
-            $productType = new ProductType();
-            $productType->$productRelation($data['productType']);
-            $this->setProductType($productType);
-        }
-
-        if (is_array($data['segments'])) {
-            foreach ($data['segments'] as $segmentData) {
-                $segment = new Segment();
-                $segment->$productRelation($segmentData);
-                $this->addSegment($segment);
-            }
-        }
-
-        if (is_array($data['variants'])) {
-            foreach ($data['variants'] as $variantData) {
-                $variant = new Variant();
-                $variant->$productRelation($variantData);
-                $this->addVariant($variant);
-            }
-        }
-
-        if (is_array($data['variantGroups'])) {
-            foreach ($data['variantGroups'] as $variantGroupData) {
-                $variantGroup = new VariantGroup();
-                $variantGroup->$productRelation($variantGroupData);
-                $this->addVariantGroup($variantGroup);
-            }
-        }
-        */
+//        if (is_array($data['segments'])) {
+//            foreach ($data['segments'] as $segmentData) {
+//                $segment = new Segment();
+//                $segment->$productRelation($segmentData);
+//                $this->addSegment($segment);
+//            }
+//        }
+//
+//        if (is_array($data['variants'])) {
+//            foreach ($data['variants'] as $variantData) {
+//                $variant = new Variant();
+//                $variant->$productRelation($variantData);
+//                $this->addVariant($variant);
+//            }
+//        }
+//
+//        if (is_array($data['variantGroups'])) {
+//            foreach ($data['variantGroups'] as $variantGroupData) {
+//                $variantGroup = new VariantGroup();
+//                $variantGroup->$productRelation($variantGroupData);
+//                $this->addVariantGroup($variantGroup);
+//            }
+//        }
 
         /*
         if (($entity instanceof TranslatableInterface) && is_array($data['siteSettings'])) {

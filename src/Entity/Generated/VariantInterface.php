@@ -9,6 +9,16 @@ interface VariantInterface
 {
 
     /**
+     * Populates a variant based on the response from the Dandomain API
+     *
+     * See the properties here:
+     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/ProductDataService/help/operations/GetDataProduct
+     *
+     * @param \stdClass|array $data
+     */
+    public function populateFromApiResponse($data);
+
+    /**
      * @return int
      */
     public function getId(): int;

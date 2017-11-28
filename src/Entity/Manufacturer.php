@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerTrait;
+use Loevgaard\DandomainFoundation;
 
 /**
  * @ORM\Entity()
@@ -62,6 +63,26 @@ class Manufacturer implements ManufacturerInterface
     public function __construct()
     {
         $this->products = new ArrayCollection();
+    }
+
+    /**
+     * Populates a product based on the response from the Dandomain API
+     *
+     * See the properties here:
+     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/ProductDataService/help/operations/GetDataProduct
+     *
+     * @param \stdClass|array $data
+     */
+    public function populateFromApiResponse($data)
+    {
+        $data = DandomainFoundation\objectToArray($data);
+
+        $this
+            ->setExternalId($data['id'])
+            ->setLink($data['link'])
+            ->setLinkText($data['linkText'])
+            ->setName($data['name'])
+        ;
     }
 
     /**

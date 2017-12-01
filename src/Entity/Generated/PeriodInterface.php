@@ -8,6 +8,9 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
 interface PeriodInterface extends AbstractEntityInterface
 {
 
+    
+    public function hydrate(array $data);
+
     /**
      * @return int
      */
@@ -73,9 +76,6 @@ interface PeriodInterface extends AbstractEntityInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Period
      */
     public function setTitle($title);
-
-    
-    public function hydrate(array $data);
 
     
     public function extract(): array;

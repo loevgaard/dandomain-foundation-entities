@@ -396,9 +396,7 @@ class Product extends AbstractEntity implements ProductInterface
 
     public function addManufacturer(ManufacturerInterface $manufacturer) : ProductInterface
     {
-        if(!$this->manufacturers->exists(function($key, ManufacturerInterface $element) use ($manufacturer) {
-            return $element->getExternalId() === $manufacturer->getExternalId();
-        })) {
+        if(!$this->hasManufacturer($manufacturer)) {
             $this->manufacturers->add($manufacturer);
         }
 
@@ -408,6 +406,13 @@ class Product extends AbstractEntity implements ProductInterface
     public function removeManufacturer(ManufacturerInterface $manufacturer) : bool
     {
         return $this->manufacturers->removeElement($manufacturer);
+    }
+
+    public function hasManufacturer(ManufacturerInterface $manufacturer) : bool
+    {
+        return $this->manufacturers->exists(function($key, ManufacturerInterface $element) use ($manufacturer) {
+            return $element->getExternalId() === $manufacturer->getExternalId();
+        });
     }
 
     public function addPrice(PriceInterface $price) : ProductInterface

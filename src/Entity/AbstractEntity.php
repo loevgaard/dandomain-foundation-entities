@@ -38,6 +38,6 @@ abstract class AbstractEntity
      */
     protected function getHydrator() : HydratorInterface
     {
-        return new ClassMethods();
+        return new ClassMethods(false);
     }
 }

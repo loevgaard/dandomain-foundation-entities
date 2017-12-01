@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in OrderLine!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface OrderLineInterface
+interface OrderLineInterface extends AbstractEntityInterface
 {
 
     /**
@@ -150,4 +150,10 @@ interface OrderLineInterface
      * @return \Loevgaard\DandomainFoundation\Entity\OrderLine
      */
     public function setProduct($product);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

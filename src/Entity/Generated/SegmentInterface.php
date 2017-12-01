@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Segment!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface SegmentInterface
+interface SegmentInterface extends AbstractEntityInterface
 {
 
     /**
@@ -62,4 +62,10 @@ interface SegmentInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Segment
      */
     public function setSegmentOptions(array $segmentOptions);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

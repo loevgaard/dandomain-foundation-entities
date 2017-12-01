@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Site!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface SiteInterface
+interface SiteInterface extends AbstractEntityInterface
 {
 
     /**
@@ -62,4 +62,10 @@ interface SiteInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface
      */
     public function setName($name);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in ProductType!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface ProductTypeInterface
+interface ProductTypeInterface extends AbstractEntityInterface
 {
 
     /**
@@ -73,4 +73,10 @@ interface ProductTypeInterface
      * @return \Loevgaard\DandomainFoundation\Entity\ProductType
      */
     public function setProductTypeVats($productTypeVats);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

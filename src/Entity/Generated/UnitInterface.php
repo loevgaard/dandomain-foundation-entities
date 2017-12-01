@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Unit!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface UnitInterface
+interface UnitInterface extends AbstractEntityInterface
 {
 
     /**
@@ -40,4 +40,10 @@ interface UnitInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Unit
      */
     public function setText($text);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

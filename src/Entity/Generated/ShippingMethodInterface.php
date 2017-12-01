@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in ShippingMethod!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface ShippingMethodInterface
+interface ShippingMethodInterface extends AbstractEntityInterface
 {
 
     /**
@@ -74,4 +74,10 @@ interface ShippingMethodInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface
      */
     public function setName($name);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

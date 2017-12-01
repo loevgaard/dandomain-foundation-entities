@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Tag!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface TagInterface
+interface TagInterface extends AbstractEntityInterface
 {
 
     /**
@@ -72,4 +72,10 @@ interface TagInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Tag
      */
     public function setTagValues($tagValues);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

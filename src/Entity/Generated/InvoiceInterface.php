@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Invoice!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface InvoiceInterface
+interface InvoiceInterface extends AbstractEntityInterface
 {
 
     /**
@@ -84,4 +84,10 @@ interface InvoiceInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Invoice
      */
     public function setState($state);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

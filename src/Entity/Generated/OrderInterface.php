@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Order!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface OrderInterface
+interface OrderInterface extends AbstractEntityInterface
 {
 
     /**
@@ -437,4 +437,10 @@ interface OrderInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface
      */
     public function setXmlParams($xmlParams);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

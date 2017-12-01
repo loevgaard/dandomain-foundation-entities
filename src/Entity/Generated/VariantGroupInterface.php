@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in VariantGroup!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface VariantGroupInterface
+interface VariantGroupInterface extends AbstractEntityInterface
 {
 
     /**
@@ -128,4 +128,10 @@ interface VariantGroupInterface
      * @return \Loevgaard\DandomainFoundation\Entity\VariantGroup
      */
     public function setVariants($variants);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

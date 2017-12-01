@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Price!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface PriceInterface
+interface PriceInterface extends AbstractEntityInterface
 {
 
     /**
@@ -117,4 +117,10 @@ interface PriceInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Price
      */
     public function setProducts($products);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in ProductTranslation!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface ProductTranslationInterface
+interface ProductTranslationInterface extends AbstractEntityInterface
 {
 
     /**
@@ -447,6 +447,12 @@ interface ProductTranslationInterface
      * @return \Loevgaard\DandomainFoundation\Entity\ProductTranslation
      */
     public function setUrlName(?string $urlName);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 
     /**
      * Returns object id.

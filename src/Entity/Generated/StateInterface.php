@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in State!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface StateInterface
+interface StateInterface extends AbstractEntityInterface
 {
 
     /**
@@ -73,4 +73,10 @@ interface StateInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Generated\StateInterface
      */
     public function setName($name);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

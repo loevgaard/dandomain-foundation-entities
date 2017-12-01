@@ -2,3 +2,6 @@ composer.lock
 /vendor
 /.php_cs.cache
 /build/
+!/src/Entity/Generated
+/src/Entity/Generated/*
+!/src/Entity/Generated/.gitkeep

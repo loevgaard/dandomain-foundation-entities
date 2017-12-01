@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Delivery!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface DeliveryInterface
+interface DeliveryInterface extends AbstractEntityInterface
 {
 
     /**
@@ -183,4 +183,10 @@ interface DeliveryInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Delivery
      */
     public function setZipCode($zipCode);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

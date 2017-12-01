@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in ProductRelation!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface ProductRelationInterface
+interface ProductRelationInterface extends AbstractEntityInterface
 {
 
     /**
@@ -62,4 +62,10 @@ interface ProductRelationInterface
      * @return \Loevgaard\DandomainFoundation\Entity\ProductRelation
      */
     public function setProducts($products);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

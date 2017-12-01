@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in PaymentMethod!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface PaymentMethodInterface
+interface PaymentMethodInterface extends AbstractEntityInterface
 {
 
     /**
@@ -74,4 +74,10 @@ interface PaymentMethodInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface
      */
     public function setName($name);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

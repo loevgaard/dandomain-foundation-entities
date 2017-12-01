@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Category!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface CategoryInterface
+interface CategoryInterface extends AbstractEntityInterface
 {
 
     /**
@@ -215,4 +215,10 @@ interface CategoryInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Category
      */
     public function setSegments($segments);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

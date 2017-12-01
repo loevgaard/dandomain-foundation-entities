@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Manufacturer!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface ManufacturerInterface
+interface ManufacturerInterface extends AbstractEntityInterface
 {
 
     /**
@@ -73,4 +73,10 @@ interface ManufacturerInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Manufacturer
      */
     public function setProducts($products);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

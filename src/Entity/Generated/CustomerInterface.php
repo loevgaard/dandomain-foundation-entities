@@ -5,7 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity\Generated;
  * Implement this interface in Customer!
  * This is a combined interface that will automatically extend to contain the required functions.
  */
-interface CustomerInterface
+interface CustomerInterface extends AbstractEntityInterface
 {
 
     /**
@@ -348,4 +348,10 @@ interface CustomerInterface
      * @return \Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface
      */
     public function setReservedField5($reservedField5);
+
+    
+    public function hydrate(array $data);
+
+    
+    public function extract(): array;
 }

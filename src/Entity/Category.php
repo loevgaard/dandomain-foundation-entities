@@ -4,6 +4,9 @@ namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
+use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation\Entity\Generated\CategoryInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\CategoryTrait;
@@ -16,6 +19,9 @@ use Loevgaard\DandomainFoundation;
 class Category extends AbstractEntity implements CategoryInterface
 {
     use CategoryTrait;
+    use Timestampable;
+    use SoftDeletable;
+    use Translatable;
 
     /**
      * @var int
@@ -27,11 +33,20 @@ class Category extends AbstractEntity implements CategoryInterface
     protected $id;
 
     /**
+     * This is the internal id in the API
+     *
      * @var int
      *
      * @ORM\Column(type="integer", unique=true)
      */
     protected $externalId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", unique=true)
+     */
+    protected $number;
 
     /**
      * @var string|null
@@ -280,6 +295,24 @@ class Category extends AbstractEntity implements CategoryInterface
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumber(): string
+    {
+        return (string)$this->number;
+    }
+
+    /**
+     * @param string $number
+     * @return Category
+     */
+    public function setNumber(string $number)
+    {
+        $this->number = $number;
         return $this;
     }
 

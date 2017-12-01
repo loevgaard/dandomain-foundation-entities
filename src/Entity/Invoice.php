@@ -12,7 +12,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_invoices")
  */
-class Invoice implements InvoiceInterface
+class Invoice extends AbstractEntity implements InvoiceInterface
 {
     use InvoiceTrait;
 

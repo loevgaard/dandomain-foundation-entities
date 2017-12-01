@@ -12,7 +12,7 @@ use Loevgaard\DandomainFoundation;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_variants")
  */
-class Variant implements VariantInterface
+class Variant extends AbstractEntity implements VariantInterface
 {
     use VariantTrait;
 

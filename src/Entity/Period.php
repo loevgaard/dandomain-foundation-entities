@@ -10,7 +10,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\PeriodTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_periods")
  */
-class Period implements PeriodInterface
+class Period extends AbstractEntity implements PeriodInterface
 {
     use PeriodTrait;
 

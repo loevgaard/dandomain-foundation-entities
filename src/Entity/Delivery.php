@@ -11,7 +11,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_deliveries")
  */
-class Delivery implements DeliveryInterface
+class Delivery extends AbstractEntity implements DeliveryInterface
 {
     use DeliveryTrait;
 

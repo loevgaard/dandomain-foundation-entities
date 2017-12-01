@@ -13,7 +13,7 @@ use Money\Money;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_prices")
  */
-class Price implements PriceInterface
+class Price extends AbstractEntity implements PriceInterface
 {
     use PriceTrait;
 

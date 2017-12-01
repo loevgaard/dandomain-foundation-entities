@@ -11,7 +11,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ProductRelationTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_product_relations")
  */
-class ProductRelation implements ProductRelationInterface
+class ProductRelation extends AbstractEntity implements ProductRelationInterface
 {
     use ProductRelationTrait;
 

@@ -13,7 +13,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CustomerTrait;
  *
  * @todo missing properties, see http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/CustomerService/help/operations/GetCustomer
  */
-class Customer implements CustomerInterface
+class Customer extends AbstractEntity implements CustomerInterface
 {
     use CustomerTrait;
 

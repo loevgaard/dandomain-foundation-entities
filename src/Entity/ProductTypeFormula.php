@@ -11,7 +11,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ProductTypeFormulaTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_product_type_formulas")
  */
-class ProductTypeFormula implements ProductTypeFormulaInterface
+class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInterface
 {
     use ProductTypeFormulaTrait;
 

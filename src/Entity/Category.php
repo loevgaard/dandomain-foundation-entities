@@ -13,7 +13,7 @@ use Loevgaard\DandomainFoundation;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_categories")
  */
-class Category implements CategoryInterface
+class Category extends AbstractEntity implements CategoryInterface
 {
     use CategoryTrait;
 

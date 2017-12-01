@@ -12,7 +12,7 @@ use Loevgaard\DandomainFoundation;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_media")
  */
-class Medium implements MediumInterface
+class Medium extends AbstractEntity implements MediumInterface
 {
     use MediumTrait;
 

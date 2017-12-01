@@ -11,7 +11,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ProductTranslationTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_product_translations")
  */
-class ProductTranslation implements ProductTranslationInterface
+class ProductTranslation extends AbstractEntity implements ProductTranslationInterface
 {
     use ProductTranslationTrait;
     use Translation;

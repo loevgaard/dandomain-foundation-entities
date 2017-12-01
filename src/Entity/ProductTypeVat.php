@@ -11,7 +11,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ProductTypeVatTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_product_type_vats")
  */
-class ProductTypeVat implements ProductTypeVatInterface
+class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 {
     use ProductTypeVatTrait;
 

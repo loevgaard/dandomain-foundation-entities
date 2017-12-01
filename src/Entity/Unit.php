@@ -10,7 +10,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\UnitTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_units")
  */
-class Unit implements UnitInterface
+class Unit extends AbstractEntity implements UnitInterface
 {
     use UnitTrait;
 

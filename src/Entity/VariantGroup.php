@@ -11,7 +11,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\VariantGroupTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_variant_groups")
  */
-class VariantGroup implements VariantGroupInterface
+class VariantGroup extends AbstractEntity implements VariantGroupInterface
 {
     use VariantGroupTrait;
 

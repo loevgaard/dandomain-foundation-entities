@@ -11,7 +11,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\SegmentTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_segments")
  */
-class Segment implements SegmentInterface
+class Segment extends AbstractEntity implements SegmentInterface
 {
     use SegmentTrait;
 

@@ -12,7 +12,7 @@ use Money\Money;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_order_lines")
  */
-class OrderLine implements OrderLineInterface
+class OrderLine extends AbstractEntity implements OrderLineInterface
 {
     use OrderLineTrait;
 

@@ -23,7 +23,7 @@ use Money\Money;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_orders")
  */
-class Order implements OrderInterface
+class Order extends AbstractEntity implements OrderInterface
 {
     use OrderTrait;
 

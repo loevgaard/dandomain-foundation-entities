@@ -11,7 +11,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ProductTypeTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_product_types")
  */
-class ProductType implements ProductTypeInterface
+class ProductType extends AbstractEntity implements ProductTypeInterface
 {
     use ProductTypeTrait;
 

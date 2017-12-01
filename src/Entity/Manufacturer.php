@@ -11,7 +11,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_manufacturers")
  */
-class Manufacturer implements ManufacturerInterface
+class Manufacturer extends AbstractEntity implements ManufacturerInterface
 {
     use ManufacturerTrait;
 

@@ -10,7 +10,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\SiteTrait;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_sites")
  */
-class Site implements SiteInterface
+class Site extends AbstractEntity implements SiteInterface
 {
     use SiteTrait;
 

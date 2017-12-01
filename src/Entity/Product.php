@@ -24,7 +24,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\VariantGroupInterface;
  * @ORM\Table(name="loevgaard_dandomain_products")
  * @method ProductTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
-class Product implements ProductInterface
+class Product extends AbstractEntity implements ProductInterface
 {
     use ProductTrait;
     use Timestampable;

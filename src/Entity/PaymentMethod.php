@@ -13,7 +13,7 @@ use Money\Money;
  * @ORM\Entity()
  * @ORM\Table(name="loevgaard_dandomain_payment_methods")
  */
-class PaymentMethod implements PaymentMethodInterface
+class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
 {
     use PaymentMethodTrait;
 

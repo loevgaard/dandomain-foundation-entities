@@ -21,6 +21,9 @@ interface ProductInterface
     public function addManufacturer(\Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerInterface $manufacturer): \Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
 
     
+    public function removeManufacturer(\Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerInterface $manufacturer): bool;
+
+    
     public function addPrice(\Loevgaard\DandomainFoundation\Entity\Generated\PriceInterface $price): \Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
 
     
@@ -34,16 +37,6 @@ interface ProductInterface
 
     
     public function addVariantGroup(\Loevgaard\DandomainFoundation\Entity\Generated\VariantGroupInterface $variantGroup): \Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
-
-    /**
-     * Populates a product based on the response from the Dandomain API
-     *
-     * See the properties here:
-     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/ProductDataService/help/operations/GetDataProduct
-     *
-     * @param \stdClass|array $data
-     */
-    public function populateFromApiResponse($data);
 
     /**
      * @return int

@@ -20,7 +20,7 @@ abstract class AbstractEntity
         return $hydrator->extract($this);
     }
 
-    protected function getDateTimeFromJson(?$val) : ?DateTimeImmutable
+    protected function getDateTimeFromJson($val = null) : ?DateTimeImmutable
     {
         if(!$val) {
             return null;

@@ -3,7 +3,6 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation\Entity\Generated\PeriodInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\PeriodTrait;
 

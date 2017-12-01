@@ -2,6 +2,7 @@
 
 namespace Loevgaard\DandomainFoundation\Entity;
 
+use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Zend\Hydrator\ClassMethods;
 use Zend\Hydrator\HydratorInterface;
 
@@ -17,6 +18,19 @@ abstract class AbstractEntity
     {
         $hydrator = $this->getHydrator();
         return $hydrator->extract($this);
+    }
+
+    protected function getDateTimeFromJson(?$val) : ?DateTimeImmutable
+    {
+        if(!$val) {
+            return null;
+        }
+
+        if($val instanceof DateTimeImmutable) {
+            return $val;
+        }
+
+        return DateTimeImmutable::createFromJson($val);
     }
 
     /**

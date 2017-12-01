@@ -61,13 +61,8 @@ class Period extends AbstractEntity implements PeriodInterface
 
     public function hydrate(array $data)
     {
-        if ($data['startDate']) {
-            $data['startDate'] = DateTimeImmutable::createFromJson($data['startDate']);
-        }
-
-        if ($data['endDate']) {
-            $data['endDate'] = DateTimeImmutable::createFromJson($data['endDate']);
-        }
+        $data['startDate'] = $this->getDateTimeFromJson($data['startDate']);
+        $data['endDate'] = $this->getDateTimeFromJson($data['endDate']);
 
         parent::hydrate($data);
     }

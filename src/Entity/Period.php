@@ -3,6 +3,7 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation\Entity\Generated\PeriodInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\PeriodTrait;
 
@@ -58,6 +59,19 @@ class Period extends AbstractEntity implements PeriodInterface
      */
     protected $title;
 
+    public function hydrate(array $data)
+    {
+        if ($data['startDate']) {
+            $data['startDate'] = DateTimeImmutable::createFromJson($data['startDate']);
+        }
+
+        if ($data['endDate']) {
+            $data['endDate'] = DateTimeImmutable::createFromJson($data['endDate']);
+        }
+
+        parent::hydrate($data);
+    }
+
     /**
      * @return int
      */
@@ -81,7 +95,7 @@ class Period extends AbstractEntity implements PeriodInterface
      */
     public function getExternalId(): int
     {
-        return $this->externalId;
+        return (int)$this->externalId;
     }
 
     /**

@@ -41,7 +41,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
     /**
      * @var ProductTypeField[]|ArrayCollection
      *
-     * @ORM\JoinTable(name="loevgaard_dandomain_product_type_product_type_field")
+     * @ORM\JoinTable(name="ldf_product_type_product_type_field")
      * @ORM\ManyToMany(cascade={"persist"}, inversedBy="productTypes", targetEntity="ProductTypeField")
      */
     protected $productTypeFields;
@@ -49,7 +49,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
     /**
      * @var ProductTypeFormula[]|ArrayCollection
      *
-     * @ORM\JoinTable(name="loevgaard_dandomain_product_type_product_type_formula")
+     * @ORM\JoinTable(name="ldf_product_type_product_type_formula")
      * @ORM\ManyToMany(cascade={"persist"}, inversedBy="productTypes", targetEntity="ProductTypeFormula")
      */
     protected $productTypeFormulas;
@@ -57,7 +57,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
     /**
      * @var ProductTypeVat[]|ArrayCollection
      *
-     * @ORM\JoinTable(name="loevgaard_dandomain_product_type_product_type_vat")
+     * @ORM\JoinTable(name="ldf_product_type_product_type_vat")
      * @ORM\ManyToMany(cascade={"persist"}, inversedBy="productTypes", targetEntity="ProductTypeVat")
      */
     protected $productTypeVats;

@@ -314,7 +314,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @var Manufacturer[]|ArrayCollection
      *
-     * @ORM\JoinTable(name="loevgaard_dandomain_product_manufacturer")
+     * @ORM\JoinTable(name="ldf_product_manufacturer")
      * @ORM\ManyToMany(cascade={"persist"}, inversedBy="products", targetEntity="Manufacturer")
      */
     protected $manufacturers;

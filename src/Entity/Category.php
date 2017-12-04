@@ -142,7 +142,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @var Category[]|ArrayCollection
      *
-     * @ORM\JoinTable(name="loevgaard_dandomain_category_parents")
+     * @ORM\JoinTable(name="ldf_category_parents")
      * @ORM\ManyToMany(cascade={"persist"}, inversedBy="childrenCategories", targetEntity="Category")
      */
     protected $parentCategories;
@@ -157,7 +157,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @var Segment[]|ArrayCollection
      *
-     * @ORM\JoinTable(name="loevgaard_dandomain_category_segments")
+     * @ORM\JoinTable(name="ldf_category_segments")
      * @ORM\ManyToMany(cascade={"persist"}, inversedBy="categories", targetEntity="Segment")
      */
     protected $segments;

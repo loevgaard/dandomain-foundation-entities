@@ -322,7 +322,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     }
 
     /**
-     * @param Order $order
+     * @param Order|null $order
      * @return OrderLine
      */
     public function setOrder(Order $order)

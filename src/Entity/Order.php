@@ -77,7 +77,7 @@ class Order extends AbstractEntity implements OrderInterface
     /**
      * @var OrderLine[]|ArrayCollection
      *
-     * @ORM\OneToMany(mappedBy="order", targetEntity="OrderLine", cascade={"persist", "remove"})
+     * @ORM\OneToMany(mappedBy="order", targetEntity="OrderLine", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $orderLines;
 
@@ -218,7 +218,7 @@ class Order extends AbstractEntity implements OrderInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="text")
      */
     protected $referrer;
 
@@ -472,7 +472,6 @@ class Order extends AbstractEntity implements OrderInterface
 
     public function removeOrderLine(OrderLineInterface $orderLine) : OrderInterface
     {
-        $orderLine->setOrder(null);
         $this->orderLines->removeElement($orderLine);
 
         return $this;

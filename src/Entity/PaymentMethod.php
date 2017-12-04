@@ -108,7 +108,7 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
      */
     public function getExternalId(): int
     {
-        return $this->externalId;
+        return (int)$this->externalId;
     }
 
     /**

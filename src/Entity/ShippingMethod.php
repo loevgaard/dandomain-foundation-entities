@@ -90,7 +90,7 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
      */
     public function getId(): int
     {
-        return $this->id;
+        return (int)$this->id;
     }
 
     /**
@@ -108,7 +108,7 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
      */
     public function getExternalId(): int
     {
-        return $this->externalId;
+        return (int)$this->externalId;
     }
 
     /**

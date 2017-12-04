@@ -10,6 +10,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\OrderInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\OrderLineInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\OrderTrait;
 use Loevgaard\DandomainFoundation\Entity\Generated\PaymentMethodInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface;
@@ -437,6 +438,35 @@ class Order extends AbstractEntity implements OrderInterface
         return $this;
     }
 
+    /*
+     * Collection methods
+     */
+    public function addOrderLine(OrderLineInterface $orderLine) : OrderInterface
+    {
+        if(!$this->hasOrderLine($orderLine)) {
+            $this->orderLines->add($orderLine);
+            $orderLine->setOrder($this);
+        }
+        return $this;
+    }
+
+    public function hasOrderLine(OrderLineInterface $orderLine) : bool
+    {
+        return $this->orderLines->exists(function($key, OrderLineInterface $element) use ($orderLine) {
+            return $element->getExternalId() === $orderLine->getExternalId();
+        });
+    }
+
+    public function removeOrderLine(OrderLineInterface $orderLine) : OrderInterface
+    {
+        $orderLine->setOrder(null);
+        $this->orderLines->removeElement($orderLine);
+        return $this;
+    }
+
+    /*
+     * Getters / Setters
+     */
     /**
      * @return Money|null
      */

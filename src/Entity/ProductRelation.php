@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ProductRelationTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_product_relations")
+ * @ORM\Table(name="ldf_product_relations")
  */
 class ProductRelation extends AbstractEntity implements ProductRelationInterface
 {

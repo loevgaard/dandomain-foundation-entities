@@ -14,7 +14,7 @@ use Loevgaard\DandomainFoundation;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_categories")
+ * @ORM\Table(name="ldf_categories")
  */
 class Category extends AbstractEntity implements CategoryInterface
 {

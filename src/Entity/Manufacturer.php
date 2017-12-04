@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_manufacturers")
+ * @ORM\Table(name="ldf_manufacturers")
  */
 class Manufacturer extends AbstractEntity implements ManufacturerInterface
 {

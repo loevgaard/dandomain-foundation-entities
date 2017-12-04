@@ -10,7 +10,7 @@ use Loevgaard\DandomainFoundation;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_media")
+ * @ORM\Table(name="ldf_media")
  */
 class Medium extends AbstractEntity implements MediumInterface
 {

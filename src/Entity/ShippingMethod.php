@@ -11,7 +11,7 @@ use Money\Money;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_shipping_methods")
+ * @ORM\Table(name="ldf_shipping_methods")
  */
 class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
 {

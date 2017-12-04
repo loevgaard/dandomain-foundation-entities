@@ -41,6 +41,17 @@ interface CategoryInterface extends AbstractEntityInterface
     public function setExternalId(int $externalId);
 
     /**
+     * @return string
+     */
+    public function getNumber(): string;
+
+    /**
+     * @param string $number
+     * @return \Loevgaard\DandomainFoundation\Entity\Category
+     */
+    public function setNumber(string $number);
+
+    /**
      * @return null|string
      */
     public function getB2bGroupId();

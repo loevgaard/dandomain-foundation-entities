@@ -10,7 +10,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_invoices")
+ * @ORM\Table(name="ldf_invoices")
  */
 class Invoice extends AbstractEntity implements InvoiceInterface
 {

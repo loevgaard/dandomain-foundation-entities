@@ -24,6 +24,9 @@ interface ProductInterface extends AbstractEntityInterface
     public function removeManufacturer(\Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerInterface $manufacturer): bool;
 
     
+    public function hasManufacturer(\Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerInterface $manufacturer): bool;
+
+    
     public function addPrice(\Loevgaard\DandomainFoundation\Entity\Generated\PriceInterface $price): \Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
 
     

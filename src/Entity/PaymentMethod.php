@@ -11,7 +11,7 @@ use Money\Money;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_payment_methods")
+ * @ORM\Table(name="ldf_payment_methods")
  */
 class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
 {

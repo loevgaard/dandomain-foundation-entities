@@ -8,7 +8,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\SiteTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_sites")
+ * @ORM\Table(name="ldf_sites")
  */
 class Site extends AbstractEntity implements SiteInterface
 {

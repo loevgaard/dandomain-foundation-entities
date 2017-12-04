@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ProductTypeFieldTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_product_type_fields")
+ * @ORM\Table(name="ldf_product_type_fields")
  */
 class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterface
 {

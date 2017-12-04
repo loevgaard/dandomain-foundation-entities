@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\SegmentTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_segments")
+ * @ORM\Table(name="ldf_segments")
  */
 class Segment extends AbstractEntity implements SegmentInterface
 {

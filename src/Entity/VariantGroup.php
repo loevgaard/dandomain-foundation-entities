@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\VariantGroupTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_variant_groups")
+ * @ORM\Table(name="ldf_variant_groups")
  */
 class VariantGroup extends AbstractEntity implements VariantGroupInterface
 {

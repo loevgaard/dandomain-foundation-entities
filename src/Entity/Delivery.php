@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_deliveries")
+ * @ORM\Table(name="ldf_deliveries")
  */
 class Delivery extends AbstractEntity implements DeliveryInterface
 {

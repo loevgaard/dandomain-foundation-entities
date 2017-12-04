@@ -11,7 +11,7 @@ use Money\Money;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_prices")
+ * @ORM\Table(name="ldf_prices")
  */
 class Price extends AbstractEntity implements PriceInterface
 {

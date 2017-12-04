@@ -8,7 +8,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\UnitTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_units")
+ * @ORM\Table(name="ldf_units")
  */
 class Unit extends AbstractEntity implements UnitInterface
 {

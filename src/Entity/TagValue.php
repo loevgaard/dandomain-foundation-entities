@@ -7,7 +7,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\TagValueTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_tag_values")
+ * @ORM\Table(name="ldf_tag_values")
  */
 class TagValue extends AbstractEntity implements TagValueInterface
 {

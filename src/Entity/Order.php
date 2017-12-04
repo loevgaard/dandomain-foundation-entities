@@ -21,7 +21,7 @@ use Money\Money;
  * We use the Money library for amounts, and we use a shared currency, namely the property $currencyCode
  *
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_orders")
+ * @ORM\Table(name="ldf_orders")
  */
 class Order extends AbstractEntity implements OrderInterface
 {

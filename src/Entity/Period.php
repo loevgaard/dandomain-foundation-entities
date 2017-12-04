@@ -8,7 +8,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\PeriodTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_periods")
+ * @ORM\Table(name="ldf_periods")
  */
 class Period extends AbstractEntity implements PeriodInterface
 {

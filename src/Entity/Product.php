@@ -21,7 +21,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\VariantGroupInterface;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_products")
+ * @ORM\Table(name="ldf_products")
  * @method ProductTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
 class Product extends AbstractEntity implements ProductInterface

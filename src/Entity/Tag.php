@@ -8,7 +8,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\TagTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_tags")
+ * @ORM\Table(name="ldf_tags")
  */
 class Tag extends AbstractEntity implements TagInterface
 {

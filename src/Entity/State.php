@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\StateTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_states")
+ * @ORM\Table(name="ldf_states")
  */
 class State extends AbstractEntity implements StateInterface
 {

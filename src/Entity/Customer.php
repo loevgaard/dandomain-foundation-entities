@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CustomerTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_customers")
+ * @ORM\Table(name="ldf_customers")
  *
  * @todo missing properties, see http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/CustomerService/help/operations/GetCustomer
  */

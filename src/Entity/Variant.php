@@ -10,7 +10,7 @@ use Loevgaard\DandomainFoundation;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_variants")
+ * @ORM\Table(name="ldf_variants")
  */
 class Variant extends AbstractEntity implements VariantInterface
 {

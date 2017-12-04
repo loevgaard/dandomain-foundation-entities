@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\ProductTranslationTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_product_translations")
+ * @ORM\Table(name="ldf_product_translations")
  */
 class ProductTranslation extends AbstractEntity implements ProductTranslationInterface
 {

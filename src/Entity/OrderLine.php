@@ -10,7 +10,7 @@ use Money\Money;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_order_lines")
+ * @ORM\Table(name="ldf_order_lines")
  */
 class OrderLine extends AbstractEntity implements OrderLineInterface
 {

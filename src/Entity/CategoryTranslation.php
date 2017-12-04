@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CategoryTranslationTrait;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="loevgaard_dandomain_category_translations")
+ * @ORM\Table(name="ldf_category_translations")
  */
 class CategoryTranslation extends AbstractEntity implements CategoryTranslationInterface
 {

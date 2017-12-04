@@ -137,7 +137,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
      */
     public function getExternalId(): int
     {
-        return $this->externalId;
+        return (int)$this->externalId;
     }
 
     /**

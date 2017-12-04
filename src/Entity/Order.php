@@ -4,6 +4,8 @@ namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
@@ -27,6 +29,8 @@ use Money\Money;
 class Order extends AbstractEntity implements OrderInterface
 {
     use OrderTrait;
+    use Timestampable;
+    use SoftDeletable;
 
     /**
      * @var int
@@ -447,13 +451,22 @@ class Order extends AbstractEntity implements OrderInterface
             $this->orderLines->add($orderLine);
             $orderLine->setOrder($this);
         }
+
         return $this;
     }
 
-    public function hasOrderLine(OrderLineInterface $orderLine) : bool
+    /**
+     * @param OrderLineInterface|int $orderLine Either the OrderLineInterface or the external id
+     * @return bool
+     */
+    public function hasOrderLine($orderLine) : bool
     {
+        if($orderLine instanceof OrderLineInterface) {
+            $orderLine = $orderLine->getExternalId();
+        }
+
         return $this->orderLines->exists(function($key, OrderLineInterface $element) use ($orderLine) {
-            return $element->getExternalId() === $orderLine->getExternalId();
+            return $element->getExternalId() === $orderLine;
         });
     }
 
@@ -461,6 +474,14 @@ class Order extends AbstractEntity implements OrderInterface
     {
         $orderLine->setOrder(null);
         $this->orderLines->removeElement($orderLine);
+
+        return $this;
+    }
+
+    public function clearOrderLines() : OrderInterface
+    {
+        $this->orderLines->clear();
+
         return $this;
     }
 

@@ -141,7 +141,7 @@ class Order extends AbstractEntity implements OrderInterface
     /**
      * @var \DateTimeImmutable|null
      *
-     * @ORM\Column(nullable=true, type="datetime_immutable")
+     * @ORM\Column(nullable=true, type="datetime_immutable", options={"comment"="Created info from Dandomain"})
      */
     protected $createdDate;
 
@@ -204,7 +204,7 @@ class Order extends AbstractEntity implements OrderInterface
     /**
      * @var \DateTimeImmutable|null
      *
-     * @ORM\Column(nullable=true, type="datetime_immutable")
+     * @ORM\Column(nullable=true, type="datetime_immutable", options={"comment"="Modified info from Dandomain"})
      */
     protected $modifiedDate;
 

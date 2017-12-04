@@ -5,6 +5,7 @@ namespace Loevgaard\DandomainFoundation\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\OrderLineInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\OrderLineTrait;
 use Money\Money;
 
@@ -104,7 +105,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     protected $order;
 
     /**
-     * @var Product|null
+     * @var ProductInterface|null
      *
      * @ORM\JoinColumn(onDelete="SET NULL")
      * @ORM\ManyToOne(targetEntity="Product")
@@ -331,7 +332,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     }
 
     /**
-     * @return Product|null
+     * @return ProductInterface|null
      */
     public function getProduct()
     {
@@ -339,10 +340,10 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     }
 
     /**
-     * @param Product|null $product
+     * @param ProductInterface|null $product
      * @return OrderLine
      */
-    public function setProduct($product)
+    public function setProduct(ProductInterface $product = null)
     {
         $this->product = $product;
         return $this;

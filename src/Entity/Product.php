@@ -368,6 +368,10 @@ class Product extends AbstractEntity implements ProductInterface
         $this->variantGroups = new ArrayCollection();
     }
 
+    /*
+     * Collection/relation methods
+     */
+
     public function addDisabledVariant(VariantInterface $variant) : ProductInterface
     {
         if (!$this->disabledVariants->contains($variant)) {
@@ -416,6 +420,31 @@ class Product extends AbstractEntity implements ProductInterface
         });
     }
 
+    public function addVariantGroup(VariantGroupInterface $variantGroup) : ProductInterface
+    {
+        if (!$this->hasVariantGroup($variantGroup)) {
+            $this->variantGroups->add($variantGroup);
+        }
+
+        return $this;
+    }
+
+    public function removeVariantGroup(VariantGroupInterface $variantGroup) : bool
+    {
+        return $this->variantGroups->removeElement($variantGroup);
+    }
+
+    public function hasVariantGroup($variantGroup) : bool
+    {
+        if($variantGroup instanceof VariantGroupInterface) {
+            $variantGroup = $variantGroup->getExternalId();
+        }
+
+        return $this->variantGroups->exists(function ($key, VariantGroupInterface $element) use ($variantGroup) {
+            return $element->getExternalId() === $variantGroup;
+        });
+    }
+
     public function addPrice(PriceInterface $price) : ProductInterface
     {
         if (!$this->prices->contains($price)) {
@@ -452,15 +481,9 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function addVariantGroup(VariantGroupInterface $variantGroup) : ProductInterface
-    {
-        if (!$this->variantGroups->contains($variantGroup)) {
-            $this->variantGroups->add($variantGroup);
-        }
-
-        return $this;
-    }
-
+    /*
+     * Getters / Setters
+     */
     /**
      * @return int
      */

@@ -16,6 +16,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
     use ProductTranslationTrait;
     use Translation;
 
+    // @todo fix doctrine mapping for these relations
     /**
      * @var Period
      */

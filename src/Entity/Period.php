@@ -24,7 +24,7 @@ class Period extends AbstractEntity implements PeriodInterface
     protected $id;
 
     /**
-     * @var int
+     * @var string
      *
      * @ORM\Column(type="string", unique=true)
      */
@@ -85,18 +85,18 @@ class Period extends AbstractEntity implements PeriodInterface
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getExternalId(): int
+    public function getExternalId(): string
     {
-        return (int)$this->externalId;
+        return (string)$this->externalId;
     }
 
     /**
-     * @param int $externalId
+     * @param string $externalId
      * @return Period
      */
-    public function setExternalId(int $externalId)
+    public function setExternalId(string $externalId)
     {
         $this->externalId = $externalId;
         return $this;

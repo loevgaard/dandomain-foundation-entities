@@ -52,7 +52,7 @@ class TagValue extends AbstractEntity implements TagValueInterface
 
     /**
      * @param int $id
-     * @return TagValue
+     * @return TagValueInterface
      */
     public function setId(int $id)
     {
@@ -70,7 +70,7 @@ class TagValue extends AbstractEntity implements TagValueInterface
 
     /**
      * @param int $externalId
-     * @return TagValue
+     * @return TagValueInterface
      */
     public function setExternalId(int $externalId)
     {
@@ -88,7 +88,7 @@ class TagValue extends AbstractEntity implements TagValueInterface
 
     /**
      * @param int|null $sortOrder
-     * @return TagValue
+     * @return TagValueInterface
      */
     public function setSortOrder($sortOrder)
     {
@@ -106,7 +106,7 @@ class TagValue extends AbstractEntity implements TagValueInterface
 
     /**
      * @param Tag $tag
-     * @return TagValue
+     * @return TagValueInterface
      */
     public function setTag(Tag $tag)
     {

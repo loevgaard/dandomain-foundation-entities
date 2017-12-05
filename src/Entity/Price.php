@@ -105,7 +105,7 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param int $id
-     * @return Price
+     * @return PriceInterface
      */
     public function setId(int $id)
     {
@@ -123,7 +123,7 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param int|null $amount
-     * @return Price
+     * @return PriceInterface
      */
     public function setAmount($amount)
     {
@@ -141,7 +141,7 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param int|null $avance
-     * @return Price
+     * @return PriceInterface
      */
     public function setAvance($avance)
     {
@@ -159,7 +159,7 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param null|string $b2bGroupId
-     * @return Price
+     * @return PriceInterface
      */
     public function setB2bGroupId($b2bGroupId)
     {
@@ -177,7 +177,7 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param null|string $currencyCode
-     * @return Price
+     * @return PriceInterface
      */
     public function setCurrencyCode($currencyCode)
     {
@@ -195,7 +195,7 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param int|null $isoCode
-     * @return Price
+     * @return PriceInterface
      */
     public function setIsoCode($isoCode)
     {
@@ -213,11 +213,11 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param Money|null $specialOfferPrice
-     * @return Price
+     * @return PriceInterface
      */
     public function setSpecialOfferPrice(Money $specialOfferPrice = null)
     {
-        if($specialOfferPrice) {
+        if ($specialOfferPrice) {
             $this->specialOfferPrice = $specialOfferPrice->getAmount();
             $this->setCurrencyCode($specialOfferPrice->getCurrency()->getCode());
         } else {
@@ -236,11 +236,11 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param Money|null $unitPrice
-     * @return Price
+     * @return PriceInterface
      */
     public function setUnitPrice(Money $unitPrice = null)
     {
-        if($unitPrice) {
+        if ($unitPrice) {
             $this->unitPrice = $unitPrice->getAmount();
             $this->setCurrencyCode($unitPrice->getCurrency()->getCode());
         } else {
@@ -259,7 +259,7 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param Period|null $period
-     * @return Price
+     * @return PriceInterface
      */
     public function setPeriod($period)
     {
@@ -277,7 +277,7 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * @param ArrayCollection|Product[] $products
-     * @return Price
+     * @return PriceInterface
      */
     public function setProducts($products)
     {

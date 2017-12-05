@@ -34,14 +34,14 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $groupName;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $headline;
 
@@ -106,7 +106,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param int $id
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setId(int $id)
     {
@@ -124,7 +124,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param int $externalId
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setExternalId(int $externalId)
     {
@@ -142,7 +142,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param null|string $groupName
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setGroupName($groupName)
     {
@@ -160,7 +160,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param null|string $headline
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setHeadline($headline)
     {
@@ -178,7 +178,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param null|string $selectText
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setSelectText($selectText)
     {
@@ -196,7 +196,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param int|null $siteId
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setSiteId($siteId)
     {
@@ -214,7 +214,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param int|null $sortOrder
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setSortOrder($sortOrder)
     {
@@ -232,7 +232,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param null|string $text
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setText($text)
     {
@@ -250,7 +250,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param int|null $variantType
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setVariantType($variantType)
     {
@@ -268,7 +268,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param ArrayCollection|Product[] $products
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setProducts($products)
     {
@@ -286,7 +286,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param ArrayCollection|Variant[] $variants
-     * @return VariantGroup
+     * @return VariantGroupInterface
      */
     public function setVariants($variants)
     {

@@ -5,8 +5,8 @@ namespace Loevgaard\DandomainFoundation\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\OrderLineInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\OrderLineTrait;
+use Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
 use Money\Money;
 
 /**
@@ -124,7 +124,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param int $id
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setId(int $id)
     {
@@ -142,7 +142,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param int $externalId
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setExternalId(int $externalId)
     {
@@ -160,7 +160,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param null|string $fileUrl
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setFileUrl($fileUrl)
     {
@@ -178,7 +178,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param int|null $productNumber
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setProductNumber($productNumber)
     {
@@ -196,7 +196,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param null|string $productName
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setProductName($productName)
     {
@@ -214,7 +214,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param int|null $quantity
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setQuantity($quantity)
     {
@@ -232,7 +232,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param Money|null $totalPrice
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setTotalPrice(Money $totalPrice = null)
     {
@@ -251,7 +251,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param Money|null $unitPrice
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setUnitPrice(Money $unitPrice = null)
     {
@@ -269,7 +269,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param float|null $vatPct
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setVatPct($vatPct)
     {
@@ -287,7 +287,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param null|string $variant
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setVariant($variant)
     {
@@ -305,7 +305,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param null|string $xmlParams
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setXmlParams($xmlParams)
     {
@@ -323,7 +323,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param Order|null $order
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setOrder(Order $order)
     {
@@ -341,7 +341,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param ProductInterface|null $product
-     * @return OrderLine
+     * @return OrderLineInterface
      */
     public function setProduct(ProductInterface $product = null)
     {

@@ -3,7 +3,6 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\CustomerTrait;
 
@@ -38,35 +37,35 @@ class Customer extends AbstractEntity implements CustomerInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $address;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $address2;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $attention;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $city;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $country;
 
@@ -80,63 +79,63 @@ class Customer extends AbstractEntity implements CustomerInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $ean;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $email;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $fax;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $name;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $phone;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $state;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $zipCode;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $cvr;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $b2bGroupId;
 
@@ -157,14 +156,14 @@ class Customer extends AbstractEntity implements CustomerInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $customerGroupId;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $customerType;
 
@@ -192,42 +191,42 @@ class Customer extends AbstractEntity implements CustomerInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $password;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $reservedField1;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $reservedField2;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $reservedField3;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $reservedField4;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $reservedField5;
 

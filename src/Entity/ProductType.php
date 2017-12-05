@@ -79,7 +79,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param int $id
-     * @return ProductType
+     * @return ProductTypeInterface
      */
     public function setId(int $id)
     {
@@ -97,7 +97,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param string $externalId
-     * @return ProductType
+     * @return ProductTypeInterface
      */
     public function setExternalId(string $externalId)
     {
@@ -115,7 +115,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param null|string $name
-     * @return ProductType
+     * @return ProductTypeInterface
      */
     public function setName($name)
     {
@@ -133,7 +133,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param ArrayCollection|ProductTypeField[] $productTypeFields
-     * @return ProductType
+     * @return ProductTypeInterface
      */
     public function setProductTypeFields($productTypeFields)
     {
@@ -151,7 +151,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param ArrayCollection|ProductTypeFormula[] $productTypeFormulas
-     * @return ProductType
+     * @return ProductTypeInterface
      */
     public function setProductTypeFormulas($productTypeFormulas)
     {
@@ -169,7 +169,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param ArrayCollection|ProductTypeVat[] $productTypeVats
-     * @return ProductType
+     * @return ProductTypeInterface
      */
     public function setProductTypeVats($productTypeVats)
     {

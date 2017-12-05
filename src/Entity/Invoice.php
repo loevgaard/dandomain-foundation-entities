@@ -3,8 +3,6 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Loevgaard\DandomainDateTime\DateTimeImmutable;
-use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceTrait;
 
@@ -70,7 +68,7 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param int $id
-     * @return Invoice
+     * @return InvoiceInterface
      */
     public function setId($id)
     {
@@ -88,7 +86,7 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param null|string $creditNoteNumber
-     * @return Invoice
+     * @return InvoiceInterface
      */
     public function setCreditNoteNumber($creditNoteNumber)
     {
@@ -106,7 +104,7 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param \DateTimeImmutable|null $date
-     * @return Invoice
+     * @return InvoiceInterface
      */
     public function setDate($date)
     {
@@ -124,7 +122,7 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param bool|null $isPaid
-     * @return Invoice
+     * @return InvoiceInterface
      */
     public function setIsPaid($isPaid)
     {
@@ -142,7 +140,7 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param int|null $number
-     * @return Invoice
+     * @return InvoiceInterface
      */
     public function setNumber($number)
     {
@@ -160,7 +158,7 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param null|string $state
-     * @return Invoice
+     * @return InvoiceInterface
      */
     public function setState($state)
     {

@@ -47,7 +47,7 @@ class Unit extends AbstractEntity implements UnitInterface
 
     /**
      * @param int $id
-     * @return Unit
+     * @return UnitInterface
      */
     public function setId(int $id)
     {
@@ -65,7 +65,7 @@ class Unit extends AbstractEntity implements UnitInterface
 
     /**
      * @param int $externalId
-     * @return Unit
+     * @return UnitInterface
      */
     public function setExternalId(int $externalId)
     {
@@ -83,7 +83,7 @@ class Unit extends AbstractEntity implements UnitInterface
 
     /**
      * @param null|string $text
-     * @return Unit
+     * @return UnitInterface
      */
     public function setText($text)
     {

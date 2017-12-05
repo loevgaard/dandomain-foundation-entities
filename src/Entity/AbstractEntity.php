@@ -22,11 +22,11 @@ abstract class AbstractEntity
 
     protected function getDateTimeFromJson($val = null) : ?DateTimeImmutable
     {
-        if(!$val) {
+        if (!$val) {
             return null;
         }
 
-        if($val instanceof DateTimeImmutable) {
+        if ($val instanceof DateTimeImmutable) {
             return $val;
         }
 

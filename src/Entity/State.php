@@ -3,7 +3,6 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\StateInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\StateTrait;
 

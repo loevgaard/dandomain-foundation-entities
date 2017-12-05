@@ -27,14 +27,14 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true, length=191)
      */
     protected $externalId;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $link;
 
@@ -48,7 +48,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $name;
 
@@ -74,7 +74,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param int $id
-     * @return Manufacturer
+     * @return ManufacturerInterface
      */
     public function setId(int $id)
     {
@@ -92,7 +92,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param string $externalId
-     * @return Manufacturer
+     * @return ManufacturerInterface
      */
     public function setExternalId(string $externalId)
     {
@@ -110,7 +110,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param null|string $link
-     * @return Manufacturer
+     * @return ManufacturerInterface
      */
     public function setLink($link)
     {
@@ -128,7 +128,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param null|string $linkText
-     * @return Manufacturer
+     * @return ManufacturerInterface
      */
     public function setLinkText($linkText)
     {
@@ -146,7 +146,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param null|string $name
-     * @return Manufacturer
+     * @return ManufacturerInterface
      */
     public function setName($name)
     {
@@ -164,7 +164,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param ArrayCollection|Product[] $products
-     * @return Manufacturer
+     * @return ManufacturerInterface
      */
     public function setProducts($products)
     {

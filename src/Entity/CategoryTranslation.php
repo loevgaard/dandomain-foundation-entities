@@ -26,7 +26,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $categoryNumber;
 
@@ -54,14 +54,14 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $icon;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $image;
 
@@ -75,7 +75,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $link;
 
@@ -89,7 +89,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $name;
 
@@ -110,21 +110,21 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $string;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $title;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $urlName;
 
@@ -133,12 +133,12 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
      */
     public function getExternalId(): int
     {
-        return $this->externalId;
+        return (int)$this->externalId;
     }
 
     /**
      * @param int $externalId
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setExternalId(int $externalId)
     {
@@ -156,7 +156,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $categoryNumber
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setCategoryNumber(?string $categoryNumber)
     {
@@ -174,7 +174,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $description
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setDescription(?string $description)
     {
@@ -192,7 +192,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param bool|null $hidden
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setHidden(?bool $hidden)
     {
@@ -210,7 +210,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param bool|null $hiddenMobile
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setHiddenMobile(?bool $hiddenMobile)
     {
@@ -228,7 +228,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $icon
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setIcon(?string $icon)
     {
@@ -246,7 +246,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $image
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setImage(?string $image)
     {
@@ -264,7 +264,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $keywords
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setKeywords(?string $keywords)
     {
@@ -282,7 +282,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $link
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setLink(?string $link)
     {
@@ -300,7 +300,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $metaDescription
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setMetaDescription(?string $metaDescription)
     {
@@ -318,7 +318,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $name
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setName(?string $name)
     {
@@ -336,7 +336,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param int|null $siteId
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setSiteId(?int $siteId)
     {
@@ -354,7 +354,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param int|null $sortOrder
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setSortOrder(?int $sortOrder)
     {
@@ -372,7 +372,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $string
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setString(?string $string)
     {
@@ -390,7 +390,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $title
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setTitle(?string $title)
     {
@@ -408,7 +408,7 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $urlName
-     * @return CategoryTranslation
+     * @return CategoryTranslationInterface
      */
     public function setUrlName(?string $urlName)
     {

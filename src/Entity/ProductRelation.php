@@ -27,7 +27,7 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
     /**
      * @var int|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $productNumber;
 
@@ -62,7 +62,7 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
 
     /**
      * @param int $id
-     * @return ProductRelation
+     * @return ProductRelationInterface
      */
     public function setId(int $id)
     {
@@ -80,7 +80,7 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
 
     /**
      * @param int|null $productNumber
-     * @return ProductRelation
+     * @return ProductRelationInterface
      */
     public function setProductNumber($productNumber)
     {
@@ -98,7 +98,7 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
 
     /**
      * @param int|null $relatedType
-     * @return ProductRelation
+     * @return ProductRelationInterface
      */
     public function setRelatedType($relatedType)
     {
@@ -116,7 +116,7 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
 
     /**
      * @param int|null $sortOrder
-     * @return ProductRelation
+     * @return ProductRelationInterface
      */
     public function setSortOrder($sortOrder)
     {
@@ -134,7 +134,7 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
 
     /**
      * @param ArrayCollection|Product[] $products
-     * @return ProductRelation
+     * @return ProductRelationInterface
      */
     public function setProducts($products)
     {

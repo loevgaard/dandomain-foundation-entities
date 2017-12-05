@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation\Entity\Generated\VariantInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\VariantTrait;
-use Loevgaard\DandomainFoundation;
 
 /**
  * @ORM\Entity()
@@ -42,7 +41,7 @@ class Variant extends AbstractEntity implements VariantInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $text;
 
@@ -84,7 +83,7 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param int $id
-     * @return Variant
+     * @return VariantInterface
      */
     public function setId(int $id)
     {
@@ -102,7 +101,7 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param int $externalId
-     * @return Variant
+     * @return VariantInterface
      */
     public function setExternalId(int $externalId)
     {
@@ -120,7 +119,7 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param int|null $sortOrder
-     * @return Variant
+     * @return VariantInterface
      */
     public function setSortOrder($sortOrder)
     {
@@ -138,7 +137,7 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param null|string $text
-     * @return Variant
+     * @return VariantInterface
      */
     public function setText($text)
     {
@@ -156,7 +155,7 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param ArrayCollection|Product[] $disabledProducts
-     * @return Variant
+     * @return VariantInterface
      */
     public function setDisabledProducts($disabledProducts)
     {
@@ -174,7 +173,7 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param ArrayCollection|Product[] $products
-     * @return Variant
+     * @return VariantInterface
      */
     public function setProducts($products)
     {
@@ -192,7 +191,7 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param ArrayCollection|VariantGroup[] $variantGroups
-     * @return Variant
+     * @return VariantInterface
      */
     public function setVariantGroups($variantGroups)
     {

@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface;
@@ -323,7 +322,7 @@ class Order extends AbstractEntity implements OrderInterface
      */
     public function addOrderLine(OrderLineInterface $orderLine) : OrderInterface
     {
-        if(!$this->hasOrderLine($orderLine)) {
+        if (!$this->hasOrderLine($orderLine)) {
             $this->orderLines->add($orderLine);
             $orderLine->setOrder($this);
         }
@@ -337,11 +336,11 @@ class Order extends AbstractEntity implements OrderInterface
      */
     public function hasOrderLine($orderLine) : bool
     {
-        if($orderLine instanceof OrderLineInterface) {
+        if ($orderLine instanceof OrderLineInterface) {
             $orderLine = $orderLine->getExternalId();
         }
 
-        return $this->orderLines->exists(function($key, OrderLineInterface $element) use ($orderLine) {
+        return $this->orderLines->exists(function ($key, OrderLineInterface $element) use ($orderLine) {
             return $element->getExternalId() === $orderLine;
         });
     }
@@ -1061,16 +1060,5 @@ class Order extends AbstractEntity implements OrderInterface
     private function createMoney(int $amount = 0) : ?Money
     {
         return DandomainFoundation\createMoney((string)$this->currencyCode, $amount);
-    }
-
-    /**
-     * A helper method for creating a Money object from a float based on the shared currency
-     *
-     * @param float|string $amount
-     * @return Money|null
-     */
-    private function createMoneyFromFloat($amount = 0.0) : ?Money
-    {
-        return DandomainFoundation\createMoneyFromFloat((string)$this->currencyCode, $amount);
     }
 }

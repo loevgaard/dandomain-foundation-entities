@@ -27,14 +27,14 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $country;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $countryId;
 
@@ -48,7 +48,7 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $vatPct;
 
@@ -72,7 +72,7 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param int $id
-     * @return ProductTypeVat
+     * @return ProductTypeVatInterface
      */
     public function setId(int $id)
     {
@@ -90,7 +90,7 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param null|string $country
-     * @return ProductTypeVat
+     * @return ProductTypeVatInterface
      */
     public function setCountry($country)
     {
@@ -108,7 +108,7 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param int|null $countryId
-     * @return ProductTypeVat
+     * @return ProductTypeVatInterface
      */
     public function setCountryId($countryId)
     {
@@ -126,7 +126,7 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param int|null $siteId
-     * @return ProductTypeVat
+     * @return ProductTypeVatInterface
      */
     public function setSiteId($siteId)
     {
@@ -144,7 +144,7 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param null|string $vatPct
-     * @return ProductTypeVat
+     * @return ProductTypeVatInterface
      */
     public function setVatPct($vatPct)
     {
@@ -162,7 +162,7 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param ArrayCollection|ProductType[] $productTypes
-     * @return ProductTypeVat
+     * @return ProductTypeVatInterface
      */
     public function setProductTypes($productTypes)
     {

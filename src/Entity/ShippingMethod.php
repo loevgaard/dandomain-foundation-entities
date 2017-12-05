@@ -3,7 +3,6 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\ShippingMethodTrait;
 use Money\Currency;
@@ -57,7 +56,7 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $name;
 
@@ -71,7 +70,7 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
 
     /**
      * @param int $id
-     * @return ShippingMethod
+     * @return ShippingMethodInterface
      */
     public function setId($id)
     {
@@ -89,7 +88,7 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
 
     /**
      * @param int $externalId
-     * @return ShippingMethod
+     * @return ShippingMethodInterface
      */
     public function setExternalId($externalId)
     {

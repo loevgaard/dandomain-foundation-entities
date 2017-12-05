@@ -44,7 +44,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true, length=191)
      */
     protected $number;
 
@@ -177,7 +177,7 @@ class Category extends AbstractEntity implements CategoryInterface
      */
     public function addParentCategory(CategoryInterface $category) : CategoryInterface
     {
-        if(!$this->hasParentCategory($category)) {
+        if (!$this->hasParentCategory($category)) {
             $this->parentCategories->add($category);
         }
 
@@ -190,11 +190,11 @@ class Category extends AbstractEntity implements CategoryInterface
      */
     public function hasParentCategory($category) : bool
     {
-        if($category instanceof CategoryInterface) {
+        if ($category instanceof CategoryInterface) {
             $category = $category->getExternalId();
         }
 
-        return $this->parentCategories->exists(function($key, CategoryInterface $element) use ($category) {
+        return $this->parentCategories->exists(function ($key, CategoryInterface $element) use ($category) {
             return $element->getExternalId() === $category;
         });
     }
@@ -219,7 +219,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int $id
-     * @return Category
+     * @return CategoryInterface
      */
     public function setId(int $id)
     {
@@ -237,7 +237,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int $externalId
-     * @return Category
+     * @return CategoryInterface
      */
     public function setExternalId(int $externalId)
     {
@@ -255,7 +255,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param string $number
-     * @return Category
+     * @return CategoryInterface
      */
     public function setNumber(string $number)
     {
@@ -273,7 +273,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param null|string $b2bGroupId
-     * @return Category
+     * @return CategoryInterface
      */
     public function setB2bGroupId($b2bGroupId)
     {
@@ -291,7 +291,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param \DateTimeImmutable|null $createdDate
-     * @return Category
+     * @return CategoryInterface
      */
     public function setCreatedDate($createdDate)
     {
@@ -309,7 +309,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $customInfoLayout
-     * @return Category
+     * @return CategoryInterface
      */
     public function setCustomInfoLayout($customInfoLayout)
     {
@@ -327,7 +327,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $customListLayout
-     * @return Category
+     * @return CategoryInterface
      */
     public function setCustomListLayout($customListLayout)
     {
@@ -345,7 +345,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $defaultParentId
-     * @return Category
+     * @return CategoryInterface
      */
     public function setDefaultParentId($defaultParentId)
     {
@@ -363,7 +363,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param \DateTimeImmutable|null $editedDate
-     * @return Category
+     * @return CategoryInterface
      */
     public function setEditedDate($editedDate)
     {
@@ -381,7 +381,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $infoLayout
-     * @return Category
+     * @return CategoryInterface
      */
     public function setInfoLayout($infoLayout)
     {
@@ -399,7 +399,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $internalId
-     * @return Category
+     * @return CategoryInterface
      */
     public function setInternalId($internalId)
     {
@@ -417,7 +417,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $listLayout
-     * @return Category
+     * @return CategoryInterface
      */
     public function setListLayout($listLayout)
     {
@@ -435,7 +435,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param bool|null $modified
-     * @return Category
+     * @return CategoryInterface
      */
     public function setModified($modified)
     {
@@ -453,7 +453,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param array|null $parentIdList
-     * @return Category
+     * @return CategoryInterface
      */
     public function setParentIdList($parentIdList)
     {
@@ -471,7 +471,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param array|null $segmentIdList
-     * @return Category
+     * @return CategoryInterface
      */
     public function setSegmentIdList($segmentIdList)
     {
@@ -489,7 +489,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param ArrayCollection|Category[] $childrenCategories
-     * @return Category
+     * @return CategoryInterface
      */
     public function setChildrenCategories($childrenCategories)
     {
@@ -507,7 +507,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param ArrayCollection|Category[] $parentCategories
-     * @return Category
+     * @return CategoryInterface
      */
     public function setParentCategories($parentCategories)
     {
@@ -525,7 +525,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param Product[] $products
-     * @return Category
+     * @return CategoryInterface
      */
     public function setProducts(array $products)
     {
@@ -543,7 +543,7 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param ArrayCollection|Segment[] $segments
-     * @return Category
+     * @return CategoryInterface
      */
     public function setSegments($segments)
     {

@@ -27,7 +27,7 @@ class Segment extends AbstractEntity implements SegmentInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true, length=191)
      */
     protected $externalId;
 
@@ -62,7 +62,7 @@ class Segment extends AbstractEntity implements SegmentInterface
 
     /**
      * @param int $id
-     * @return Segment
+     * @return SegmentInterface
      */
     public function setId(int $id)
     {
@@ -80,7 +80,7 @@ class Segment extends AbstractEntity implements SegmentInterface
 
     /**
      * @param string $externalId
-     * @return Segment
+     * @return SegmentInterface
      */
     public function setExternalId(string $externalId)
     {
@@ -98,7 +98,7 @@ class Segment extends AbstractEntity implements SegmentInterface
 
     /**
      * @param ArrayCollection|Category[] $categories
-     * @return Segment
+     * @return SegmentInterface
      */
     public function setCategories($categories)
     {
@@ -116,7 +116,7 @@ class Segment extends AbstractEntity implements SegmentInterface
 
     /**
      * @param ArrayCollection|Product[] $products
-     * @return Segment
+     * @return SegmentInterface
      */
     public function setProducts($products)
     {
@@ -134,7 +134,7 @@ class Segment extends AbstractEntity implements SegmentInterface
 
     /**
      * @param array $segmentOptions
-     * @return Segment
+     * @return SegmentInterface
      */
     public function setSegmentOptions(array $segmentOptions)
     {

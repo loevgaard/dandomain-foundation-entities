@@ -298,7 +298,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param Period $periodFrontPage
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setPeriodFrontPage(Period $periodFrontPage)
     {
@@ -316,7 +316,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param Period $periodHidden
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setPeriodHidden(Period $periodHidden)
     {
@@ -334,7 +334,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param Period $periodNew
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setPeriodNew(Period $periodNew)
     {
@@ -352,7 +352,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param Unit $unit
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setUnit(Unit $unit)
     {
@@ -370,7 +370,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField01
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField01(?string $customField01)
     {
@@ -388,7 +388,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField02
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField02(?string $customField02)
     {
@@ -406,7 +406,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField03
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField03(?string $customField03)
     {
@@ -424,7 +424,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField04
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField04(?string $customField04)
     {
@@ -442,7 +442,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField05
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField05(?string $customField05)
     {
@@ -460,7 +460,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField06
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField06(?string $customField06)
     {
@@ -478,7 +478,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField07
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField07(?string $customField07)
     {
@@ -496,7 +496,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField08
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField08(?string $customField08)
     {
@@ -514,7 +514,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField09
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField09(?string $customField09)
     {
@@ -532,7 +532,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $customField10
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setCustomField10(?string $customField10)
     {
@@ -550,7 +550,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param \DateTimeImmutable|null $expectedDeliveryTime
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setExpectedDeliveryTime(?\DateTimeImmutable $expectedDeliveryTime)
     {
@@ -568,7 +568,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param \DateTimeImmutable|null $expectedDeliveryTimeNotInStock
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setExpectedDeliveryTimeNotInStock(?\DateTimeImmutable $expectedDeliveryTimeNotInStock)
     {
@@ -586,7 +586,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $giftCertificatePdfBackgroundImage
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setGiftCertificatePdfBackgroundImage(?string $giftCertificatePdfBackgroundImage)
     {
@@ -604,7 +604,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param bool|null $hidden
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setHidden(?bool $hidden)
     {
@@ -622,7 +622,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param bool|null $hiddenForMobile
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setHiddenForMobile(?bool $hiddenForMobile)
     {
@@ -640,7 +640,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $imageAltText
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setImageAltText(?string $imageAltText)
     {
@@ -658,7 +658,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param bool|null $isTopListHidden
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setIsTopListHidden(?bool $isTopListHidden)
     {
@@ -676,7 +676,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $keyWords
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setKeyWords(?string $keyWords)
     {
@@ -694,7 +694,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $longDescription
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setLongDescription(?string $longDescription)
     {
@@ -712,7 +712,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $longDescription2
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setLongDescription2(?string $longDescription2)
     {
@@ -730,7 +730,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $metaDescription
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setMetaDescription(?string $metaDescription)
     {
@@ -748,7 +748,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $name
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setName(?string $name)
     {
@@ -766,7 +766,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $pageTitle
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setPageTitle(?string $pageTitle)
     {
@@ -784,7 +784,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $rememberToBuyTextHeading
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setRememberToBuyTextHeading(?string $rememberToBuyTextHeading)
     {
@@ -802,7 +802,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $rememberToBuyTextSubheading
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setRememberToBuyTextSubheading(?string $rememberToBuyTextSubheading)
     {
@@ -820,7 +820,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param float|null $retailSalesPrice
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setRetailSalesPrice(?float $retailSalesPrice)
     {
@@ -838,7 +838,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $shortDescription
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setShortDescription(?string $shortDescription)
     {
@@ -856,7 +856,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param bool|null $showAsNew
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setShowAsNew(?bool $showAsNew)
     {
@@ -874,7 +874,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param bool|null $showOnFrontPage
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setShowOnFrontPage(?bool $showOnFrontPage)
     {
@@ -892,7 +892,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param int|null $siteId
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setSiteId(?int $siteId)
     {
@@ -910,7 +910,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param int|null $sortOrder
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setSortOrder(?int $sortOrder)
     {
@@ -928,7 +928,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $techDocLink
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setTechDocLink(?string $techDocLink)
     {
@@ -946,7 +946,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $techDocLink2
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setTechDocLink2(?string $techDocLink2)
     {
@@ -964,7 +964,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $techDocLink3
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setTechDocLink3(?string $techDocLink3)
     {
@@ -982,7 +982,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $unitNumber
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setUnitNumber(?string $unitNumber)
     {
@@ -1000,7 +1000,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     /**
      * @param null|string $urlName
-     * @return ProductTranslation
+     * @return ProductTranslationInterface
      */
     public function setUrlName(?string $urlName)
     {

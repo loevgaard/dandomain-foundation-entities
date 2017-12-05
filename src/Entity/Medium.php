@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation\Entity\Generated\MediumInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\MediumTrait;
-use Loevgaard\DandomainFoundation;
 
 /**
  * @ORM\Entity()
@@ -35,7 +34,7 @@ class Medium extends AbstractEntity implements MediumInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $height;
 
@@ -56,35 +55,35 @@ class Medium extends AbstractEntity implements MediumInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $thumbnail;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $thumbnailHeight;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $thumbnailWidth;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $url;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $width;
 
@@ -108,7 +107,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param int $id
-     * @return Medium
+     * @return MediumInterface
      */
     public function setId(int $id)
     {
@@ -126,7 +125,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param int $externalId
-     * @return Medium
+     * @return MediumInterface
      */
     public function setExternalId(int $externalId)
     {
@@ -144,7 +143,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $height
-     * @return Medium
+     * @return MediumInterface
      */
     public function setHeight($height)
     {
@@ -162,7 +161,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param array|null $mediaTranslations
-     * @return Medium
+     * @return MediumInterface
      */
     public function setMediaTranslations($mediaTranslations)
     {
@@ -180,7 +179,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param int|null $sortOrder
-     * @return Medium
+     * @return MediumInterface
      */
     public function setSortOrder($sortOrder)
     {
@@ -198,7 +197,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $thumbnail
-     * @return Medium
+     * @return MediumInterface
      */
     public function setThumbnail($thumbnail)
     {
@@ -216,7 +215,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $thumbnailHeight
-     * @return Medium
+     * @return MediumInterface
      */
     public function setThumbnailHeight($thumbnailHeight)
     {
@@ -234,7 +233,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $thumbnailWidth
-     * @return Medium
+     * @return MediumInterface
      */
     public function setThumbnailWidth($thumbnailWidth)
     {
@@ -252,7 +251,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $url
-     * @return Medium
+     * @return MediumInterface
      */
     public function setUrl($url)
     {
@@ -270,7 +269,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $width
-     * @return Medium
+     * @return MediumInterface
      */
     public function setWidth($width)
     {
@@ -288,7 +287,7 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param ArrayCollection|Product[] $products
-     * @return Medium
+     * @return MediumInterface
      */
     public function setProducts($products)
     {

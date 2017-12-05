@@ -3,7 +3,6 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryTrait;
 
@@ -132,7 +131,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param integer $id
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setId($id)
     {
@@ -150,7 +149,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $address
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setAddress($address)
     {
@@ -168,7 +167,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $address2
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setAddress2($address2)
     {
@@ -186,7 +185,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $attention
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setAttention($attention)
     {
@@ -204,7 +203,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $city
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setCity($city)
     {
@@ -222,7 +221,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $country
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setCountry($country)
     {
@@ -240,7 +239,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param int|null $countryId
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setCountryId($countryId)
     {
@@ -258,7 +257,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $cvr
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setCvr($cvr)
     {
@@ -276,7 +275,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $ean
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setEan($ean)
     {
@@ -294,7 +293,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $email
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setEmail($email)
     {
@@ -312,7 +311,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $fax
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setFax($fax)
     {
@@ -330,7 +329,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $name
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setName($name)
     {
@@ -348,7 +347,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $phone
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setPhone($phone)
     {
@@ -366,7 +365,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $state
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setState($state)
     {
@@ -384,7 +383,7 @@ class Delivery extends AbstractEntity implements DeliveryInterface
 
     /**
      * @param null|string $zipCode
-     * @return Delivery
+     * @return DeliveryInterface
      */
     public function setZipCode($zipCode)
     {

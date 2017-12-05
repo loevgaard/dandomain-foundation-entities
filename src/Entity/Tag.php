@@ -33,7 +33,7 @@ class Tag extends AbstractEntity implements TagInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, length=191)
      **/
     protected $selectorType;
 
@@ -58,8 +58,9 @@ class Tag extends AbstractEntity implements TagInterface
     /**
      * @inheritdoc
      */
-    public function addTagValue(TagValue $tagValue) {
-        if(!$this->tagValues->contains($tagValue)) {
+    public function addTagValue(TagValue $tagValue)
+    {
+        if (!$this->tagValues->contains($tagValue)) {
             $this->tagValues->add($tagValue);
             $tagValue->setTag($this);
         }
@@ -69,8 +70,9 @@ class Tag extends AbstractEntity implements TagInterface
     /**
      * @inheritdoc
      */
-    public function clearTagValues() {
-        foreach($this->tagValues as $tagValue) {
+    public function clearTagValues()
+    {
+        foreach ($this->tagValues as $tagValue) {
             $this->tagValues->removeElement($tagValue);
         }
 
@@ -87,7 +89,7 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param int $id
-     * @return Tag
+     * @return TagInterface
      */
     public function setId(int $id)
     {
@@ -105,7 +107,7 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param int $externalId
-     * @return Tag
+     * @return TagInterface
      */
     public function setExternalId(int $externalId)
     {
@@ -123,7 +125,7 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param null|string $selectorType
-     * @return Tag
+     * @return TagInterface
      */
     public function setSelectorType($selectorType)
     {
@@ -141,7 +143,7 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param int|null $sortOrder
-     * @return Tag
+     * @return TagInterface
      */
     public function setSortOrder($sortOrder)
     {
@@ -159,7 +161,7 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param ArrayCollection|TagValue[] $tagValues
-     * @return Tag
+     * @return TagInterface
      */
     public function setTagValues($tagValues)
     {

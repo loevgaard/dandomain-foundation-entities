@@ -27,14 +27,14 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
     /**
      * @var string
      *
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true, length=191)
      */
     protected $externalId;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $formula;
 
@@ -72,7 +72,7 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param int $id
-     * @return ProductTypeFormula
+     * @return ProductTypeFormulaInterface
      */
     public function setId(int $id)
     {
@@ -90,7 +90,7 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param string $externalId
-     * @return ProductTypeFormula
+     * @return ProductTypeFormulaInterface
      */
     public function setExternalId(string $externalId)
     {
@@ -108,7 +108,7 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param null|string $formula
-     * @return ProductTypeFormula
+     * @return ProductTypeFormulaInterface
      */
     public function setFormula($formula)
     {
@@ -126,7 +126,7 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param int|null $productTypeGroupId
-     * @return ProductTypeFormula
+     * @return ProductTypeFormulaInterface
      */
     public function setProductTypeGroupId($productTypeGroupId)
     {
@@ -144,7 +144,7 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param int|null $siteId
-     * @return ProductTypeFormula
+     * @return ProductTypeFormulaInterface
      */
     public function setSiteId($siteId)
     {
@@ -162,7 +162,7 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param ArrayCollection|ProductType[] $productTypes
-     * @return ProductTypeFormula
+     * @return ProductTypeFormulaInterface
      */
     public function setProductTypes($productTypes)
     {

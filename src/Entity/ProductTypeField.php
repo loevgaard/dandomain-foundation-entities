@@ -27,14 +27,14 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
     /**
      * @var string
      *
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true, length=191)
      */
     protected $externalId;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $label;
 
@@ -72,7 +72,7 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param int $id
-     * @return ProductTypeField
+     * @return ProductTypeFieldInterface
      */
     public function setId(int $id)
     {
@@ -90,7 +90,7 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param string $externalId
-     * @return ProductTypeField
+     * @return ProductTypeFieldInterface
      */
     public function setExternalId(string $externalId)
     {
@@ -108,7 +108,7 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param null|string $label
-     * @return ProductTypeField
+     * @return ProductTypeFieldInterface
      */
     public function setLabel($label)
     {
@@ -126,7 +126,7 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param int|null $languageId
-     * @return ProductTypeField
+     * @return ProductTypeFieldInterface
      */
     public function setLanguageId($languageId)
     {
@@ -144,7 +144,7 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param int|null $number
-     * @return ProductTypeField
+     * @return ProductTypeFieldInterface
      */
     public function setNumber($number)
     {
@@ -162,7 +162,7 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param ArrayCollection|ProductType[] $productTypes
-     * @return ProductTypeField
+     * @return ProductTypeFieldInterface
      */
     public function setProductTypes($productTypes)
     {

@@ -26,7 +26,7 @@ class Period extends AbstractEntity implements PeriodInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true, length=191)
      */
     protected $externalId;
 
@@ -76,7 +76,7 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param int $id
-     * @return Period
+     * @return PeriodInterface
      */
     public function setId(int $id)
     {
@@ -94,7 +94,7 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param string $externalId
-     * @return Period
+     * @return PeriodInterface
      */
     public function setExternalId(string $externalId)
     {
@@ -112,7 +112,7 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param bool|null $disabled
-     * @return Period
+     * @return PeriodInterface
      */
     public function setDisabled($disabled)
     {
@@ -130,7 +130,7 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param \DateTimeImmutable|null $endDate
-     * @return Period
+     * @return PeriodInterface
      */
     public function setEndDate($endDate)
     {
@@ -148,7 +148,7 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param \DateTimeImmutable|null $startDate
-     * @return Period
+     * @return PeriodInterface
      */
     public function setStartDate($startDate)
     {
@@ -166,7 +166,7 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param null|string $title
-     * @return Period
+     * @return PeriodInterface
      */
     public function setTitle($title)
     {

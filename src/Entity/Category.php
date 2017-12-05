@@ -121,6 +121,8 @@ class Category extends AbstractEntity implements CategoryInterface
     protected $modified;
 
     /**
+     * The parent 'id' really refers to the parent number
+     *
      * @var array|null
      *
      * @ORM\Column(nullable=true, type="json")
@@ -172,98 +174,39 @@ class Category extends AbstractEntity implements CategoryInterface
         $this->segments = new ArrayCollection();
     }
 
-    /**
-     * Populates a variant based on the response from the Dandomain API
-     *
-     * See the properties here:
-     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/ProductDataService/help/operations/GetDataProduct
-     *
-     * @param \stdClass|array $data
+    /*
+     * Collection methods
      */
-    public function populateFromApiResponse($data)
+    public function addParentCategory(CategoryInterface $category) : CategoryInterface
     {
-        $data = DandomainFoundation\objectToArray($data);
-
-        /*
-        $actualTexts = null;
-        if (is_array($data['texts'])) {
-            foreach ($data['texts'] as $text) {
-                if ($text->siteId != $this->defaultSiteId) {
-                    continue;
-                }
-
-                $actualTexts = $text;
-            }
-        }
-        */
-
-        if ($data['createdDate']) {
-            $this->createdDate = DateTimeImmutable::createFromJson($data['createdDate']);
+        if(!$this->hasParentCategory($category)) {
+            $this->parentCategories->add($category);
         }
 
-        if ($data['editedDate']) {
-            $this->createdDate = DateTimeImmutable::createFromJson($data['editedDate']);
-        }
-
-        $this
-            ->setB2bGroupId($data['b2BGroupId'])
-            ->setCustomInfoLayout($data['customInfoLayout'])
-            ->setCustomListLayout($data['customListLayout'])
-            ->setDefaultParentId($data['defaultParentId'])
-            ->setExternalId($data['number'])
-            ->setInfoLayout($data['infoLayout'])
-            ->setInternalId($data['internalId'])
-            ->setListLayout($data['listLayout'])
-            ->setModified($data['modified'])
-            ->setParentIdList($data['parentIdList'])
-            ->setSegmentIdList($data['segmentIdList'])
-        ;
-
-        /*
-        if (is_array($data['parentIdList'])) {
-            foreach ($data['parentIdList'] as $parentId) {
-                $parentEntity = $this->objectManager->getRepository($this->entityClassName)->findOneBy([
-                    'externalId' => (int) $parentId,
-                ]);
-
-                if (null !== $parentEntity) {
-                    $this->addParentCategory($parentEntity);
-                }
-            }
-        }
-
-        if (is_array($data['segmentIdList'])) {
-            foreach ($data['segmentIdList'] as $segmentId) {
-                $segment = $this->segmentSynchronizer->syncSegment($segmentId, $flush);
-                $this->addSegment($segment);
-            }
-        }
-
-        if (($entity instanceof TranslatableInterface) && (is_array($data['texts']))) {
-            foreach ($data['texts'] as $text) {
-                $entity->translate($text->siteId)->setCategoryNumber($text->categoryNumber);
-                $entity->translate($text->siteId)->setDescription($text->description);
-                $entity->translate($text->siteId)->setExternalId($text->id);
-                $entity->translate($text->siteId)->setHidden($text->hidden);
-                $entity->translate($text->siteId)->setHiddenMobile($text->hiddenMobile);
-                $entity->translate($text->siteId)->setIcon($text->icon);
-                $entity->translate($text->siteId)->setImage($text->image);
-                $entity->translate($text->siteId)->setKeywords($text->Keywords);
-                $entity->translate($text->siteId)->setLink($text->link);
-                $entity->translate($text->siteId)->setMetaDescription($text->metaDescription);
-                $entity->translate($text->siteId)->setName($text->name);
-                $entity->translate($text->siteId)->setSiteId($text->siteId);
-                $entity->translate($text->siteId)->setSortOrder($text->sortOrder);
-                $entity->translate($text->siteId)->setString($text->string);
-                $entity->translate($text->siteId)->setTitle($text->title);
-                $entity->translate($text->siteId)->setUrlname($text->urlname);
-
-                $entity->mergeNewTranslations();
-            }
-        }
-        */
+        return $this;
     }
 
+    public function hasParentCategory($category) : bool
+    {
+        if($category instanceof CategoryInterface) {
+            $category = $category->getExternalId();
+        }
+
+        return $this->parentCategories->exists(function($key, CategoryInterface $element) use ($category) {
+            return $element->getExternalId() === $category;
+        });
+    }
+
+    public function removeParentCategory(CategoryInterface $category) : CategoryInterface
+    {
+        $this->parentCategories->removeElement($category);
+
+        return $this;
+    }
+
+    /*
+     * Getters / Setters
+     */
     /**
      * @return int
      */

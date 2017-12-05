@@ -53,29 +53,6 @@ class State extends AbstractEntity implements StateInterface
     protected $name;
 
     /**
-     * Populates a shipping method based on the response from the Dandomain API
-     *
-     * See the properties here:
-     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/OrderService/help/operations/GetOrder
-     *
-     * @param \stdClass|array $data
-     * @return StateInterface
-     */
-    public function populateFromApiResponse($data) : StateInterface
-    {
-        $data = DandomainFoundation\objectToArray($data);
-
-        $this
-            ->setExternalId($data['id'])
-            ->setExclStatistics($data['exclStatistics'])
-            ->setIsDefault($data['isDefault'])
-            ->setName($data['name'])
-        ;
-
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int

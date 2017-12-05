@@ -123,39 +123,6 @@ class Delivery extends AbstractEntity implements DeliveryInterface
     protected $zipCode;
 
     /**
-     * Populates a customer based on the response from the Dandomain API
-     *
-     * See the properties here:
-     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/OrderService/help/operations/GetOrder
-     *
-     * @param \stdClass|array $data
-     * @return DeliveryInterface
-     */
-    public function populateFromApiResponse($data) : DeliveryInterface
-    {
-        $data = DandomainFoundation\objectToArray($data);
-
-        $this
-            ->setAddress($data['address'])
-            ->setAddress2($data['address2'])
-            ->setAttention($data['attention'])
-            ->setCity($data['city'])
-            ->setCountry($data['country'])
-            ->setCountryId($data['countryId'])
-            ->setCvr($data['cvr'])
-            ->setEan($data['ean'])
-            ->setEmail($data['email'])
-            ->setFax($data['fax'])
-            ->setName($data['name'])
-            ->setPhone($data['phone'])
-            ->setState($data['state'])
-            ->setZipCode($data['zipCode'])
-        ;
-
-        return $this;
-    }
-
-    /**
      * @return integer
      */
     public function getId() : int

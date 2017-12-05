@@ -61,35 +61,6 @@ class Invoice extends AbstractEntity implements InvoiceInterface
     protected $state;
 
     /**
-     * Populates a invoice based on the response from the Dandomain API
-     *
-     * See the properties here:
-     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/OrderService/help/operations/GetOrder
-     *
-     * @param \stdClass|array $data
-     * @return InvoiceInterface
-     */
-    public function populateFromApiResponse($data) : InvoiceInterface
-    {
-        $data = DandomainFoundation\objectToArray($data);
-
-        $date = $data['date'];
-        if ($date) {
-            $date = DateTimeImmutable::createFromJson($date);
-        }
-
-        $this
-            ->setCreditNoteNumber($data['creditNoteNumber'])
-            ->setIsPaid($data['isPaid'])
-            ->setNumber($data['number'])
-            ->setState($data['state'])
-            ->setDate($date)
-        ;
-
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int

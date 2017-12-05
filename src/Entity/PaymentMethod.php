@@ -62,30 +62,6 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
     protected $name;
 
     /**
-     * Populates a payment method based on the response from the Dandomain API
-     *
-     * See the properties here:
-     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/OrderService/help/operations/GetOrder
-     *
-     * @param \stdClass|array $data
-     * @param string $currency
-     * @return PaymentMethodInterface
-     */
-    public function populateFromApiResponse($data, $currency) : PaymentMethodInterface
-    {
-        $data = DandomainFoundation\objectToArray($data);
-
-        $this
-            ->setExternalId($data['id'])
-            ->setFee(DandomainFoundation\createMoney((string)$currency, $data['fee']))
-            ->setFeeInclVat($data['feeInclVat'])
-            ->setName($data['name'])
-        ;
-
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int

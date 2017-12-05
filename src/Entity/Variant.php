@@ -75,25 +75,6 @@ class Variant extends AbstractEntity implements VariantInterface
     }
 
     /**
-     * Populates a variant based on the response from the Dandomain API
-     *
-     * See the properties here:
-     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/ProductDataService/help/operations/GetDataProduct
-     *
-     * @param \stdClass|array $data
-     */
-    public function populateFromApiResponse($data)
-    {
-        $data = DandomainFoundation\objectToArray($data);
-
-        $this
-            ->setExternalId($data['id'])
-            ->setSortOrder($data['sortOrder'])
-            ->setText($data['text'])
-        ;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int

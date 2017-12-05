@@ -99,31 +99,6 @@ class Medium extends AbstractEntity implements MediumInterface
     }
 
     /**
-     * Populates a medium based on the response from the Dandomain API
-     *
-     * See the properties here:
-     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/ProductDataService/help/operations/GetDataProduct
-     *
-     * @param \stdClass|array $data
-     */
-    public function populateFromApiResponse($data)
-    {
-        $data = DandomainFoundation\objectToArray($data);
-
-        $this
-            ->setExternalId($data['id'])
-            ->setHeight($data['height'])
-            ->setMediaTranslations($data['mediaTranslations'])
-            ->setSortorder($data['sortorder'])
-            ->setThumbnail($data['thumbnail'])
-            ->setThumbnailheight($data['thumbnailheight'])
-            ->setThumbnailwidth($data['thumbnailwidth'])
-            ->setUrl($data['url'])
-            ->setWidth($data['width'])
-        ;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int

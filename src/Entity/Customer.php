@@ -232,39 +232,6 @@ class Customer extends AbstractEntity implements CustomerInterface
     protected $reservedField5;
 
     /**
-     * Populates a customer based on the response from the Dandomain API
-     *
-     * See the properties here:
-     * http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/CustomerService/help/operations/GetCustomer
-     *
-     * @param \stdClass|array $data
-     * @return CustomerInterface
-     */
-    public function populateFromApiResponse($data) : CustomerInterface
-    {
-        $data = DandomainFoundation\objectToArray($data);
-
-        $this
-            ->setExternalId($data['id'])
-            ->setAddress($data['address'])
-            ->setAddress2($data['address2'])
-            ->setAttention($data['attention'])
-            ->setCity($data['city'])
-            ->setCountry($data['country'])
-            ->setCountryId($data['countryId'])
-            ->setEan($data['ean'])
-            ->setEmail($data['email'])
-            ->setFax($data['fax'])
-            ->setName($data['name'])
-            ->setPhone($data['phone'])
-            ->setState($data['state'])
-            ->setZipCode($data['zipCode'])
-        ;
-
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int

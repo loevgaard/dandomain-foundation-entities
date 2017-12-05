@@ -7,10 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation\Entity\Generated\CategoryInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\CategoryTrait;
-use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\CategoryTranslationInterface;
 
 /**

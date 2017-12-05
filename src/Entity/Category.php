@@ -11,10 +11,12 @@ use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation\Entity\Generated\CategoryInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\CategoryTrait;
 use Loevgaard\DandomainFoundation;
+use Loevgaard\DandomainFoundation\Entity\Generated\CategoryTranslationInterface;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ldf_categories")
+ * @method CategoryTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
 class Category extends AbstractEntity implements CategoryInterface
 {

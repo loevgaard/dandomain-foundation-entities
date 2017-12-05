@@ -186,6 +186,10 @@ class Category extends AbstractEntity implements CategoryInterface
         return $this;
     }
 
+    /**
+     * @param CategoryInterface|int $category
+     * @return bool
+     */
     public function hasParentCategory($category) : bool
     {
         if($category instanceof CategoryInterface) {

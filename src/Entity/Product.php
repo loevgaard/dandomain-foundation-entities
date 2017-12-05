@@ -347,6 +347,9 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @var VariantGroup[]|ArrayCollection
+     *
+     * @ORM\JoinTable(name="ldf_product_variant_group")
+     * @ORM\ManyToMany(cascade={"persist"}, inversedBy="products", targetEntity="VariantGroup")
      */
     protected $variantGroups;
 

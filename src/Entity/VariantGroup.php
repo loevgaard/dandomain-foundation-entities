@@ -82,6 +82,8 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @var Product[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(mappedBy="variantGroups", targetEntity="Product")
      */
     protected $products;
 

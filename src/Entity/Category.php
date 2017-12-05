@@ -147,7 +147,7 @@ class Category extends AbstractEntity implements CategoryInterface
      * @var Category[]|ArrayCollection
      *
      * @ORM\JoinTable(name="ldf_category_parents")
-     * @ORM\ManyToMany(cascade={"persist"}, inversedBy="childrenCategories", targetEntity="Category")
+     * @ORM\ManyToMany(inversedBy="childrenCategories", targetEntity="Category")
      */
     protected $parentCategories;
 

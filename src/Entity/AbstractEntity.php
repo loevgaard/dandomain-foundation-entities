@@ -22,9 +22,22 @@ abstract class AbstractEntity
      */
     protected $extractConversions;
 
-    public function hydrate(array $data, bool $useConversions = false)
+    /**
+     * @param array $data
+     * @param bool $useConversions
+     * @param bool $scalarsOnly If true, it will only hydrate scalars, i.e. floats, integers, strings, and booleans
+     */
+    public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
     {
         $hydrator = $this->getHydrator();
+
+        if($scalarsOnly) {
+            foreach ($data as $key => $val) {
+                if(!is_scalar($val)) {
+                    unset($data[$key]);
+                }
+            }
+        }
 
         if($useConversions && is_array($this->hydrateConversions)) {
             $data = $this->convert($data, $this->hydrateConversions);

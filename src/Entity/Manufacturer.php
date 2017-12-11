@@ -15,6 +15,10 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 {
     use ManufacturerTrait;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *

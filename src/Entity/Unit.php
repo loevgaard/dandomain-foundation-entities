@@ -14,6 +14,10 @@ class Unit extends AbstractEntity implements UnitInterface
 {
     use UnitTrait;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *

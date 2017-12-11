@@ -375,6 +375,19 @@ class Product extends AbstractEntity implements ProductInterface
         $this->variantGroups = new ArrayCollection();
     }
 
+    public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
+    {
+        if($data['created']) {
+            $data['created'] = $this->getDateTimeFromJson($data['created']);
+        }
+
+        if($data['updated']) {
+            $data['updated'] = $this->getDateTimeFromJson($data['updated']);
+        }
+
+        parent::hydrate($data, $useConversions, $scalarsOnly);
+    }
+
     /*
      * Collection/relation methods
      */

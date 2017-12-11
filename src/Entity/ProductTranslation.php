@@ -16,6 +16,11 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
     use ProductTranslationTrait;
     use Translation;
 
+    protected $hydrateConversions = [
+        'siteID' => 'siteId',
+        'urlname' => 'urlName'
+    ];
+
     // @todo fix doctrine mapping for these relations
     /**
      * @var Period
@@ -288,6 +293,19 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
      * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $urlName;
+
+    public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
+    {
+        if($data['expectedDeliveryTime']) {
+            $data['expectedDeliveryTime'] = $this->getDateTimeFromJson($data['expectedDeliveryTime']);
+        }
+
+        if($data['expectedDeliveryTimeNotInStock']) {
+            $data['expectedDeliveryTimeNotInStock'] = $this->getDateTimeFromJson($data['expectedDeliveryTimeNotInStock']);
+        }
+
+        parent::hydrate($data, $useConversions, $scalarsOnly);
+    }
 
     /**
      * @return Period

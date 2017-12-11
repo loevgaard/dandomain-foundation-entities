@@ -32,6 +32,10 @@ class Product extends AbstractEntity implements ProductInterface
     use SoftDeletable;
     use Translatable;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *

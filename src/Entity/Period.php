@@ -14,6 +14,10 @@ class Period extends AbstractEntity implements PeriodInterface
 {
     use PeriodTrait;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *

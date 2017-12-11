@@ -15,6 +15,10 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 {
     use VariantGroupTrait;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *

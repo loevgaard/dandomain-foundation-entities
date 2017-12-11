@@ -8,16 +8,59 @@ use Zend\Hydrator\HydratorInterface;
 
 abstract class AbstractEntity
 {
-    public function hydrate(array $data)
+    /**
+     * This will hold the conversions applied when calling hydrate
+     *
+     * @var array
+     */
+    protected $hydrateConversions;
+
+    /**
+     * This will hold the conversions applied when calling extract
+     *
+     * @var array
+     */
+    protected $extractConversions;
+
+    public function hydrate(array $data, bool $useConversions = false)
     {
         $hydrator = $this->getHydrator();
+
+        if($useConversions && is_array($this->hydrateConversions)) {
+            $data = $this->convert($data, $this->hydrateConversions);
+        }
+
         $hydrator->hydrate($data, $this);
     }
 
-    public function extract() : array
+    public function extract(bool $useConversions = false) : array
     {
         $hydrator = $this->getHydrator();
-        return $hydrator->extract($this);
+
+        $data = $hydrator->extract($this);
+
+        if($useConversions && is_array($this->extractConversions)) {
+            $data = $this->convert($data, $this->extractConversions);
+        }
+
+        return $data;
+    }
+
+    protected function convert(array $data, $conversions) : array
+    {
+        foreach ($conversions as $from => $to) {
+            if(isset($data[$to])) {
+                throw new \InvalidArgumentException('The $to argument in the $data object is already set');
+            }
+
+            $tmp = $data[$from] ?? null;
+            if($tmp) {
+                unset($data[$from]);
+                $data[$to] = $tmp;
+            }
+        }
+
+        return $data;
     }
 
     protected function getDateTimeFromJson($val = null) : ?DateTimeImmutable

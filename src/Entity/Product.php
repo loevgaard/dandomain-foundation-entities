@@ -439,7 +439,7 @@ class Product extends AbstractEntity implements ProductInterface
 
     public function hasVariantGroup($variantGroup) : bool
     {
-        if($variantGroup instanceof VariantGroupInterface) {
+        if ($variantGroup instanceof VariantGroupInterface) {
             $variantGroup = $variantGroup->getExternalId();
         }
 

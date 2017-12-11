@@ -62,12 +62,12 @@ class Period extends AbstractEntity implements PeriodInterface
      */
     protected $title;
 
-    public function hydrate(array $data)
+    public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
     {
         $data['startDate'] = $this->getDateTimeFromJson($data['startDate']);
         $data['endDate'] = $this->getDateTimeFromJson($data['endDate']);
 
-        parent::hydrate($data);
+        parent::hydrate($data, $useConversions, $scalarsOnly);
     }
 
     /**

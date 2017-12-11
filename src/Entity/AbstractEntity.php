@@ -31,15 +31,15 @@ abstract class AbstractEntity
     {
         $hydrator = $this->getHydrator();
 
-        if($scalarsOnly) {
+        if ($scalarsOnly) {
             foreach ($data as $key => $val) {
-                if(!is_scalar($val)) {
+                if (!is_scalar($val)) {
                     unset($data[$key]);
                 }
             }
         }
 
-        if($useConversions && is_array($this->hydrateConversions)) {
+        if ($useConversions && is_array($this->hydrateConversions)) {
             $data = $this->convert($data, $this->hydrateConversions);
         }
 
@@ -52,7 +52,7 @@ abstract class AbstractEntity
 
         $data = $hydrator->extract($this);
 
-        if($useConversions && is_array($this->extractConversions)) {
+        if ($useConversions && is_array($this->extractConversions)) {
             $data = $this->convert($data, $this->extractConversions);
         }
 
@@ -62,12 +62,12 @@ abstract class AbstractEntity
     protected function convert(array $data, $conversions) : array
     {
         foreach ($conversions as $from => $to) {
-            if(isset($data[$to])) {
+            if (isset($data[$to])) {
                 throw new \InvalidArgumentException('The $to argument in the $data object is already set');
             }
 
             $tmp = $data[$from] ?? null;
-            if($tmp) {
+            if ($tmp) {
                 unset($data[$from]);
                 $data[$to] = $tmp;
             }

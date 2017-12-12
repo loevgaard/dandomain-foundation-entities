@@ -7,7 +7,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-A library for using the Dandomain Pay API to make payments in the Dandomain webshop system
+A library of type [hostnet-entity](https://github.com/hostnet/entity-plugin-lib) with entities for the Dandomain Ecommerce system. The library is used in the [Dandomain Foundation Bundle](https://github.com/loevgaard/dandomain-foundation-bundle).
 
 ## Install
 

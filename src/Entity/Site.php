@@ -14,6 +14,10 @@ class Site extends AbstractEntity implements SiteInterface
 {
     use SiteTrait;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *
@@ -56,7 +60,7 @@ class Site extends AbstractEntity implements SiteInterface
      */
     public function getId(): int
     {
-        return $this->id;
+        return (int)$this->id;
     }
 
     /**
@@ -74,7 +78,7 @@ class Site extends AbstractEntity implements SiteInterface
      */
     public function getExternalId(): int
     {
-        return $this->externalId;
+        return (int)$this->externalId;
     }
 
     /**

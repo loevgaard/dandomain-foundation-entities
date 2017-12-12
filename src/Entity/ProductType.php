@@ -15,6 +15,10 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 {
     use ProductTypeTrait;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *
@@ -25,9 +29,9 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
     protected $id;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(type="string", unique=true, length=191)
+     * @ORM\Column(type="integer", unique=true)
      */
     protected $externalId;
 
@@ -88,18 +92,18 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getExternalId(): string
+    public function getExternalId(): int
     {
-        return (string)$this->externalId;
+        return (int)$this->externalId;
     }
 
     /**
-     * @param string $externalId
-     * @return ProductTypeInterface
+     * @param int $externalId
+     * @return ProductType
      */
-    public function setExternalId(string $externalId)
+    public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
         return $this;

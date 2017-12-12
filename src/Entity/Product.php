@@ -377,11 +377,11 @@ class Product extends AbstractEntity implements ProductInterface
 
     public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
     {
-        if($data['created']) {
+        if ($data['created']) {
             $data['created'] = $this->getDateTimeFromJson($data['created']);
         }
 
-        if($data['updated']) {
+        if ($data['updated']) {
             $data['updated'] = $this->getDateTimeFromJson($data['updated']);
         }
 
@@ -741,7 +741,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @return bool|null
      */
-    public function getisGiftCertificate()
+    public function getIsGiftCertificate()
     {
         return $this->isGiftCertificate;
     }
@@ -759,7 +759,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @return bool|null
      */
-    public function getisModified()
+    public function getIsModified()
     {
         return $this->isModified;
     }
@@ -777,7 +777,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @return bool|null
      */
-    public function getisRateVariants()
+    public function getIsRateVariants()
     {
         return $this->isRateVariants;
     }
@@ -795,7 +795,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @return bool|null
      */
-    public function getisReviewVariants()
+    public function getIsReviewVariants()
     {
         return $this->isReviewVariants;
     }
@@ -813,7 +813,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @return bool|null
      */
-    public function getisVariantMaster()
+    public function getIsVariantMaster()
     {
         return $this->isVariantMaster;
     }

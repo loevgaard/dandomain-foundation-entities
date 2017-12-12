@@ -296,11 +296,11 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
     {
-        if($data['expectedDeliveryTime']) {
+        if ($data['expectedDeliveryTime']) {
             $data['expectedDeliveryTime'] = $this->getDateTimeFromJson($data['expectedDeliveryTime']);
         }
 
-        if($data['expectedDeliveryTimeNotInStock']) {
+        if ($data['expectedDeliveryTimeNotInStock']) {
             $data['expectedDeliveryTimeNotInStock'] = $this->getDateTimeFromJson($data['expectedDeliveryTimeNotInStock']);
         }
 

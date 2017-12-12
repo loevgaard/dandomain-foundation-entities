@@ -17,6 +17,11 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 {
     use OrderLineTrait;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId',
+        'productId' => 'productNumber'
+    ];
+
     /**
      * @var int
      *
@@ -113,6 +118,25 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     protected $product;
 
     // @todo implement withVat and withoutVat methods
+
+    public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
+    {
+        if (is_null($this->order)) {
+            throw new \RuntimeException('Cannot hydrate order line without an associated order');
+        }
+
+        $currency = $this->order->getCurrencyCode();
+
+        if (isset($data['unitPrice'])) {
+            $data['unitPrice'] = DandomainFoundation\createMoneyFromFloat($currency, $data['unitPrice']);
+        }
+
+        if (isset($data['totalPrice'])) {
+            $data['totalPrice'] = DandomainFoundation\createMoneyFromFloat($currency, $data['totalPrice']);
+        }
+
+        parent::hydrate($data, $useConversions, $scalarsOnly);
+    }
 
     /**
      * @return int

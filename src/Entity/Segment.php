@@ -15,6 +15,10 @@ class Segment extends AbstractEntity implements SegmentInterface
 {
     use SegmentTrait;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *
@@ -75,7 +79,7 @@ class Segment extends AbstractEntity implements SegmentInterface
      */
     public function getExternalId(): string
     {
-        return $this->externalId;
+        return (string)$this->externalId;
     }
 
     /**

@@ -1,0 +1,37 @@
+{
+    "b2BGroupId": "1",
+    "createdDate": "/Date(1508213350000+0200)/",
+    "customInfoLayout": 2,
+    "customListLayout": 3,
+    "defaultParentId": 10,
+    "editedDate": "/Date(1511508990000+0100)/",
+    "infoLayout": 4,
+    "internalId": 2614,
+    "listLayout": 5,
+    "modified": true,
+    "number": "10000331",
+    "parentIdList": [
+        "0"
+    ],
+    "segmentIdList": [],
+    "texts": [
+        {
+            "Keywords": "",
+            "categoryNumber": "10000331",
+            "description": "<html>\r\n<head>\r\n\t<title></title>\r\n</head>\r\n<body></body>\r\n</html>\r\n",
+            "hidden": true,
+            "hiddenMobile": false,
+            "icon": "",
+            "id": 4607,
+            "image": "",
+            "link": "",
+            "metaDescription": "",
+            "name": "ikke nedsat",
+            "siteId": 26,
+            "sortOrder": 50,
+            "string": "",
+            "title": "",
+            "urlname": ""
+        }
+    ]
+}

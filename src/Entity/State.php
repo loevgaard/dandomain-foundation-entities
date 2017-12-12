@@ -14,6 +14,10 @@ class State extends AbstractEntity implements StateInterface
 {
     use StateTrait;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *
@@ -56,7 +60,7 @@ class State extends AbstractEntity implements StateInterface
      */
     public function getId(): int
     {
-        return $this->id;
+        return (int)$this->id;
     }
 
     /**
@@ -74,7 +78,7 @@ class State extends AbstractEntity implements StateInterface
      */
     public function getExternalId(): int
     {
-        return $this->externalId;
+        return (int)$this->externalId;
     }
 
     /**
@@ -108,7 +112,7 @@ class State extends AbstractEntity implements StateInterface
     /**
      * @return bool|null
      */
-    public function getisDefault()
+    public function getIsDefault()
     {
         return $this->isDefault;
     }

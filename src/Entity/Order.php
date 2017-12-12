@@ -31,6 +31,10 @@ class Order extends AbstractEntity implements OrderInterface
     use Timestampable;
     use SoftDeletable;
 
+    protected $hydrateConversions = [
+        'id' => 'externalId'
+    ];
+
     /**
      * @var int
      *
@@ -317,6 +321,41 @@ class Order extends AbstractEntity implements OrderInterface
         $this->orderLines = new ArrayCollection();
     }
 
+    public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
+    {
+        $currency = $data['currencyCode'];
+
+        if (isset($data['totalPrice'])) {
+            $data['totalPrice'] = DandomainFoundation\createMoneyFromFloat($currency, $data['totalPrice']);
+        }
+
+        if (isset($data['giftCertificateAmount'])) {
+            $data['giftCertificateAmount'] = DandomainFoundation\createMoneyFromFloat($currency, $data['giftCertificateAmount']);
+        }
+
+        if (isset($data['salesDiscount'])) {
+            $data['salesDiscount'] = DandomainFoundation\createMoneyFromFloat($currency, $data['salesDiscount']);
+        }
+
+        if (isset($data['paymentInfo']['fee'])) {
+            $data['paymentMethodFee'] = DandomainFoundation\createMoneyFromFloat($currency, $data['paymentInfo']['fee']);
+        }
+
+        if (isset($data['shippingInfo']['fee'])) {
+            $data['shippingMethodFee'] = DandomainFoundation\createMoneyFromFloat($currency, $data['shippingInfo']['fee']);
+        }
+
+        if ($data['createdDate']) {
+            $data['createdDate'] = $this->getDateTimeFromJson($data['createdDate']);
+        }
+
+        if ($data['modifiedDate']) {
+            $data['modifiedDate'] = $this->getDateTimeFromJson($data['modifiedDate']);
+        }
+
+        parent::hydrate($data, $useConversions, $scalarsOnly);
+    }
+
     /*
      * Collection methods
      */
@@ -354,7 +393,9 @@ class Order extends AbstractEntity implements OrderInterface
 
     public function clearOrderLines() : OrderInterface
     {
-        $this->orderLines->clear();
+        foreach ($this->orderLines as $orderLine) {
+            $this->removeOrderLine($orderLine);
+        }
 
         return $this;
     }
@@ -480,7 +521,7 @@ class Order extends AbstractEntity implements OrderInterface
      */
     public function getExternalId(): int
     {
-        return $this->externalId;
+        return (int)$this->externalId;
     }
 
     /**

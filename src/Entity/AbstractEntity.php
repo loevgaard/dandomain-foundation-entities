@@ -3,6 +3,7 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Loevgaard\DandomainDateTime\DateTimeImmutable;
+use Money\Money;
 use Zend\Hydrator\ClassMethods;
 use Zend\Hydrator\HydratorInterface;
 
@@ -25,7 +26,7 @@ abstract class AbstractEntity
     /**
      * @param array $data
      * @param bool $useConversions
-     * @param bool $scalarsOnly If true, it will only hydrate scalars, i.e. floats, integers, strings, and booleans
+     * @param bool $scalarsOnly If true, it will only hydrate scalars, i.e. floats, integers, strings, booleans, dates, and money
      */
     public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
     {
@@ -33,7 +34,7 @@ abstract class AbstractEntity
 
         if ($scalarsOnly) {
             foreach ($data as $key => $val) {
-                if (!is_scalar($val)) {
+                if (!is_scalar($val) && !($val instanceof \DateTimeInterface) && !($val instanceof Money)) {
                     unset($data[$key]);
                 }
             }

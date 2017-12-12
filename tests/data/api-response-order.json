@@ -1,7 +1,7 @@
 {
     "comment": "",
     "createdDate": "/Date(1509972409000+0100)/",
-    "creditNoteNumber": null,
+    "creditNoteNumber": "credit1312321",
     "currencyCode": "DKK",
     "customerComment": "",
     "customerInfo": {
@@ -37,11 +37,11 @@
         "zipCode": "8000"
     },
     "giftCertificateAmount": 0,
-    "giftCertificateNumber": null,
+    "giftCertificateNumber": "kl87123123",
     "id": 295591,
     "incomplete": false,
     "invoiceInfo": {
-        "creditNoteNumber": null,
+        "creditNoteNumber": "credit1312321",
         "date": null,
         "isPaid": false,
         "number": null,
@@ -71,7 +71,7 @@
         "name": "Nye"
     },
     "paymentInfo": {
-        "fee": 0,
+        "fee": 30,
         "feeInclVat": false,
         "id": 60,
         "name": "Betalingskort"
@@ -94,8 +94,8 @@
     "totalPrice": 158.95,
     "totalWeight": 0.6,
     "trackingNumber": "",
-    "transactionNumber": null,
+    "transactionNumber": "12345678998765431",
     "vatPct": "25",
     "vatRegNumber": "",
-    "xmlParams": null
+    "xmlParams": "xml params"
 }

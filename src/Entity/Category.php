@@ -23,6 +23,10 @@ class Category extends AbstractEntity implements CategoryInterface
     use SoftDeletable;
     use Translatable;
 
+    protected $hydrateConversions = [
+        'internalId' => 'externalId',
+    ];
+
     /**
      * @var int
      *
@@ -102,13 +106,6 @@ class Category extends AbstractEntity implements CategoryInterface
      *
      * @ORM\Column(nullable=true, type="integer")
      */
-    protected $internalId;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(nullable=true, type="integer")
-     */
     protected $listLayout;
 
     /**
@@ -150,7 +147,7 @@ class Category extends AbstractEntity implements CategoryInterface
     protected $parentCategories;
 
     /**
-     * @var Product[]||ArrayCollection
+     * @var Product[]|ArrayCollection
      *
      * @ORM\ManyToMany(mappedBy="categories", targetEntity="Product")
      */
@@ -170,6 +167,19 @@ class Category extends AbstractEntity implements CategoryInterface
         $this->parentCategories = new ArrayCollection();
         $this->products = new ArrayCollection();
         $this->segments = new ArrayCollection();
+    }
+
+    public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
+    {
+        if ($data['createdDate']) {
+            $data['createdDate'] = $this->getDateTimeFromJson($data['createdDate']);
+        }
+
+        if ($data['editedDate']) {
+            $data['editedDate'] = $this->getDateTimeFromJson($data['editedDate']);
+        }
+
+        parent::hydrate($data, $useConversions, $scalarsOnly);
     }
 
     /*
@@ -202,6 +212,13 @@ class Category extends AbstractEntity implements CategoryInterface
     public function removeParentCategory(CategoryInterface $category) : CategoryInterface
     {
         $this->parentCategories->removeElement($category);
+
+        return $this;
+    }
+
+    public function clearParentCategories() : CategoryInterface
+    {
+        $this->parentCategories->clear();
 
         return $this;
     }
@@ -392,24 +409,6 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @return int|null
      */
-    public function getInternalId()
-    {
-        return $this->internalId;
-    }
-
-    /**
-     * @param int|null $internalId
-     * @return CategoryInterface
-     */
-    public function setInternalId($internalId)
-    {
-        $this->internalId = $internalId;
-        return $this;
-    }
-
-    /**
-     * @return int|null
-     */
     public function getListLayout()
     {
         return $this->listLayout;
@@ -482,7 +481,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @return ArrayCollection|Category[]
      */
-    public function getChildrenCategories()
+    public function getChildrenCategories() : ArrayCollection
     {
         return $this->childrenCategories;
     }
@@ -500,7 +499,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @return ArrayCollection|Category[]
      */
-    public function getParentCategories()
+    public function getParentCategories() : ArrayCollection
     {
         return $this->parentCategories;
     }
@@ -516,9 +515,9 @@ class Category extends AbstractEntity implements CategoryInterface
     }
 
     /**
-     * @return Product[]
+     * @return Product[]|ArrayCollection
      */
-    public function getProducts(): array
+    public function getProducts() : ArrayCollection
     {
         return $this->products;
     }
@@ -527,7 +526,7 @@ class Category extends AbstractEntity implements CategoryInterface
      * @param Product[] $products
      * @return CategoryInterface
      */
-    public function setProducts(array $products)
+    public function setProducts($products)
     {
         $this->products = $products;
         return $this;
@@ -536,7 +535,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @return ArrayCollection|Segment[]
      */
-    public function getSegments()
+    public function getSegments() : ArrayCollection
     {
         return $this->segments;
     }

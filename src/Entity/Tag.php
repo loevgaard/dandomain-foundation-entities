@@ -63,7 +63,7 @@ class Tag extends AbstractEntity implements TagInterface
 
     public function addTagValue(TagValue $tagValue) : TagInterface
     {
-        if(!$this->hasTagValue($tagValue)) {
+        if (!$this->hasTagValue($tagValue)) {
             $this->tagValues->add($tagValue);
             $tagValue->setTag($this);
         }
@@ -73,7 +73,7 @@ class Tag extends AbstractEntity implements TagInterface
 
     public function hasTagValue($tagValue) : bool
     {
-        if($tagValue instanceof TagValueInterface) {
+        if ($tagValue instanceof TagValueInterface) {
             $tagValue = $tagValue->getExternalId();
         }
 

@@ -3,16 +3,21 @@ namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use Loevgaard\DandomainFoundation\Entity\Generated\TagInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\TagTrait;
+use Loevgaard\DandomainFoundation\Entity\Generated\TagTranslationInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\TagValueInterface;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ldf_tags")
+ * @method TagTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
 class Tag extends AbstractEntity implements TagInterface
 {
     use TagTrait;
+    use Translatable;
 
     /**
      * @var int
@@ -45,8 +50,9 @@ class Tag extends AbstractEntity implements TagInterface
     protected $sortOrder;
 
     /**
-     * @var TagValue[]|ArrayCollection
-     * @todo create doctrine mapping
+     * @var TagValueInterface[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="TagValue", mappedBy="tag", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $tagValues;
 
@@ -55,25 +61,39 @@ class Tag extends AbstractEntity implements TagInterface
         $this->tagValues = new ArrayCollection();
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function addTagValue(TagValue $tagValue)
+    public function addTagValue(TagValue $tagValue) : TagInterface
     {
-        if (!$this->tagValues->contains($tagValue)) {
+        if(!$this->hasTagValue($tagValue)) {
             $this->tagValues->add($tagValue);
             $tagValue->setTag($this);
         }
+
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function clearTagValues()
+    public function hasTagValue($tagValue) : bool
+    {
+        if($tagValue instanceof TagValueInterface) {
+            $tagValue = $tagValue->getExternalId();
+        }
+
+        return $this->tagValues->exists(function ($key, TagValueInterface $element) use ($tagValue) {
+            return $element->getExternalId() === $tagValue;
+        });
+    }
+
+    public function removeTagValue(TagValueInterface $tagValue) : TagInterface
+    {
+        $this->tagValues->removeElement($tagValue);
+        $tagValue->setTag(null);
+
+        return $this;
+    }
+
+    public function clearTagValues() : TagInterface
     {
         foreach ($this->tagValues as $tagValue) {
-            $this->tagValues->removeElement($tagValue);
+            $this->removeTagValue($tagValue);
         }
 
         return $this;
@@ -89,7 +109,7 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param int $id
-     * @return TagInterface
+     * @return Tag
      */
     public function setId(int $id)
     {
@@ -107,7 +127,7 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param int $externalId
-     * @return TagInterface
+     * @return Tag
      */
     public function setExternalId(int $externalId)
     {
@@ -118,16 +138,16 @@ class Tag extends AbstractEntity implements TagInterface
     /**
      * @return null|string
      */
-    public function getSelectorType()
+    public function getSelectorType(): ?string
     {
         return $this->selectorType;
     }
 
     /**
      * @param null|string $selectorType
-     * @return TagInterface
+     * @return Tag
      */
-    public function setSelectorType($selectorType)
+    public function setSelectorType(?string $selectorType)
     {
         $this->selectorType = $selectorType;
         return $this;
@@ -136,23 +156,23 @@ class Tag extends AbstractEntity implements TagInterface
     /**
      * @return int|null
      */
-    public function getSortOrder()
+    public function getSortOrder(): ?int
     {
         return $this->sortOrder;
     }
 
     /**
      * @param int|null $sortOrder
-     * @return TagInterface
+     * @return Tag
      */
-    public function setSortOrder($sortOrder)
+    public function setSortOrder(?int $sortOrder)
     {
         $this->sortOrder = $sortOrder;
         return $this;
     }
 
     /**
-     * @return ArrayCollection|TagValue[]
+     * @return ArrayCollection|TagValueInterface[]
      */
     public function getTagValues()
     {
@@ -160,8 +180,8 @@ class Tag extends AbstractEntity implements TagInterface
     }
 
     /**
-     * @param ArrayCollection|TagValue[] $tagValues
-     * @return TagInterface
+     * @param ArrayCollection|TagValueInterface[] $tagValues
+     * @return Tag
      */
     public function setTagValues($tagValues)
     {

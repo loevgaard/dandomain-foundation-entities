@@ -310,6 +310,9 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @var Category[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="products")
+     * @ORM\JoinTable(name="ldf_products_categories")
      */
     protected $categories;
 

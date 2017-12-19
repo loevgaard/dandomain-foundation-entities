@@ -149,7 +149,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @var Product[]|ArrayCollection
      *
-     * @ORM\ManyToMany(mappedBy="categories", targetEntity="Product")
+     * @ORM\ManyToMany(mappedBy="categories", targetEntity="Product", fetch="EXTRA_LAZY")
      */
     protected $products;
 
@@ -171,11 +171,11 @@ class Category extends AbstractEntity implements CategoryInterface
 
     public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
     {
-        if ($data['createdDate']) {
+        if (isset($data['createdDate'])) {
             $data['createdDate'] = $this->getDateTimeFromJson($data['createdDate']);
         }
 
-        if ($data['editedDate']) {
+        if (isset($data['editedDate'])) {
             $data['editedDate'] = $this->getDateTimeFromJson($data['editedDate']);
         }
 

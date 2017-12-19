@@ -520,6 +520,33 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
+    public function addChild(ProductInterface $product) : ProductInterface
+    {
+        if (!$this->hasChild($product)) {
+            $this->children->add($product);
+            $product->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChild(ProductInterface $product) : bool
+    {
+        $product->setParent(null);
+        return $this->children->removeElement($product);
+    }
+
+    public function hasChild($product) : bool
+    {
+        if($product instanceof ProductInterface) {
+            $product = $product->getExternalId();
+        }
+
+        return $this->children->exists(function ($key, ProductInterface $element) use ($product) {
+            return $element->getExternalId() === $product;
+        });
+    }
+
     /*
      * Getters / Setters
      */

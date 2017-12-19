@@ -59,7 +59,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
     /**
      * @var Product[]|ArrayCollection
      *
-     * @ORM\ManyToMany(mappedBy="manufacturers", targetEntity="Product")
+     * @ORM\ManyToMany(mappedBy="manufacturers", targetEntity="Product", fetch="EXTRA_LAZY")
      */
     protected $products;
 

@@ -22,7 +22,9 @@ use Loevgaard\DandomainFoundation\Entity\Generated\VariantInterface;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="ldf_products")
+ * @ORM\Table(name="ldf_products", indexes={
+ *     @ORM\Index(columns={"is_variant_master"})
+ * })
  * @method ProductTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
 class Product extends AbstractEntity implements ProductInterface
@@ -160,7 +162,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @var bool|null
      *
-     * @ORM\Column(nullable=true, type="boolean")
+     * @ORM\Column(name="is_variant_master", nullable=true, type="boolean")
      */
     protected $isVariantMaster;
 

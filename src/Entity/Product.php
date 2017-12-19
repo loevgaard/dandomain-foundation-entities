@@ -362,6 +362,24 @@ class Product extends AbstractEntity implements ProductInterface
      */
     protected $variants;
 
+    /**
+     * This is the master for this product
+     *
+     * @var Product|null
+     *
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="children")
+     */
+    protected $parent;
+
+    /**
+     * This is the children (i.e. variants) of this products
+     *
+     * @var Product[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="parent")
+     */
+    protected $children;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -373,15 +391,16 @@ class Product extends AbstractEntity implements ProductInterface
         $this->segments = new ArrayCollection();
         $this->variants = new ArrayCollection();
         $this->variantGroups = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
     {
-        if ($data['created']) {
+        if (isset($data['created'])) {
             $data['created'] = $this->getDateTimeFromJson($data['created']);
         }
 
-        if ($data['updated']) {
+        if (isset($data['updated'])) {
             $data['updated'] = $this->getDateTimeFromJson($data['updated']);
         }
 
@@ -1365,6 +1384,42 @@ class Product extends AbstractEntity implements ProductInterface
     public function setVariants($variants)
     {
         $this->variants = $variants;
+        return $this;
+    }
+
+    /**
+     * @return Product|null
+     */
+    public function getParent(): ?Product
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param Product|null $parent
+     * @return Product
+     */
+    public function setParent(?Product $parent)
+    {
+        $this->parent = $parent;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|Product[]
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param ArrayCollection|Product[] $children
+     * @return Product
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
         return $this;
     }
 }

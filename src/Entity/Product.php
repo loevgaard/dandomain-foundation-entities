@@ -2,6 +2,7 @@
 
 namespace Loevgaard\DandomainFoundation\Entity;
 
+use Assert\Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
@@ -25,6 +26,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\VariantInterface;
  * @ORM\Table(name="ldf_products", indexes={
  *     @ORM\Index(columns={"is_variant_master"})
  * })
+ * @ORM\HasLifecycleCallbacks()
  * @method ProductTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
 class Product extends AbstractEntity implements ProductInterface
@@ -50,7 +52,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", unique=true)
+     * @ORM\Column(type="integer", nullable=true, unique=true)
      */
     protected $externalId;
 
@@ -204,9 +206,9 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * The product number
      *
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(type="string", length=191)
      */
     protected $number;
 
@@ -397,6 +399,20 @@ class Product extends AbstractEntity implements ProductInterface
         $this->variants = new ArrayCollection();
         $this->variantGroups = new ArrayCollection();
         $this->children = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function validate()
+    {
+        Assert::that($this->number)->string()->maxLength(191);
+        Assert::thatNullOr($this->externalId)->integer();
+
+        if(is_null($this->externalId)) {
+            Assert::that($this->isDeleted())->true('The external id can only be null if the product is marked as deleted');
+        }
     }
 
     public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
@@ -970,18 +986,18 @@ class Product extends AbstractEntity implements ProductInterface
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     public function getNumber()
     {
-        return $this->number;
+        return (string)$this->number;
     }
 
     /**
-     * @param null|string $number
+     * @param string $number
      * @return ProductInterface
      */
-    public function setNumber($number)
+    public function setNumber(string $number)
     {
         $this->number = $number;
         return $this;

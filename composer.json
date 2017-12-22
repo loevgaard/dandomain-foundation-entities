@@ -4,6 +4,7 @@
     "license": "MIT",
     "require": {
         "php": "~7.1",
+        "beberlei/assert": "^2.8",
         "doctrine/common": "^2.6",
         "doctrine/orm": "^2.5",
         "hostnet/entity-plugin-lib": "^2.1",

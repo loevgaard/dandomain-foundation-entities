@@ -113,7 +113,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
      * @var ProductInterface|null
      *
      * @ORM\JoinColumn(onDelete="SET NULL")
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Product", cascade={"persist"})
      */
     protected $product;
 

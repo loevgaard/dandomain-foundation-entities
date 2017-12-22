@@ -164,7 +164,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="text")
      */
     protected $keyWords;
 
@@ -192,28 +192,28 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="text")
      */
     protected $name;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="text")
      */
     protected $pageTitle;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="text")
      */
     protected $rememberToBuyTextHeading;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="text")
      */
     protected $rememberToBuyTextSubheading;
 
@@ -227,7 +227,7 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="text")
      */
     protected $shortDescription;
 

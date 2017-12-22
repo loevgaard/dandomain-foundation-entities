@@ -55,7 +55,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(nullable=true, type="text")
      */
     protected $productName;
 

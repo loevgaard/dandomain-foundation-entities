@@ -67,18 +67,22 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     protected $quantity;
 
     /**
-     * @var int|null
+     * This number is excl vat
      *
-     * @ORM\Column(nullable=true, type="integer")
-     */
-    protected $totalPrice;
-
-    /**
      * @var int|null
      *
      * @ORM\Column(nullable=true, type="integer")
      */
     protected $unitPrice;
+
+    /**
+     * This number is excl vat
+     *
+     * @var int|null
+     *
+     * @ORM\Column(nullable=true, type="integer")
+     */
+    protected $totalPrice;
 
     /**
      * @var float|null
@@ -136,6 +140,43 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
         }
 
         parent::hydrate($data, $useConversions, $scalarsOnly);
+    }
+
+    /*
+     * Helper methods
+     */
+    public function getUnitPriceInclVat() : ?Money
+    {
+        $unitPrice = $this->getUnitPrice();
+        if(!$unitPrice) {
+            return null;
+        }
+
+        $multiplier = (100 + $this->vatPct) / 100;
+
+        return $unitPrice->multiply($multiplier);
+    }
+
+    public function getUnitPriceExclVat() : ?Money
+    {
+        return $this->getUnitPrice();
+    }
+
+    public function getTotalPriceInclVat() : ?Money
+    {
+        $totalPrice = $this->getTotalPrice();
+        if(!$totalPrice) {
+            return null;
+        }
+
+        $multiplier = (100 + $this->vatPct) / 100;
+
+        return $totalPrice->multiply($multiplier);
+    }
+
+    public function getTotalPriceExclVat() : ?Money
+    {
+        return $this->getTotalPrice();
     }
 
     /**

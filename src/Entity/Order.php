@@ -268,6 +268,8 @@ class Order extends AbstractEntity implements OrderInterface
     protected $salesDiscount;
 
     /**
+     * This price is incl vat
+     *
      * @var int|null
      *
      * @ORM\Column(type="integer", nullable=true)
@@ -354,6 +356,46 @@ class Order extends AbstractEntity implements OrderInterface
         }
 
         parent::hydrate($data, $useConversions, $scalarsOnly);
+    }
+
+    /*
+     * Helper methods
+     */
+    public function getTotalPriceInclVat() : ?Money
+    {
+        return $this->getTotalPrice();
+    }
+
+    public function getTotalPriceExclVat() : ?Money
+    {
+        $totalPrice = $this->getTotalPrice();
+        if(!$totalPrice) {
+            return null;
+        }
+
+        $multiplier = 100 / (100 + $this->vatPct);
+
+        return $totalPrice->multiply($multiplier);
+    }
+
+    public function totalPriceWithoutFees() : ?Money
+    {
+        $totalPrice = $this->getTotalPrice();
+        if(!$totalPrice) {
+            return null;
+        }
+
+        $paymentMethodFee = $this->getPaymentMethodFee();
+        if($paymentMethodFee) {
+            $totalPrice = $totalPrice->subtract($paymentMethodFee);
+        }
+
+        $shippingMethodFee = $this->getShippingMethodFee();
+        if($shippingMethodFee) {
+            $totalPrice = $totalPrice->subtract($shippingMethodFee);
+        }
+
+        return $totalPrice;
     }
 
     /*

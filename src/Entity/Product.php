@@ -401,6 +401,11 @@ class Product extends AbstractEntity implements ProductInterface
         $this->children = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return (string)$this->number;
+    }
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()

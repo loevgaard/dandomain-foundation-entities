@@ -55,6 +55,11 @@ class State extends AbstractEntity implements StateInterface
      */
     protected $name;
 
+    public function __toString()
+    {
+        return (string)$this->name;
+    }
+
     /**
      * @return int
      */

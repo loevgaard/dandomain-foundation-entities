@@ -60,6 +60,11 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
      */
     protected $name;
 
+    public function __toString()
+    {
+        return (string)$this->name;
+    }
+
     /**
      * @return int
      */

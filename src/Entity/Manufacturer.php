@@ -68,6 +68,11 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
         $this->products = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return (string)$this->name;
+    }
+
     /**
      * @return int
      */

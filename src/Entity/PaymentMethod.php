@@ -60,6 +60,11 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
      */
     protected $name;
 
+    public function __toString()
+    {
+        return (string)$this->name;
+    }
+
     /**
      * @return int
      */

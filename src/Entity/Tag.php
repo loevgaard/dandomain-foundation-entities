@@ -61,7 +61,7 @@ class Tag extends AbstractEntity implements TagInterface
         $this->tagValues = new ArrayCollection();
     }
 
-    public function addTagValue(TagValue $tagValue) : TagInterface
+    public function addTagValue(TagValueInterface $tagValue) : TagInterface
     {
         if (!$this->hasTagValue($tagValue)) {
             $this->tagValues->add($tagValue);

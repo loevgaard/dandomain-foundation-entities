@@ -58,6 +58,13 @@ class QueueItem implements QueueItemInterface
      */
     protected $status;
 
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $error;
+
     public function __construct()
     {
         $this->status = self::STATUS_PENDING;

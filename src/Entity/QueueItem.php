@@ -91,6 +91,23 @@ class QueueItem implements QueueItemInterface
     }
 
     /**
+     * The create method creates a valid queue item object
+     *
+     * @param string $identifier
+     * @param string $type
+     * @return QueueItemInterface
+     */
+    public static function create(string $identifier, string $type) : QueueItemInterface
+    {
+        $queueItem = new QueueItem();
+        $queueItem
+            ->setIdentifier($identifier)
+            ->setType($type);
+
+        return $queueItem;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int

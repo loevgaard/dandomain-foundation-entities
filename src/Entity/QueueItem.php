@@ -24,6 +24,7 @@ class QueueItem implements QueueItemInterface
     const TYPE_PRODUCT = 'product';
 
     const STATUS_PENDING = 'pending';
+    const STATUS_PROCESSING = 'processing';
     const STATUS_ERROR = 'error';
     const STATUS_SUCCESS = 'success';
 
@@ -85,6 +86,7 @@ class QueueItem implements QueueItemInterface
     {
         return [
             self::STATUS_PENDING => self::STATUS_PENDING,
+            self::STATUS_PROCESSING => self::STATUS_PROCESSING,
             self::STATUS_ERROR => self::STATUS_ERROR,
             self::STATUS_SUCCESS => self::STATUS_SUCCESS,
         ];

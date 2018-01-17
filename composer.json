@@ -6,12 +6,14 @@
         "php": "~7.1",
         "beberlei/assert": "^2.8",
         "doctrine/common": "^2.6",
+        "doctrine/doctrine-bundle": "^1.8",
         "doctrine/orm": "^2.5",
         "hostnet/entity-plugin-lib": "^2.1",
         "knplabs/doctrine-behaviors": "^1.5",
         "loevgaard/dandomain-datetime": "^0.1.0",
         "loevgaard/dandomain-pay-php-sdk": "^1.0",
         "moneyphp/money": "^3.0",
+        "symfony/options-resolver": "^3.0||^4.0",
         "zendframework/zend-hydrator": "^2.3"
     },
     "require-dev": {

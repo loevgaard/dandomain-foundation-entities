@@ -5,3 +5,6 @@ composer.lock
 !/src/Entity/Generated
 /src/Entity/Generated/*
 !/src/Entity/Generated/.gitkeep
+!/src/Repository/Generated
+/src/Repository/Generated/*
+!/src/Repository/Generated/.gitkeep

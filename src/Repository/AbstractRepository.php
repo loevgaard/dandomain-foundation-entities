@@ -12,6 +12,16 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
     use AbstractRepositoryTrait;
 
     /**
+     * @param $entity
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save($entity)
+    {
+        $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
      * @param array $options
      * @return \Generator
      * @throws \Doctrine\ORM\OptimisticLockException

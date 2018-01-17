@@ -5,6 +5,13 @@ namespace Loevgaard\DandomainFoundation\Repository;
 interface RepositoryInterface
 {
     /**
+     * Save should call persist and flush successively
+     *
+     * @param object $entity The object to persist and flush
+     */
+    public function save($entity);
+
+    /**
      * @param array $options
      * @return \Generator
      * @throws \Doctrine\ORM\OptimisticLockException

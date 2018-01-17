@@ -5,11 +5,11 @@ namespace Loevgaard\DandomainFoundation\Repository;
 interface RepositoryInterface
 {
     /**
-     * Save should call persist and flush successively
+     * This method clears all entities in the entity manager, not only the entity associated with this repository
      *
-     * @param object $entity The object to persist and flush
+     * @return void
      */
-    public function save($entity);
+    public function clearAll();
 
     /**
      * @param array $options
@@ -25,4 +25,11 @@ interface RepositoryInterface
      * @param int[] $notIn
      */
     public function removeByIds(array $in = [], array $notIn = []);
+
+    /**
+     * Save should call persist and flush successively
+     *
+     * @param object $entity The object to persist and flush
+     */
+    public function save($entity);
 }

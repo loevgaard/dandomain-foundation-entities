@@ -95,6 +95,11 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
         $qb->getQuery()->execute();
     }
 
+    public function clearAll()
+    {
+        $this->getEntityManager()->clear();
+    }
+
     /**
      * On 90% of the entities there is an external id so we put this helper method here
      * so that all these repository doesn't have to implement the same method, instead they

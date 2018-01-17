@@ -12,23 +12,6 @@ abstract class AbstractRepository extends ServiceEntityRepository
     use AbstractRepositoryTrait;
 
     /**
-     * On 90% of the entities there is an external id so we put this helper method here
-     * so that all these repository doesn't have to implement the same method, instead they
-     * can call this method and just create the type hint and validation of input
-     *
-     * @param $externalId
-     * @return null|object
-     */
-    protected function _findOneByExternalId($externalId)
-    {
-        $obj = $this->findOneBy([
-            'externalId' => $externalId,
-        ]);
-
-        return $obj;
-    }
-
-    /**
      * @param array $options
      * @return \Generator
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -80,7 +63,7 @@ abstract class AbstractRepository extends ServiceEntityRepository
 
         $qb = $this->createQueryBuilder('e');
 
-        if($this->getClassMetadata()->hasField('deletedAt')) {
+        if ($this->getClassMetadata()->hasField('deletedAt')) {
             $qb->update()
                 ->set('e.deletedAt', ':date')
                 ->setParameter('date', new DateTimeImmutable())
@@ -100,6 +83,23 @@ abstract class AbstractRepository extends ServiceEntityRepository
         }
 
         $qb->getQuery()->execute();
+    }
+
+    /**
+     * On 90% of the entities there is an external id so we put this helper method here
+     * so that all these repository doesn't have to implement the same method, instead they
+     * can call this method and just create the type hint and validation of input
+     *
+     * @param $externalId
+     * @return null|object
+     */
+    protected function _findOneByExternalId($externalId)
+    {
+        $obj = $this->findOneBy([
+            'externalId' => $externalId,
+        ]);
+
+        return $obj;
     }
 
     protected function configureIterateOptions(OptionsResolver $resolver)

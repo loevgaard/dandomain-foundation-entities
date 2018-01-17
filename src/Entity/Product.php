@@ -417,7 +417,7 @@ class Product extends AbstractEntity implements ProductInterface
             ->maxLength(191, 'The number must have a max length of 191');
         Assert::thatNullOr($this->externalId)->integer('The external id can only be null or an integer', 'externalId');
 
-        if(is_null($this->externalId)) {
+        if (is_null($this->externalId)) {
             Assert::that($this->isDeleted())->true('The external id can only be null if the product is marked as deleted', 'externalId');
         }
     }
@@ -566,7 +566,7 @@ class Product extends AbstractEntity implements ProductInterface
 
     public function hasChild($product) : bool
     {
-        if($product instanceof ProductInterface) {
+        if ($product instanceof ProductInterface) {
             $product = $product->getExternalId();
         }
 

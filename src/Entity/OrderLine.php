@@ -148,7 +148,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     public function getUnitPriceInclVat() : ?Money
     {
         $unitPrice = $this->getUnitPrice();
-        if(!$unitPrice) {
+        if (!$unitPrice) {
             return null;
         }
 
@@ -165,7 +165,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     public function getTotalPriceInclVat() : ?Money
     {
         $totalPrice = $this->getTotalPrice();
-        if(!$totalPrice) {
+        if (!$totalPrice) {
             return null;
         }
 

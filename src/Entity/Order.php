@@ -369,7 +369,7 @@ class Order extends AbstractEntity implements OrderInterface
     public function getTotalPriceExclVat() : ?Money
     {
         $totalPrice = $this->getTotalPrice();
-        if(!$totalPrice) {
+        if (!$totalPrice) {
             return null;
         }
 
@@ -381,17 +381,17 @@ class Order extends AbstractEntity implements OrderInterface
     public function totalPriceWithoutFees() : ?Money
     {
         $totalPrice = $this->getTotalPrice();
-        if(!$totalPrice) {
+        if (!$totalPrice) {
             return null;
         }
 
         $paymentMethodFee = $this->getPaymentMethodFee();
-        if($paymentMethodFee) {
+        if ($paymentMethodFee) {
             $totalPrice = $totalPrice->subtract($paymentMethodFee);
         }
 
         $shippingMethodFee = $this->getShippingMethodFee();
-        if($shippingMethodFee) {
+        if ($shippingMethodFee) {
             $totalPrice = $totalPrice->subtract($shippingMethodFee);
         }
 

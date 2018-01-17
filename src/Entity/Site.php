@@ -2,7 +2,9 @@
 
 namespace Loevgaard\DandomainFoundation\Entity;
 
+use Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Loevgaard\DandomainFoundation\Entity\Generated\CurrencyInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\SiteTrait;
 
@@ -42,11 +44,15 @@ class Site extends AbstractEntity implements SiteInterface
     protected $countryId;
 
     /**
-     * @var string|null
+     * The currency code in the Dandomain API refers in fact to the currencies' field named 'id' or 'code'
+     * Therefore we don't have a currencyCode property, but a currency property
      *
-     * @ORM\Column(nullable=true, type="string", length=3)
+     * @var CurrencyInterface|null
+     *
+     * @ORM\ManyToOne(targetEntity="Currency")
+     * @ORM\JoinColumn(nullable=false)
      */
-    protected $currencyCode;
+    protected $currency;
 
     /**
      * @var string|null
@@ -54,6 +60,18 @@ class Site extends AbstractEntity implements SiteInterface
      * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $name;
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function validate()
+    {
+        Assert::that($this->externalId)->integer();
+        Assert::thatNullOr($this->countryId)->integer();
+        Assert::that($this->currency)->isInstanceOf(CurrencyInterface::class);
+        Assert::thatNullOr($this->name)->string();
+    }
 
     /**
      * @return int
@@ -110,20 +128,20 @@ class Site extends AbstractEntity implements SiteInterface
     }
 
     /**
-     * @return null|string
+     * @return CurrencyInterface|null
      */
-    public function getCurrencyCode()
+    public function getCurrency(): ?CurrencyInterface
     {
-        return $this->currencyCode;
+        return $this->currency;
     }
 
     /**
-     * @param null|string $currencyCode
-     * @return SiteInterface
+     * @param CurrencyInterface|null $currency
+     * @return Site
      */
-    public function setCurrencyCode($currencyCode)
+    public function setCurrency(?CurrencyInterface $currency)
     {
-        $this->currencyCode = $currencyCode;
+        $this->currency = $currency;
         return $this;
     }
 

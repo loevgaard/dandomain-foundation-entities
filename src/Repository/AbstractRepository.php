@@ -7,7 +7,7 @@ use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation\Repository\Generated\AbstractRepositoryTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-abstract class AbstractRepository extends ServiceEntityRepository
+abstract class AbstractRepository extends ServiceEntityRepository implements RepositoryInterface
 {
     use AbstractRepositoryTrait;
 

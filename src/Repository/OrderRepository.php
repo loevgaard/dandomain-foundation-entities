@@ -7,6 +7,12 @@ use Loevgaard\DandomainFoundation\Entity\Order;
 use Loevgaard\DandomainFoundation\Repository\Generated\OrderRepositoryTrait;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * @method null|OrderInterface find($id)
+ * @method OrderInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method null|OrderInterface findOneBy(array $criteria)
+ * @method OrderInterface[] findAll()
+ */
 class OrderRepository extends AbstractRepository
 {
     use OrderRepositoryTrait;

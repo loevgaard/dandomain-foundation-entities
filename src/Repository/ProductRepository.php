@@ -7,6 +7,12 @@ use Loevgaard\DandomainFoundation\Entity\Product;
 use Loevgaard\DandomainFoundation\Repository\Generated\ProductRepositoryTrait;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * @method null|ProductInterface find($id)
+ * @method ProductInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method null|ProductInterface findOneBy(array $criteria)
+ * @method ProductInterface[] findAll()
+ */
 class ProductRepository extends AbstractRepository
 {
     use ProductRepositoryTrait;

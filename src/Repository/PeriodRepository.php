@@ -7,6 +7,12 @@ use Loevgaard\DandomainFoundation\Entity\Period;
 use Loevgaard\DandomainFoundation\Repository\Generated\PeriodRepositoryTrait;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * @method null|PeriodInterface find($id)
+ * @method PeriodInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method null|PeriodInterface findOneBy(array $criteria)
+ * @method PeriodInterface[] findAll()
+ */
 class PeriodRepository extends AbstractRepository
 {
     use PeriodRepositoryTrait;

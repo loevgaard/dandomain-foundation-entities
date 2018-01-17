@@ -7,6 +7,12 @@ use Loevgaard\DandomainFoundation\Entity\Tag;
 use Loevgaard\DandomainFoundation\Repository\Generated\TagRepositoryTrait;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * @method null|TagInterface find($id)
+ * @method TagInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method null|TagInterface findOneBy(array $criteria)
+ * @method TagInterface[] findAll()
+ */
 class TagRepository extends AbstractRepository
 {
     use TagRepositoryTrait;

@@ -7,6 +7,12 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CategoryInterface;
 use Loevgaard\DandomainFoundation\Repository\Generated\CategoryRepositoryTrait;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * @method null|CategoryInterface find($id)
+ * @method CategoryInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method null|CategoryInterface findOneBy(array $criteria)
+ * @method CategoryInterface[] findAll()
+ */
 class CategoryRepository extends AbstractRepository
 {
     use CategoryRepositoryTrait;

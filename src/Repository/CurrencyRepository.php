@@ -7,6 +7,12 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CurrencyInterface;
 use Loevgaard\DandomainFoundation\Repository\Generated\CurrencyRepositoryTrait;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * @method null|CurrencyInterface find($id)
+ * @method CurrencyInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method null|CurrencyInterface findOneBy(array $criteria)
+ * @method CurrencyInterface[] findAll()
+ */
 class CurrencyRepository extends AbstractRepository
 {
     use CurrencyRepositoryTrait;

@@ -7,6 +7,12 @@ use Loevgaard\DandomainFoundation\Entity\PaymentMethod;
 use Loevgaard\DandomainFoundation\Repository\Generated\PaymentMethodRepositoryTrait;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * @method null|PaymentMethodInterface find($id)
+ * @method PaymentMethodInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method null|PaymentMethodInterface findOneBy(array $criteria)
+ * @method PaymentMethodInterface[] findAll()
+ */
 class PaymentMethodRepository extends AbstractRepository
 {
     use PaymentMethodRepositoryTrait;

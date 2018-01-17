@@ -7,6 +7,12 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
 use Loevgaard\DandomainFoundation\Repository\Generated\CustomerRepositoryTrait;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * @method null|CustomerInterface find($id)
+ * @method CustomerInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method null|CustomerInterface findOneBy(array $criteria)
+ * @method CustomerInterface[] findAll()
+ */
 class CustomerRepository extends AbstractRepository
 {
     use CustomerRepositoryTrait;

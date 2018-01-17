@@ -11,6 +11,8 @@ use Money\Money;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ldf_payment_methods")
+ *
+ * @todo a lot of missing properties on this entity, see http://4221117.shop53.dandomain.dk/admin/webapi/endpoints/v1_0/SettingService/help/operations/GetPaymentMethods
  */
 class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
 {

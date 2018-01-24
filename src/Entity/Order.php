@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Loevgaard\DandomainFoundation;
+use Loevgaard\DandomainFoundation\Entity\Generated\CurrencyInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\CustomerInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\DeliveryInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\InvoiceInterface;
@@ -156,11 +157,15 @@ class Order extends AbstractEntity implements OrderInterface
     protected $creditNoteNumber;
 
     /**
-     * @var string|null
+     * The currency code in the Dandomain API refers in fact to the currencies' field named 'id' or 'code'
+     * Therefore we don't have a currencyCode property, but a currency property
      *
-     * @ORM\Column(type="string", length=3, nullable=true)
+     * @var CurrencyInterface|null
+     *
+     * @ORM\ManyToOne(targetEntity="Currency")
+     * @ORM\JoinColumn(nullable=false)
      */
-    protected $currencyCode;
+    protected $currency;
 
     /**
      * @var string|null

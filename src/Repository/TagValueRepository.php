@@ -4,7 +4,7 @@ namespace Loevgaard\DandomainFoundation\Repository;
 
 use Loevgaard\DandomainFoundation\Entity\Generated\TagValueInterface;
 use Loevgaard\DandomainFoundation\Entity\TagValue;
-use Loevgaard\DandomainFoundation\Repository\Generated\TagRepositoryTrait;
+use Loevgaard\DandomainFoundation\Repository\Generated\TagValueRepositoryTrait;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class TagValueRepository extends AbstractRepository
 {
-    use TagRepositoryTrait;
+    use TagValueRepositoryTrait;
 
     public function __construct(RegistryInterface $registry)
     {

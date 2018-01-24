@@ -85,7 +85,7 @@ class Currency extends AbstractEntity implements CurrencyInterface
     /**
      * @var boolean|null
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(name="`default`", type="boolean")
      */
     protected $default;
 

@@ -129,14 +129,12 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
             throw new \RuntimeException('Cannot hydrate order line without an associated order');
         }
 
-        $currency = $this->order->getCurrency();
-
         if (isset($data['unitPrice'])) {
-            $data['unitPrice'] = DandomainFoundation\createMoneyFromFloat($currency, $data['unitPrice']);
+            $data['unitPrice'] = DandomainFoundation\createMoneyFromFloat($this->getCurrencyCode(), $data['unitPrice']);
         }
 
         if (isset($data['totalPrice'])) {
-            $data['totalPrice'] = DandomainFoundation\createMoneyFromFloat($currency, $data['totalPrice']);
+            $data['totalPrice'] = DandomainFoundation\createMoneyFromFloat($this->getCurrencyCode(), $data['totalPrice']);
         }
 
         parent::hydrate($data, $useConversions, $scalarsOnly);
@@ -292,7 +290,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
      */
     public function getTotalPrice()
     {
-        return DandomainFoundation\createMoney((string)$this->getOrder()->getCurrency(), (int)$this->totalPrice);
+        return DandomainFoundation\createMoney($this->getCurrencyCode(), (int)$this->totalPrice);
     }
 
     /**
@@ -311,7 +309,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
      */
     public function getUnitPrice()
     {
-        return DandomainFoundation\createMoney((string)$this->getOrder()->getCurrency(), (int)$this->unitPrice);
+        return DandomainFoundation\createMoney($this->getCurrencyCode(), (int)$this->unitPrice);
     }
 
     /**
@@ -412,5 +410,10 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     {
         $this->product = $product;
         return $this;
+    }
+
+    protected function getCurrencyCode() : string
+    {
+        return $this->getOrder()->getCurrency()->getIsoCodeAlpha();
     }
 }

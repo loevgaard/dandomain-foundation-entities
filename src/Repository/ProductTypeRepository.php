@@ -21,4 +21,12 @@ class ProductTypeRepository extends AbstractRepository
     {
         parent::__construct($registry, ProductType::class);
     }
+
+    public function findOneByExternalId(int $externalId): ?ProductTypeInterface
+    {
+        /** @var ProductTypeInterface $obj */
+        $obj = $this->_findOneByExternalId($externalId);
+
+        return $obj;
+    }
 }

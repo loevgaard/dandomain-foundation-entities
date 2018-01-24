@@ -101,6 +101,16 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
     }
 
     /**
+     * @param $id
+     * @return bool|\Doctrine\Common\Proxy\Proxy|null|object
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function getReference($id)
+    {
+        return $this->getEntityManager()->getReference($this->getClassName(), $id);
+    }
+
+    /**
      * On 90% of the entities there is an external id so we put this helper method here
      * so that all these repository doesn't have to implement the same method, instead they
      * can call this method and just create the type hint and validation of input

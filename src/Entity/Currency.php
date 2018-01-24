@@ -373,9 +373,11 @@ class Currency extends AbstractEntity implements CurrencyInterface
         $this->payCode = $payCode;
         $this->setIsoCodeNumeric($payCode);
 
-        $iso4217 = new ISO4217();
-        $currency = $iso4217->getByNumeric($payCode);
-        $this->setIsoCodeAlpha($currency['alpha3']);
+        if($payCode) {
+            $iso4217 = new ISO4217();
+            $currency = $iso4217->getByNumeric($payCode);
+            $this->setIsoCodeAlpha($currency['alpha3']);
+        }
 
         return $this;
     }

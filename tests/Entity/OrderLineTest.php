@@ -35,7 +35,7 @@ final class OrderLineTest extends TestCase
         $currency = 'DKK';
 
         $order = new Order();
-        $order->setCurrencyCode($currency);
+        $order->setCurrency($currency);
 
         $data = json_decode(file_get_contents(__DIR__.'/../data/api-response-order-line.json'), true);
         $orderLine = new OrderLine();

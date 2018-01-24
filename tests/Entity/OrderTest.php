@@ -53,8 +53,16 @@ final class OrderTest extends TestCase
     public function testHydrateFromApiResponse()
     {
         $data = json_decode(file_get_contents(__DIR__.'/../data/api-response-order.json'), true);
+
+        $currency = new Currency();
+        $currency
+            ->setCode($data['currencyCode'])
+            ->setIsoCodeAlpha('DKK')
+        ;
+
         $order = new Order();
         $order->hydrate($data, true);
+        $order->setCurrency($currency);
 
         $createdDate = DateTimeImmutable::createFromJson($data['createdDate']);
         $modifiedDate = DateTimeImmutable::createFromJson($data['modifiedDate']);
@@ -69,7 +77,6 @@ final class OrderTest extends TestCase
         $this->assertSame($data['comment'], $order->getComment());
         $this->assertEquals($createdDate, $order->getCreatedDate());
         $this->assertSame($data['creditNoteNumber'], $order->getCreditNoteNumber());
-        $this->assertSame($data['currencyCode'], $order->getCurrencyCode());
         $this->assertSame($data['customerComment'], $order->getCustomerComment());
         $this->assertEquals($giftCertificateAmount, $order->getGiftCertificateAmount());
         $this->assertSame($data['giftCertificateNumber'], $order->getGiftCertificateNumber());

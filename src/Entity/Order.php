@@ -780,20 +780,20 @@ class Order extends AbstractEntity implements OrderInterface
     }
 
     /**
-     * @return null|string
+     * @return CurrencyInterface|null
      */
-    public function getCurrencyCode()
+    public function getCurrency()
     {
-        return $this->currencyCode;
+        return $this->currency;
     }
 
     /**
-     * @param null|string $currencyCode
+     * @param null|CurrencyInterface $currency
      * @return OrderInterface
      */
-    public function setCurrencyCode($currencyCode)
+    public function setCurrency($currency)
     {
-        $this->currencyCode = $currencyCode;
+        $this->currency = $currency;
         return $this;
     }
 
@@ -1147,6 +1147,10 @@ class Order extends AbstractEntity implements OrderInterface
      */
     private function createMoney(int $amount = 0) : ?Money
     {
-        return DandomainFoundation\createMoney((string)$this->currencyCode, $amount);
+        if(!$this->currency) {
+            return null;
+        }
+
+        return DandomainFoundation\createMoney($this->currency->getIsoCodeAlpha(), $amount);
     }
 }

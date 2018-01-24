@@ -94,7 +94,7 @@ class Currency extends AbstractEntity implements CurrencyInterface
      *
      * @var int|null
      *
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     protected $payCode;
 
@@ -155,7 +155,7 @@ class Currency extends AbstractEntity implements CurrencyInterface
      *
      * @var int|null
      *
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     protected $isoCodeNumeric;
 

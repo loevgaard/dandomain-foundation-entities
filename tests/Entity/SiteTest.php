@@ -33,7 +33,6 @@ final class SiteTest extends TestCase
         $entity->hydrate($data, true);
 
         $this->assertSame($data['countryId'], $entity->getCountryId());
-        $this->assertSame($data['currencyCode'], $entity->getCurrencyCode());
         $this->assertSame($data['id'], $entity->getExternalId());
         $this->assertSame($data['name'], $entity->getName());
     }

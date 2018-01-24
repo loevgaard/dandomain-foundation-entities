@@ -32,7 +32,10 @@ final class OrderLineTest extends TestCase
 
     public function testHydrateFromApiResponse()
     {
-        $currency = 'DKK';
+        $currency = new Currency();
+        $currency->setCode('DKK')
+            ->setIsoCodeAlpha('DKK')
+        ;
 
         $order = new Order();
         $order->setCurrency($currency);
@@ -42,8 +45,8 @@ final class OrderLineTest extends TestCase
         $orderLine->setOrder($order);
         $orderLine->hydrate($data, true);
 
-        $totalPrice = DandomainFoundation\createMoneyFromFloat($currency, $data['totalPrice']);
-        $unitPrice = DandomainFoundation\createMoneyFromFloat($currency, $data['unitPrice']);
+        $totalPrice = DandomainFoundation\createMoneyFromFloat($currency->getIsoCodeAlpha(), $data['totalPrice']);
+        $unitPrice = DandomainFoundation\createMoneyFromFloat($currency->getIsoCodeAlpha(), $data['unitPrice']);
 
         $this->assertSame($data['id'], $orderLine->getExternalId());
         $this->assertSame($data['fileUrl'], $orderLine->getFileUrl());

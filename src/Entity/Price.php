@@ -14,7 +14,7 @@ use Money\Money;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="ldf_prices", uniqueConstraints={@ORM\UniqueConstraint(columns={"amount", "b2b_group_id", "currency_id"})})
+ * @ORM\Table(name="ldf_prices", uniqueConstraints={@ORM\UniqueConstraint(columns={"amount", "b2b_group_id", "currency_id", "product_id"})})
  * @ORM\HasLifecycleCallbacks()
  */
 class Price extends AbstractEntity implements PriceInterface
@@ -88,7 +88,7 @@ class Price extends AbstractEntity implements PriceInterface
      * @var ProductInterface
      *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="prices")
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(name="product_id", nullable=false, onDelete="CASCADE")
      */
     protected $product;
 

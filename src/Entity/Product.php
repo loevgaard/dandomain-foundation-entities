@@ -528,9 +528,10 @@ class Product extends AbstractEntity implements ProductInterface
     public function clearPrices() : void
     {
         foreach ($this->prices as $price) {
-            $this->prices->removeElement($price);
             $price->setProduct(null);
         }
+
+        $this->prices->clear();
     }
 
     /**

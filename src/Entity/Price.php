@@ -134,6 +134,7 @@ class Price extends AbstractEntity implements PriceInterface
         Assert::that($this->specialOfferPrice)->integer(null, 'specialOfferPrice')->greaterOrEqualThan(0, null, 'specialOfferPrice');
         Assert::that($this->unitPrice)->integer(null, 'unitPrice')->greaterOrEqualThan(0, null, 'unitPrice');
         Assert::thatNullOr($this->period)->isInstanceOf(PeriodInterface::class, null, 'period');
+        Assert::that($this->product)->isInstanceOf(ProductInterface::class);
     }
 
     /**

@@ -2,16 +2,20 @@
 
 namespace Loevgaard\DandomainFoundation\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
+use Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\PeriodInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\CurrencyInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\PriceInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\PriceTrait;
 use Money\Money;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="ldf_prices")
+ * @ORM\Table(name="ldf_prices", uniqueConstraints={@ORM\UniqueConstraint(columns={"amount", "b2b_group_id", "currency_id"})})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Price extends AbstractEntity implements PriceInterface
 {
@@ -29,70 +33,107 @@ class Price extends AbstractEntity implements PriceInterface
     /**
      * @var int|null
      *
-     * @ORM\Column(nullable=true, type="integer")
+     * @ORM\Column(name="amount", type="integer")
      */
     protected $amount;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(nullable=true, type="integer")
+     * @ORM\Column(type="integer")
      */
     protected $avance;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(nullable=true, type="string", length=191)
+     * @ORM\Column(name="b2b_group_id", type="string", length=191)
      */
     protected $b2bGroupId;
 
     /**
-     * @var string|null
+     * The currency code in the Dandomain API refers in fact to the currencies' field named 'id' or 'code'
+     * Therefore we don't have a currencyCode and isoCode property, but a currency property
      *
-     * @ORM\Column(nullable=true, type="string", length=3)
+     * @var CurrencyInterface|null
+     *
+     * @ORM\ManyToOne(targetEntity="Currency")
+     * @ORM\JoinColumn(name="currency_id", nullable=false)
      */
-    protected $currencyCode;
+    protected $currency;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(nullable=true, type="integer")
-     */
-    protected $isoCode;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(nullable=true, type="integer")
+     * @ORM\Column(type="integer")
      */
     protected $specialOfferPrice;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(nullable=true, type="integer")
+     * @ORM\Column(type="integer")
      */
     protected $unitPrice;
 
     /**
-     * @var Period|null
+     * @var PeriodInterface|null
      *
-     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
      * @ORM\ManyToOne(targetEntity="Period")
      */
     protected $period;
 
     /**
-     * @var Product[]|ArrayCollection
+     * @var ProductInterface
      *
-     * @ORM\ManyToMany(mappedBy="prices", targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="prices")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
-    protected $products;
+    protected $product;
 
-    public function __construct()
+    /**
+     * Creates a valid Price
+     *
+     * @param int $amount
+     * @param int $avance
+     * @param string $b2bGroupId
+     * @param CurrencyInterface $currency
+     * @param int $specialOfferPrice In cents/ører (in danish)
+     * @param int $unitPrice In cents/ører (in danish)
+     * @return PriceInterface
+     */
+    public static function create(int $amount, int $avance, string $b2bGroupId, CurrencyInterface $currency, int $specialOfferPrice, int $unitPrice) : PriceInterface
     {
-        $this->products = new ArrayCollection();
+        $specialOfferPrice = new Money($specialOfferPrice, new \Money\Currency($currency->getIsoCodeAlpha()));
+        $unitPrice = new Money($unitPrice, new \Money\Currency($currency->getIsoCodeAlpha()));
+
+        $price = new Price();
+        $price
+            ->setAmount($amount)
+            ->setAvance($avance)
+            ->setB2bGroupId($b2bGroupId)
+            ->setCurrency($currency)
+            ->setSpecialOfferPrice($specialOfferPrice)
+            ->setUnitPrice($unitPrice)
+        ;
+
+        return $price;
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     * @ORM\PrePersist()
+     */
+    public function validate()
+    {
+        Assert::that($this->amount)->integer()->greaterThan(0);
+        Assert::that($this->avance)->integer();
+        Assert::that($this->b2bGroupId)->string();
+        Assert::that($this->currency)->isInstanceOf(CurrencyInterface::class);
+        Assert::that($this->specialOfferPrice)->integer()->greaterOrEqualThan(0);
+        Assert::that($this->unitPrice)->integer()->greaterOrEqualThan(0);
+        Assert::thatNullOr($this->period)->isInstanceOf(PeriodInterface::class);
     }
 
     /**
@@ -107,7 +148,7 @@ class Price extends AbstractEntity implements PriceInterface
      * @param int $id
      * @return PriceInterface
      */
-    public function setId(int $id)
+    public function setId(int $id) : PriceInterface
     {
         $this->id = $id;
         return $this;
@@ -116,7 +157,7 @@ class Price extends AbstractEntity implements PriceInterface
     /**
      * @return int|null
      */
-    public function getAmount()
+    public function getAmount() : ?int
     {
         return $this->amount;
     }
@@ -125,7 +166,7 @@ class Price extends AbstractEntity implements PriceInterface
      * @param int|null $amount
      * @return PriceInterface
      */
-    public function setAmount($amount)
+    public function setAmount(int $amount) : PriceInterface
     {
         $this->amount = $amount;
         return $this;
@@ -134,7 +175,7 @@ class Price extends AbstractEntity implements PriceInterface
     /**
      * @return int|null
      */
-    public function getAvance()
+    public function getAvance() : ?int
     {
         return $this->avance;
     }
@@ -143,7 +184,7 @@ class Price extends AbstractEntity implements PriceInterface
      * @param int|null $avance
      * @return PriceInterface
      */
-    public function setAvance($avance)
+    public function setAvance(int $avance) : PriceInterface
     {
         $this->avance = $avance;
         return $this;
@@ -152,7 +193,7 @@ class Price extends AbstractEntity implements PriceInterface
     /**
      * @return null|string
      */
-    public function getB2bGroupId()
+    public function getB2bGroupId() : ?string
     {
         return $this->b2bGroupId;
     }
@@ -161,127 +202,107 @@ class Price extends AbstractEntity implements PriceInterface
      * @param null|string $b2bGroupId
      * @return PriceInterface
      */
-    public function setB2bGroupId($b2bGroupId)
+    public function setB2bGroupId(string $b2bGroupId) : PriceInterface
     {
         $this->b2bGroupId = $b2bGroupId;
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return null|CurrencyInterface
      */
-    public function getCurrencyCode()
+    public function getCurrency() : ?CurrencyInterface
     {
-        return $this->currencyCode;
+        return $this->currency;
     }
 
     /**
-     * @param null|string $currencyCode
+     * @param null|CurrencyInterface $currency
      * @return PriceInterface
      */
-    public function setCurrencyCode($currencyCode)
+    public function setCurrency(CurrencyInterface $currency) : PriceInterface
     {
-        $this->currencyCode = $currencyCode;
-        return $this;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getIsoCode()
-    {
-        return $this->isoCode;
-    }
-
-    /**
-     * @param int|null $isoCode
-     * @return PriceInterface
-     */
-    public function setIsoCode($isoCode)
-    {
-        $this->isoCode = $isoCode;
+        $this->currency = $currency;
         return $this;
     }
 
     /**
      * @return Money|null
      */
-    public function getSpecialOfferPrice()
+    public function getSpecialOfferPrice() : ?Money
     {
-        return DandomainFoundation\createMoney((string)$this->currencyCode, (int)$this->specialOfferPrice);
+        if(!$this->currency) {
+            return null;
+        }
+        return DandomainFoundation\createMoney($this->currency->getIsoCodeAlpha(), (int)$this->specialOfferPrice);
     }
 
     /**
      * @param Money|null $specialOfferPrice
      * @return PriceInterface
      */
-    public function setSpecialOfferPrice(Money $specialOfferPrice = null)
+    public function setSpecialOfferPrice(Money $specialOfferPrice) : PriceInterface
     {
-        if ($specialOfferPrice) {
-            $this->specialOfferPrice = $specialOfferPrice->getAmount();
-            $this->setCurrencyCode($specialOfferPrice->getCurrency()->getCode());
-        } else {
-            $this->specialOfferPrice = $specialOfferPrice;
-        }
+        $this->specialOfferPrice = $specialOfferPrice->getAmount();
+
         return $this;
     }
 
     /**
      * @return Money|null
      */
-    public function getUnitPrice()
+    public function getUnitPrice() : ?Money
     {
-        return DandomainFoundation\createMoney((string)$this->currencyCode, (int)$this->unitPrice);
+        if(!$this->currency) {
+            return null;
+        }
+        return DandomainFoundation\createMoney($this->currency->getIsoCodeAlpha(), (int)$this->unitPrice);
     }
 
     /**
      * @param Money|null $unitPrice
      * @return PriceInterface
      */
-    public function setUnitPrice(Money $unitPrice = null)
+    public function setUnitPrice(Money $unitPrice) : PriceInterface
     {
-        if ($unitPrice) {
-            $this->unitPrice = $unitPrice->getAmount();
-            $this->setCurrencyCode($unitPrice->getCurrency()->getCode());
-        } else {
-            $this->unitPrice = $unitPrice;
-        }
+        $this->unitPrice = $unitPrice->getAmount();
+
         return $this;
     }
 
     /**
      * @return Period|null
      */
-    public function getPeriod()
+    public function getPeriod() : ?PeriodInterface
     {
         return $this->period;
     }
 
     /**
-     * @param Period|null $period
+     * @param PeriodInterface|null $period
      * @return PriceInterface
      */
-    public function setPeriod($period)
+    public function setPeriod(PeriodInterface $period) : PriceInterface
     {
         $this->period = $period;
         return $this;
     }
 
     /**
-     * @return ArrayCollection|Product[]
+     * @return ProductInterface
      */
-    public function getProducts()
+    public function getProduct() : ?ProductInterface
     {
-        return $this->products;
+        return $this->product;
     }
 
     /**
-     * @param ArrayCollection|Product[] $products
+     * @param ProductInterface|null $product
      * @return PriceInterface
      */
-    public function setProducts($products)
+    public function setProduct(?ProductInterface $product) : PriceInterface
     {
-        $this->products = $products;
+        $this->product = $product;
         return $this;
     }
 }

@@ -9,6 +9,7 @@ use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use Loevgaard\DandomainFoundation\Entity\Generated\CategoryInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\CurrencyInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\ManufacturerInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\MediumInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\PriceInterface;
@@ -337,7 +338,9 @@ class Product extends AbstractEntity implements ProductInterface
     protected $media;
 
     /**
-     * @var Price[]|ArrayCollection
+     * @var PriceInterface[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Price", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $prices;
 
@@ -516,9 +519,45 @@ class Product extends AbstractEntity implements ProductInterface
     {
         if (!$this->prices->contains($price)) {
             $this->prices->add($price);
+            $price->setProduct($this);
         }
 
         return $this;
+    }
+
+    public function clearPrices() : void
+    {
+        foreach ($this->prices as $price) {
+            $this->prices->removeElement($price);
+            $price->setProduct(null);
+        }
+    }
+
+    /**
+     * Will try to find a price based on currency
+     *
+     * @param string|\Money\Currency|CurrencyInterface $currency
+     * @return PriceInterface|null
+     */
+    public function findPriceByCurrency($currency) : ?PriceInterface
+    {
+        if($currency instanceof \Money\Currency) {
+            $currency = $currency->getCode();
+        } elseif ($currency instanceof CurrencyInterface) {
+            $currency = $currency->getIsoCodeAlpha();
+        }
+
+        if(!is_string($currency)) {
+            throw new \InvalidArgumentException('$currency has to be a string');
+        }
+
+        foreach ($this->prices as $price) {
+            if($price->getCurrency()->getIsoCodeAlpha() === $currency) {
+                return $price;
+            }
+        }
+
+        return null;
     }
 
     public function addProductRelation(ProductRelationInterface $productRelation) : ProductInterface

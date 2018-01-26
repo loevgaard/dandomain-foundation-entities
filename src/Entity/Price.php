@@ -243,7 +243,8 @@ class Price extends AbstractEntity implements PriceInterface
      */
     public function setSpecialOfferPrice(Money $specialOfferPrice) : PriceInterface
     {
-        $this->specialOfferPrice = $specialOfferPrice->getAmount();
+        // @todo change type from int to string
+        $this->specialOfferPrice = (int)$specialOfferPrice->getAmount();
 
         return $this;
     }
@@ -265,7 +266,8 @@ class Price extends AbstractEntity implements PriceInterface
      */
     public function setUnitPrice(Money $unitPrice) : PriceInterface
     {
-        $this->unitPrice = $unitPrice->getAmount();
+        // @todo change type from int to string
+        $this->unitPrice = (int)$unitPrice->getAmount();
 
         return $this;
     }

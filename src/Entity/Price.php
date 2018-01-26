@@ -282,7 +282,7 @@ class Price extends AbstractEntity implements PriceInterface
      * @param PeriodInterface|null $period
      * @return PriceInterface
      */
-    public function setPeriod(PeriodInterface $period) : PriceInterface
+    public function setPeriod(?PeriodInterface $period) : PriceInterface
     {
         $this->period = $period;
         return $this;

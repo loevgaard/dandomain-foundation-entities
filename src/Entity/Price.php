@@ -127,13 +127,13 @@ class Price extends AbstractEntity implements PriceInterface
      */
     public function validate()
     {
-        Assert::that($this->amount)->integer()->greaterThan(0);
-        Assert::that($this->avance)->integer();
-        Assert::that($this->b2bGroupId)->string();
-        Assert::that($this->currency)->isInstanceOf(CurrencyInterface::class);
-        Assert::that($this->specialOfferPrice)->integer()->greaterOrEqualThan(0);
-        Assert::that($this->unitPrice)->integer()->greaterOrEqualThan(0);
-        Assert::thatNullOr($this->period)->isInstanceOf(PeriodInterface::class);
+        Assert::that($this->amount)->integer(null, 'amount')->greaterThan(0);
+        Assert::that($this->avance)->integer(null, 'avance');
+        Assert::that($this->b2bGroupId)->string(null, 'b2bGroupId');
+        Assert::that($this->currency)->isInstanceOf(CurrencyInterface::class, null, 'currency');
+        Assert::that($this->specialOfferPrice)->integer(null, 'specialOfferPrice')->greaterOrEqualThan(0, null, 'specialOfferPrice');
+        Assert::that($this->unitPrice)->integer(null, 'unitPrice')->greaterOrEqualThan(0, null, 'unitPrice');
+        Assert::thatNullOr($this->period)->isInstanceOf(PeriodInterface::class, null, 'period');
     }
 
     /**

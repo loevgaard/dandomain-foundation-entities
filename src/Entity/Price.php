@@ -63,6 +63,8 @@ class Price extends AbstractEntity implements PriceInterface
     protected $currency;
 
     /**
+     * The special offer price WITH vat
+     *
      * @var int|null
      *
      * @ORM\Column(type="integer")
@@ -70,6 +72,8 @@ class Price extends AbstractEntity implements PriceInterface
     protected $specialOfferPrice;
 
     /**
+     * The unit price WITH vat
+     *
      * @var int|null
      *
      * @ORM\Column(type="integer")

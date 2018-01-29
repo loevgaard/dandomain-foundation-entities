@@ -30,7 +30,7 @@ function createMoney(string $currency, int $amount = 0) : ?Money
  */
 function createMoneyFromFloat(string $currency, $amount = 0.0) : ?Money
 {
-    $amount = BigDecimal::of((string)$amount)->multipliedBy(100)->toInt();
+    $amount = BigDecimal::of((string)round($amount, 2))->multipliedBy(100)->toInt();
     return createMoney($currency, $amount);
 }
 

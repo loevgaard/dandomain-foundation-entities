@@ -209,7 +209,7 @@ class Product extends AbstractEntity implements ProductInterface
      *
      * @var string
      *
-     * @ORM\Column(type="string", length=191)
+     * @ORM\Column(type="string", length=191, unique=true)
      */
     protected $number;
 

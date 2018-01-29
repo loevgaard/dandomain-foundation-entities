@@ -519,6 +519,7 @@ class Product extends AbstractEntity implements ProductInterface
     {
         if(!$this->prices->contains($price)) {
             $this->prices->add($price);
+            $price->setProduct($this);
         }
 
         return $this;

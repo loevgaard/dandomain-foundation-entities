@@ -154,6 +154,35 @@ class Price extends AbstractEntity implements PriceInterface
         $this->setProduct($price->getProduct());
     }
 
+    /*
+     * Helper methods
+     */
+    public function getUnitPriceExclVat(float $vat) : ?Money
+    {
+        $unitPrice = $this->getUnitPrice();
+
+        if(!$unitPrice) {
+            return null;
+        }
+
+        $multiplier = (100 + $vat) / 100;
+
+        return $unitPrice->multiply($multiplier);
+    }
+
+    public function getSpecialOfferPriceExclVat(float $vat) : ?Money
+    {
+        $specialOfferPrice = $this->getSpecialOfferPrice();
+
+        if(!$specialOfferPrice) {
+            return null;
+        }
+
+        $multiplier = (100 + $vat) / 100;
+
+        return $specialOfferPrice->multiply($multiplier);
+    }
+
     /**
      * @return int
      */

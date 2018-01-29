@@ -2,6 +2,7 @@
 
 namespace Loevgaard\DandomainFoundation\Entity;
 
+use Brick\Math\BigDecimal;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\OrderLineInterface;
@@ -150,9 +151,9 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
             return null;
         }
 
-        $multiplier = (100 + $this->vatPct) / 100;
+        $multiplier = BigDecimal::of('100')->plus($this->vatPct)->exactlyDividedBy('100');
 
-        return $unitPrice->multiply($multiplier);
+        return $unitPrice->multiply((string)$multiplier);
     }
 
     public function getUnitPriceExclVat() : ?Money
@@ -167,9 +168,9 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
             return null;
         }
 
-        $multiplier = (100 + $this->vatPct) / 100;
+        $multiplier = BigDecimal::of('100')->plus($this->vatPct)->exactlyDividedBy('100');
 
-        return $totalPrice->multiply($multiplier);
+        return $totalPrice->multiply((string)$multiplier);
     }
 
     public function getTotalPriceExclVat() : ?Money

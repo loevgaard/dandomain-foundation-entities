@@ -2,6 +2,7 @@
 
 namespace Loevgaard\DandomainFoundation\Entity;
 
+use Brick\Math\BigDecimal;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
@@ -378,9 +379,9 @@ class Order extends AbstractEntity implements OrderInterface
             return null;
         }
 
-        $multiplier = 100 / (100 + $this->vatPct);
+        $multiplier = BigDecimal::of('100')->exactlyDividedBy(BigDecimal::of('100')->plus($this->vatPct));
 
-        return $totalPrice->multiply($multiplier);
+        return $totalPrice->multiply((string)$multiplier);
     }
 
     public function totalPriceWithoutFees() : ?Money

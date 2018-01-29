@@ -172,7 +172,7 @@ class Price extends AbstractEntity implements PriceInterface
 
         $multiplier = BigDecimal::of('100')->exactlyDividedBy(BigDecimal::of('100')->plus($vat));
 
-        return $unitPrice->multiply($multiplier);
+        return $unitPrice->multiply((string)$multiplier);
     }
 
     public function getSpecialOfferPriceExclVat(float $vat) : ?Money
@@ -185,7 +185,7 @@ class Price extends AbstractEntity implements PriceInterface
 
         $multiplier = BigDecimal::of('100')->exactlyDividedBy(BigDecimal::of('100')->plus($vat));
 
-        return $specialOfferPrice->multiply($multiplier);
+        return $specialOfferPrice->multiply((string)$multiplier);
     }
 
     /**

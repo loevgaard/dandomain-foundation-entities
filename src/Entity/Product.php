@@ -338,6 +338,16 @@ class Product extends AbstractEntity implements ProductInterface
     protected $media;
 
     /**
+     * Some products in Dandomain doesn't have prices because they are not really products, i.e. discounts, shipping info etc
+     * Dandomain treat these as products on an order, which of course is wrong, but we handle them
+     *
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     */
+    protected $priceLess;
+
+    /**
      * @var PriceInterface[]|ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Price", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
@@ -392,6 +402,7 @@ class Product extends AbstractEntity implements ProductInterface
 
     public function __construct()
     {
+        $this->priceLess = false;
         $this->categories = new ArrayCollection();
         $this->disabledVariants = new ArrayCollection();
         $this->manufacturers = new ArrayCollection();
@@ -422,6 +433,10 @@ class Product extends AbstractEntity implements ProductInterface
 
         if (is_null($this->externalId)) {
             Assert::that($this->isDeleted())->true('The external id can only be null if the product is marked as deleted', 'externalId');
+        }
+
+        if(!$this->priceLess) {
+            Assert::that($this->prices->count())->greaterThan(0, 'When the product is not "price less" the product needs to have at least one price');
         }
     }
 
@@ -1414,6 +1429,24 @@ class Product extends AbstractEntity implements ProductInterface
     public function setMedia($media)
     {
         $this->media = $media;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPriceLess(): bool
+    {
+        return $this->priceLess;
+    }
+
+    /**
+     * @param bool $priceLess
+     * @return Product
+     */
+    public function setPriceLess(bool $priceLess)
+    {
+        $this->priceLess = $priceLess;
         return $this;
     }
 

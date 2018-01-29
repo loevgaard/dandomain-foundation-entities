@@ -2,8 +2,6 @@
 
 namespace Loevgaard\DandomainFoundation\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation;
 use PHPUnit\Framework\TestCase;
 
@@ -65,5 +63,43 @@ final class OrderLineTest extends TestCase
         $this->expectException(\RuntimeException::class);
         $orderLine = new OrderLine();
         $orderLine->hydrate([]);
+    }
+
+    public function testGetUnitPriceInclVat()
+    {
+        $order = $this->getOrder('DKK');
+        $orderLine = new OrderLine();
+        $orderLine
+            ->setVatPct(25.0)
+            ->setOrder($order)
+            ->setUnitPrice(DandomainFoundation\createMoney('DKK', 10396))
+        ;
+
+        $this->assertSame('DKK', $orderLine->getUnitPriceInclVat()->getCurrency()->getCode());
+        $this->assertSame('12995', $orderLine->getUnitPriceInclVat()->getAmount());
+    }
+
+    public function testGetTotalPriceInclVat()
+    {
+        $order = $this->getOrder('DKK');
+        $orderLine = new OrderLine();
+        $orderLine
+            ->setVatPct(25.0)
+            ->setOrder($order)
+            ->setTotalPrice(DandomainFoundation\createMoney('DKK', 10396))
+        ;
+
+        $this->assertSame('DKK', $orderLine->getTotalPriceInclVat()->getCurrency()->getCode());
+        $this->assertSame('12995', $orderLine->getTotalPriceInclVat()->getAmount());
+    }
+
+    protected function getOrder(string $currency) : Order
+    {
+        $c = new Currency();
+        $c->setIsoCodeAlpha($currency);
+        $order = new Order();
+        $order->setCurrency($c);
+
+        return $order;
     }
 }

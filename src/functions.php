@@ -1,6 +1,7 @@
 <?php
 namespace Loevgaard\DandomainFoundation;
 
+use Brick\Math\BigDecimal;
 use Money\Currency;
 use Money\Money;
 
@@ -29,7 +30,8 @@ function createMoney(string $currency, int $amount = 0) : ?Money
  */
 function createMoneyFromFloat(string $currency, $amount = 0.0) : ?Money
 {
-    return createMoney($currency, intval(100 * $amount));
+    $amount = BigDecimal::of((string)$amount)->multipliedBy(100)->toInt();
+    return createMoney($currency, $amount);
 }
 
 function objectToArray($obj) : array

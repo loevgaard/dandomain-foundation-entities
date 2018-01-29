@@ -138,6 +138,23 @@ class Price extends AbstractEntity implements PriceInterface
     }
 
     /**
+     * Will copy properties from $price
+     *
+     * @param PriceInterface $price
+     */
+    public function copyProperties(PriceInterface $price) : void
+    {
+        $this->amount = $price->getAmount();
+        $this->avance = $price->getAvance();
+        $this->b2bGroupId = $price->getB2bGroupId();
+        $this->currency = $price->getCurrency();
+        $this->specialOfferPrice = $price->getSpecialOfferPrice();
+        $this->unitPrice = $price->getUnitPrice();
+        $this->period = $price->getPeriod();
+        $this->product = $price->getProduct();
+    }
+
+    /**
      * @return int
      */
     public function getId(): int

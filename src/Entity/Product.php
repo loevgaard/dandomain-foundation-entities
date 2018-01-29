@@ -517,21 +517,62 @@ class Product extends AbstractEntity implements ProductInterface
 
     public function addPrice(PriceInterface $price) : ProductInterface
     {
-        if (!$this->prices->contains($price)) {
+        if(!$this->prices->contains($price)) {
             $this->prices->add($price);
-            $price->setProduct($this);
         }
 
         return $this;
     }
 
-    public function clearPrices() : void
+    /**
+     * @param PriceInterface[] $prices
+     */
+    public function updatePrices(array $prices) : void
     {
-        foreach ($this->prices as $price) {
-            $price->setProduct(null);
+        $finalPrices = [];
+
+        foreach ($prices as $price) {
+            $existingPrice = $this->findPrice($price);
+
+            if($existingPrice) {
+                $existingPrice->copyProperties($price);
+                $existingPrice->setProduct($this);
+                $finalPrices[] = $existingPrice;
+            } else {
+                $this->addPrice($price);
+                $price->setProduct($this);
+                $finalPrices[] = $price;
+            }
         }
 
-        $this->prices->clear();
+        foreach ($this->prices as $price) {
+            if(!in_array($price, $finalPrices, true)) {
+                $this->removePrice($price);
+            }
+        }
+    }
+
+    public function removePrice(PriceInterface $price) : bool
+    {
+        $price->setProduct(null);
+        return $this->prices->removeElement($price);
+    }
+
+    /**
+     * This method will try to find a price based on the unique constraint defined in price
+     *
+     * @param PriceInterface $searchPrice
+     * @return PriceInterface|null
+     */
+    protected function findPrice(PriceInterface $searchPrice) : ?PriceInterface
+    {
+        foreach ($this->prices as $price) {
+            if($price->getAmount() == $searchPrice->getAmount() && $price->getB2bGroupId() == $searchPrice->getB2bGroupId() && $price->getCurrency()->getId() == $searchPrice->getCurrency()->getId()) {
+                return $price;
+            }
+        }
+
+        return null;
     }
 
     /**

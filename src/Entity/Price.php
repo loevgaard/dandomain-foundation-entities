@@ -165,7 +165,7 @@ class Price extends AbstractEntity implements PriceInterface
             return null;
         }
 
-        $multiplier = (100 + $vat) / 100;
+        $multiplier = 100 / (100 + $vat);
 
         return $unitPrice->multiply($multiplier);
     }
@@ -178,7 +178,7 @@ class Price extends AbstractEntity implements PriceInterface
             return null;
         }
 
-        $multiplier = (100 + $vat) / 100;
+        $multiplier = 100 / (100 + $vat);
 
         return $specialOfferPrice->multiply($multiplier);
     }

@@ -3,6 +3,7 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Assert\Assert;
+use Brick\Math\BigDecimal;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
 use Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
@@ -169,7 +170,7 @@ class Price extends AbstractEntity implements PriceInterface
             return null;
         }
 
-        $multiplier = 100 / (100 + $vat);
+        $multiplier = BigDecimal::of('100')->exactlyDividedBy(BigDecimal::of('100')->plus($vat));
 
         return $unitPrice->multiply($multiplier);
     }
@@ -182,7 +183,7 @@ class Price extends AbstractEntity implements PriceInterface
             return null;
         }
 
-        $multiplier = 100 / (100 + $vat);
+        $multiplier = BigDecimal::of('100')->exactlyDividedBy(BigDecimal::of('100')->plus($vat));
 
         return $specialOfferPrice->multiply($multiplier);
     }

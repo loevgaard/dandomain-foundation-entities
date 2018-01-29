@@ -529,6 +529,7 @@ class Product extends AbstractEntity implements ProductInterface
      */
     public function updatePrices(array $prices) : void
     {
+        // this holds the final array of prices, whether updated or added
         $finalPrices = [];
 
         foreach ($prices as $price) {

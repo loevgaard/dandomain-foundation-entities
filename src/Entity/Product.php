@@ -1645,19 +1645,19 @@ class Product extends AbstractEntity implements ProductInterface
     }
 
     /**
-     * @return Product|null
+     * @return ProductInterface|null
      */
-    public function getParent(): ?self
+    public function getParent(): ?ProductInterface
     {
         return $this->parent;
     }
 
     /**
-     * @param Product|null $parent
+     * @param ProductInterface|null $parent
      *
      * @return Product
      */
-    public function setParent(?self $parent)
+    public function setParent(?ProductInterface $parent)
     {
         $this->parent = $parent;
 

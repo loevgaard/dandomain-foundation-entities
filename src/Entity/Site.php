@@ -4,6 +4,7 @@ namespace Loevgaard\DandomainFoundation\Entity;
 
 use Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\SoftDeletable\SoftDeletable;
 use Loevgaard\DandomainFoundation\Entity\Generated\CurrencyInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\SiteInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\SiteTrait;
@@ -15,6 +16,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\SiteTrait;
 class Site extends AbstractEntity implements SiteInterface
 {
     use SiteTrait;
+    use SoftDeletable;
 
     protected $hydrateConversions = [
         'id' => 'externalId'

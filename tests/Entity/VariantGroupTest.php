@@ -2,7 +2,6 @@
 
 namespace Loevgaard\DandomainFoundation\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 
 final class VariantGroupTest extends TestCase

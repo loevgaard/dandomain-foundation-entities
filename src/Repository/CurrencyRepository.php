@@ -9,9 +9,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method null|CurrencyInterface find($id)
- * @method CurrencyInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method CurrencyInterface[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
  * @method null|CurrencyInterface findOneBy(array $criteria)
- * @method CurrencyInterface[] findAll()
+ * @method CurrencyInterface[]    findAll()
  */
 class CurrencyRepository extends AbstractRepository
 {
@@ -34,7 +34,7 @@ class CurrencyRepository extends AbstractRepository
     {
         /** @var CurrencyInterface $obj */
         $obj = $this->findOneBy([
-            'code' => $code
+            'code' => $code,
         ]);
 
         return $obj;

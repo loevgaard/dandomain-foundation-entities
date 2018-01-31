@@ -46,7 +46,7 @@ final class AbstractEntityTest extends TestCase
 
         $expected = [
             'nameConverted' => 'name',
-            'date' => null
+            'date' => null,
         ];
 
         $this->assertEquals($expected, $entity->extract(true));
@@ -59,7 +59,7 @@ final class AbstractEntityTest extends TestCase
         $entity = new Entity();
         $entity->hydrate([
             'id' => 1,
-            'externalId' => 2
+            'externalId' => 2,
         ], true);
     }
 }

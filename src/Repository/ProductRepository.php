@@ -11,9 +11,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method null|ProductInterface find($id)
- * @method ProductInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method ProductInterface[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
  * @method null|ProductInterface findOneBy(array $criteria)
- * @method ProductInterface[] findAll()
+ * @method ProductInterface[]    findAll()
  */
 class ProductRepository extends AbstractRepository
 {
@@ -49,6 +49,7 @@ class ProductRepository extends AbstractRepository
 
     /**
      * @param array $productIds
+     *
      * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function updateParentChildRelationships(array $productIds = [])

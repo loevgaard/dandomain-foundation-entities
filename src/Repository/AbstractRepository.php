@@ -13,6 +13,7 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
 
     /**
      * @param $entity
+     *
      * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save($entity)
@@ -23,7 +24,9 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
 
     /**
      * @param array $options
+     *
      * @return \Generator
+     *
      * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function iterate(array $options = []): \Generator
@@ -60,7 +63,7 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
     }
 
     /**
-     * Will remove entities based on the ids you input
+     * Will remove entities based on the ids you input.
      *
      * @param int[] $in
      * @param int[] $notIn
@@ -102,7 +105,9 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
 
     /**
      * @param $id
+     *
      * @return bool|\Doctrine\Common\Proxy\Proxy|null|object
+     *
      * @throws \Doctrine\ORM\ORMException
      */
     public function getReference($id)
@@ -113,9 +118,10 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
     /**
      * On 90% of the entities there is an external id so we put this helper method here
      * so that all these repository doesn't have to implement the same method, instead they
-     * can call this method and just create the type hint and validation of input
+     * can call this method and just create the type hint and validation of input.
      *
      * @param $externalId
+     *
      * @return null|object
      */
     protected function _findOneByExternalId($externalId)

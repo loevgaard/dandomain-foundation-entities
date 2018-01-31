@@ -22,7 +22,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\StateInterface;
 use Money\Money;
 
 /**
- * We use the Money library for amounts, and we use a shared currency, namely the property $currencyCode
+ * We use the Money library for amounts, and we use a shared currency, namely the property $currencyCode.
  *
  * @ORM\Entity()
  * @ORM\Table(name="ldf_orders")
@@ -34,7 +34,7 @@ class Order extends AbstractEntity implements OrderInterface
     use SoftDeletable;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -47,7 +47,7 @@ class Order extends AbstractEntity implements OrderInterface
     protected $id;
 
     /**
-     * This is the order id in Dandomain
+     * This is the order id in Dandomain.
      *
      * @var int
      *
@@ -95,9 +95,9 @@ class Order extends AbstractEntity implements OrderInterface
     protected $paymentMethod;
 
     /**
-     * Because the fee can change on the payment method we have a field for here for the fee on this order
+     * Because the fee can change on the payment method we have a field for here for the fee on this order.
      *
-     * @var integer|null
+     * @var int|null
      *
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -112,9 +112,9 @@ class Order extends AbstractEntity implements OrderInterface
     protected $shippingMethod;
 
     /**
-     * Because the fee can change on the shipping method we have a field for here for the fee on this order
+     * Because the fee can change on the shipping method we have a field for here for the fee on this order.
      *
-     * @var integer|null
+     * @var int|null
      *
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -159,7 +159,7 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * The currency code in the Dandomain API refers in fact to the currencies' field named 'id' or 'code'
-     * Therefore we don't have a currencyCode property, but a currency property
+     * Therefore we don't have a currencyCode property, but a currency property.
      *
      * @var CurrencyInterface|null
      *
@@ -176,7 +176,7 @@ class Order extends AbstractEntity implements OrderInterface
     protected $customerComment;
 
     /**
-     * @var integer|null
+     * @var int|null
      *
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -274,7 +274,7 @@ class Order extends AbstractEntity implements OrderInterface
     protected $salesDiscount;
 
     /**
-     * This price is incl vat
+     * This price is incl vat.
      *
      * @var int|null
      *
@@ -367,12 +367,12 @@ class Order extends AbstractEntity implements OrderInterface
     /*
      * Helper methods
      */
-    public function getTotalPriceInclVat() : ?Money
+    public function getTotalPriceInclVat(): ?Money
     {
         return $this->getTotalPrice();
     }
 
-    public function getTotalPriceExclVat() : ?Money
+    public function getTotalPriceExclVat(): ?Money
     {
         $totalPrice = $this->getTotalPrice();
         if (!$totalPrice) {
@@ -381,10 +381,10 @@ class Order extends AbstractEntity implements OrderInterface
 
         $multiplier = BigDecimal::of('100')->exactlyDividedBy(BigDecimal::of('100')->plus($this->vatPct));
 
-        return $totalPrice->multiply((string)$multiplier);
+        return $totalPrice->multiply((string) $multiplier);
     }
 
-    public function totalPriceWithoutFees() : ?Money
+    public function totalPriceWithoutFees(): ?Money
     {
         $totalPrice = $this->getTotalPrice();
         if (!$totalPrice) {
@@ -407,7 +407,7 @@ class Order extends AbstractEntity implements OrderInterface
     /*
      * Collection methods
      */
-    public function addOrderLine(OrderLineInterface $orderLine) : OrderInterface
+    public function addOrderLine(OrderLineInterface $orderLine): OrderInterface
     {
         if (!$this->hasOrderLine($orderLine)) {
             $this->orderLines->add($orderLine);
@@ -419,9 +419,10 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param OrderLineInterface|int $orderLine Either the OrderLineInterface or the external id
+     *
      * @return bool
      */
-    public function hasOrderLine($orderLine) : bool
+    public function hasOrderLine($orderLine): bool
     {
         if ($orderLine instanceof OrderLineInterface) {
             $orderLine = $orderLine->getExternalId();
@@ -432,7 +433,7 @@ class Order extends AbstractEntity implements OrderInterface
         });
     }
 
-    public function removeOrderLine(OrderLineInterface $orderLine) : OrderInterface
+    public function removeOrderLine(OrderLineInterface $orderLine): OrderInterface
     {
         $orderLine->setOrder(null);
         $this->orderLines->removeElement($orderLine);
@@ -440,7 +441,7 @@ class Order extends AbstractEntity implements OrderInterface
         return $this;
     }
 
-    public function clearOrderLines() : OrderInterface
+    public function clearOrderLines(): OrderInterface
     {
         foreach ($this->orderLines as $orderLine) {
             $orderLine->setOrder(null);
@@ -454,7 +455,7 @@ class Order extends AbstractEntity implements OrderInterface
     /**
      * @param OrderLineInterface[] $orderLines
      */
-    public function updateOrderLines(array $orderLines) : void
+    public function updateOrderLines(array $orderLines): void
     {
         // this holds the final array of order lines, whether updated or added
         $final = [];
@@ -469,7 +470,7 @@ class Order extends AbstractEntity implements OrderInterface
                 $final[] = $orderLine;
             }
         }
-        
+
         foreach ($this->orderLines as $orderLine) {
             if (!in_array($orderLine, $final, true)) {
                 $this->removeOrderLine($orderLine);
@@ -480,19 +481,21 @@ class Order extends AbstractEntity implements OrderInterface
     /*
      * Getters / Setters
      */
+
     /**
      * @return Money|null
      */
-    public function getTotalPrice() : ?Money
+    public function getTotalPrice(): ?Money
     {
-        return $this->createMoney((int)$this->totalPrice);
+        return $this->createMoney((int) $this->totalPrice);
     }
 
     /**
      * @param Money $money
+     *
      * @return OrderInterface
      */
-    public function setTotalPrice(Money $money = null) : OrderInterface
+    public function setTotalPrice(Money $money = null): OrderInterface
     {
         $this->totalPrice = $money->getAmount();
 
@@ -502,16 +505,17 @@ class Order extends AbstractEntity implements OrderInterface
     /**
      * @return Money|null
      */
-    public function getSalesDiscount() : ?Money
+    public function getSalesDiscount(): ?Money
     {
-        return $this->createMoney((int)$this->salesDiscount);
+        return $this->createMoney((int) $this->salesDiscount);
     }
 
     /**
      * @param Money $money
+     *
      * @return OrderInterface
      */
-    public function setSalesDiscount(Money $money = null) : OrderInterface
+    public function setSalesDiscount(Money $money = null): OrderInterface
     {
         $this->salesDiscount = $money->getAmount();
 
@@ -521,16 +525,17 @@ class Order extends AbstractEntity implements OrderInterface
     /**
      * @return Money|null
      */
-    public function getGiftCertificateAmount() : ?Money
+    public function getGiftCertificateAmount(): ?Money
     {
-        return $this->createMoney((int)$this->giftCertificateAmount);
+        return $this->createMoney((int) $this->giftCertificateAmount);
     }
 
     /**
      * @param Money $money
+     *
      * @return OrderInterface
      */
-    public function setGiftCertificateAmount(Money $money = null) : OrderInterface
+    public function setGiftCertificateAmount(Money $money = null): OrderInterface
     {
         $this->giftCertificateAmount = $money->getAmount();
 
@@ -540,16 +545,17 @@ class Order extends AbstractEntity implements OrderInterface
     /**
      * @return Money|null
      */
-    public function getShippingMethodFee() : ?Money
+    public function getShippingMethodFee(): ?Money
     {
-        return $this->createMoney((int)$this->shippingMethodFee);
+        return $this->createMoney((int) $this->shippingMethodFee);
     }
 
     /**
      * @param Money $money
+     *
      * @return OrderInterface
      */
-    public function setShippingMethodFee(Money $money = null) : OrderInterface
+    public function setShippingMethodFee(Money $money = null): OrderInterface
     {
         $this->shippingMethodFee = $money->getAmount();
 
@@ -559,16 +565,17 @@ class Order extends AbstractEntity implements OrderInterface
     /**
      * @return Money|null
      */
-    public function getPaymentMethodFee() : ?Money
+    public function getPaymentMethodFee(): ?Money
     {
-        return $this->createMoney((int)$this->paymentMethodFee);
+        return $this->createMoney((int) $this->paymentMethodFee);
     }
 
     /**
      * @param Money $money
+     *
      * @return OrderInterface
      */
-    public function setPaymentMethodFee(Money $money = null) : OrderInterface
+    public function setPaymentMethodFee(Money $money = null): OrderInterface
     {
         $this->paymentMethodFee = $money->getAmount();
 
@@ -580,16 +587,18 @@ class Order extends AbstractEntity implements OrderInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return OrderInterface
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -598,16 +607,18 @@ class Order extends AbstractEntity implements OrderInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return OrderInterface
      */
     public function setExternalId($externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -621,11 +632,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param CustomerInterface|null $customer
+     *
      * @return OrderInterface
      */
     public function setCustomer($customer)
     {
         $this->customer = $customer;
+
         return $this;
     }
 
@@ -639,11 +652,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param DeliveryInterface|null $delivery
+     *
      * @return OrderInterface
      */
     public function setDelivery($delivery)
     {
         $this->delivery = $delivery;
+
         return $this;
     }
 
@@ -657,11 +672,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param InvoiceInterface|null $invoice
+     *
      * @return OrderInterface
      */
     public function setInvoice($invoice)
     {
         $this->invoice = $invoice;
+
         return $this;
     }
 
@@ -675,11 +692,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param ArrayCollection|null $orderLines
+     *
      * @return OrderInterface
      */
     public function setOrderLines($orderLines)
     {
         $this->orderLines = $orderLines;
+
         return $this;
     }
 
@@ -693,11 +712,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param PaymentMethodInterface|null $paymentMethod
+     *
      * @return OrderInterface
      */
     public function setPaymentMethod($paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
+
         return $this;
     }
 
@@ -711,11 +732,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param ShippingMethodInterface|null $shippingMethod
+     *
      * @return OrderInterface
      */
     public function setShippingMethod($shippingMethod)
     {
         $this->shippingMethod = $shippingMethod;
+
         return $this;
     }
 
@@ -729,11 +752,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param SiteInterface|null $site
+     *
      * @return OrderInterface
      */
     public function setSite($site)
     {
         $this->site = $site;
+
         return $this;
     }
 
@@ -747,11 +772,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param StateInterface|null $state
+     *
      * @return OrderInterface
      */
     public function setState($state)
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -765,11 +792,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $comment
+     *
      * @return OrderInterface
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
+
         return $this;
     }
 
@@ -783,11 +812,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param \DateTimeImmutable|null $createdDate
+     *
      * @return OrderInterface
      */
     public function setCreatedDate($createdDate)
     {
         $this->createdDate = $createdDate;
+
         return $this;
     }
 
@@ -801,11 +832,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $creditNoteNumber
+     *
      * @return Order
      */
     public function setCreditNoteNumber($creditNoteNumber)
     {
         $this->creditNoteNumber = $creditNoteNumber;
+
         return $this;
     }
 
@@ -819,11 +852,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|CurrencyInterface $currency
+     *
      * @return OrderInterface
      */
     public function setCurrency($currency)
     {
         $this->currency = $currency;
+
         return $this;
     }
 
@@ -837,11 +872,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $customerComment
+     *
      * @return OrderInterface
      */
     public function setCustomerComment($customerComment)
     {
         $this->customerComment = $customerComment;
+
         return $this;
     }
 
@@ -855,11 +892,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $giftCertificateNumber
+     *
      * @return OrderInterface
      */
     public function setGiftCertificateNumber($giftCertificateNumber)
     {
         $this->giftCertificateNumber = $giftCertificateNumber;
+
         return $this;
     }
 
@@ -873,11 +912,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param bool|null $incomplete
+     *
      * @return OrderInterface
      */
     public function setIncomplete($incomplete)
     {
         $this->incomplete = $incomplete;
+
         return $this;
     }
 
@@ -891,11 +932,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $ip
+     *
      * @return OrderInterface
      */
     public function setIp($ip)
     {
         $this->ip = $ip;
+
         return $this;
     }
 
@@ -909,11 +952,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param bool|null $modified
+     *
      * @return OrderInterface
      */
     public function setModified($modified)
     {
         $this->modified = $modified;
+
         return $this;
     }
 
@@ -927,11 +972,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param \DateTimeImmutable|null $modifiedDate
+     *
      * @return OrderInterface
      */
     public function setModifiedDate($modifiedDate)
     {
         $this->modifiedDate = $modifiedDate;
+
         return $this;
     }
 
@@ -945,11 +992,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $referenceNumber
+     *
      * @return OrderInterface
      */
     public function setReferenceNumber($referenceNumber)
     {
         $this->referenceNumber = $referenceNumber;
+
         return $this;
     }
 
@@ -963,11 +1012,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $referrer
+     *
      * @return OrderInterface
      */
     public function setReferrer($referrer)
     {
         $this->referrer = $referrer;
+
         return $this;
     }
 
@@ -981,11 +1032,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $reservedField1
+     *
      * @return OrderInterface
      */
     public function setReservedField1($reservedField1)
     {
         $this->reservedField1 = $reservedField1;
+
         return $this;
     }
 
@@ -999,11 +1052,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $reservedField2
+     *
      * @return OrderInterface
      */
     public function setReservedField2($reservedField2)
     {
         $this->reservedField2 = $reservedField2;
+
         return $this;
     }
 
@@ -1017,11 +1072,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $reservedField3
+     *
      * @return OrderInterface
      */
     public function setReservedField3($reservedField3)
     {
         $this->reservedField3 = $reservedField3;
+
         return $this;
     }
 
@@ -1035,11 +1092,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $reservedField4
+     *
      * @return OrderInterface
      */
     public function setReservedField4($reservedField4)
     {
         $this->reservedField4 = $reservedField4;
+
         return $this;
     }
 
@@ -1053,11 +1112,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $reservedField5
+     *
      * @return OrderInterface
      */
     public function setReservedField5($reservedField5)
     {
         $this->reservedField5 = $reservedField5;
+
         return $this;
     }
 
@@ -1071,11 +1132,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param float|null $totalWeight
+     *
      * @return OrderInterface
      */
     public function setTotalWeight($totalWeight)
     {
         $this->totalWeight = $totalWeight;
+
         return $this;
     }
 
@@ -1089,11 +1152,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $trackingNumber
+     *
      * @return OrderInterface
      */
     public function setTrackingNumber($trackingNumber)
     {
         $this->trackingNumber = $trackingNumber;
+
         return $this;
     }
 
@@ -1107,11 +1172,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param int|null $transactionNumber
+     *
      * @return OrderInterface
      */
     public function setTransactionNumber($transactionNumber)
     {
         $this->transactionNumber = $transactionNumber;
+
         return $this;
     }
 
@@ -1125,11 +1192,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param float|null $vatPct
+     *
      * @return OrderInterface
      */
     public function setVatPct($vatPct)
     {
         $this->vatPct = $vatPct;
+
         return $this;
     }
 
@@ -1143,11 +1212,13 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $vatRegNumber
+     *
      * @return OrderInterface
      */
     public function setVatRegNumber($vatRegNumber)
     {
         $this->vatRegNumber = $vatRegNumber;
+
         return $this;
     }
 
@@ -1161,15 +1232,17 @@ class Order extends AbstractEntity implements OrderInterface
 
     /**
      * @param null|string $xmlParams
+     *
      * @return OrderInterface
      */
     public function setXmlParams($xmlParams)
     {
         $this->xmlParams = $xmlParams;
+
         return $this;
     }
 
-    protected function findOrderLine(OrderLineInterface $orderLine) : ?OrderLineInterface
+    protected function findOrderLine(OrderLineInterface $orderLine): ?OrderLineInterface
     {
         foreach ($this->orderLines as $ol) {
             if ($orderLine->getExternalId() === $ol->getExternalId()) {
@@ -1181,12 +1254,13 @@ class Order extends AbstractEntity implements OrderInterface
     }
 
     /**
-     * A helper method for creating a Money object from a float based on the shared currency
+     * A helper method for creating a Money object from a float based on the shared currency.
      *
      * @param int $amount
+     *
      * @return Money|null
      */
-    private function createMoney(int $amount = 0) : ?Money
+    private function createMoney(int $amount = 0): ?Money
     {
         if (!$this->currency) {
             return null;

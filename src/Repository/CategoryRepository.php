@@ -9,9 +9,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method null|CategoryInterface find($id)
- * @method CategoryInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method CategoryInterface[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
  * @method null|CategoryInterface findOneBy(array $criteria)
- * @method CategoryInterface[] findAll()
+ * @method CategoryInterface[]    findAll()
  */
 class CategoryRepository extends AbstractRepository
 {

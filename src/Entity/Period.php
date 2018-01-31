@@ -15,7 +15,7 @@ class Period extends AbstractEntity implements PeriodInterface
     use PeriodTrait;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -75,16 +75,18 @@ class Period extends AbstractEntity implements PeriodInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return PeriodInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -93,16 +95,18 @@ class Period extends AbstractEntity implements PeriodInterface
      */
     public function getExternalId(): string
     {
-        return (string)$this->externalId;
+        return (string) $this->externalId;
     }
 
     /**
      * @param string $externalId
+     *
      * @return PeriodInterface
      */
     public function setExternalId(string $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -116,11 +120,13 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param bool|null $disabled
+     *
      * @return PeriodInterface
      */
     public function setDisabled($disabled)
     {
         $this->disabled = $disabled;
+
         return $this;
     }
 
@@ -134,11 +140,13 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param \DateTimeImmutable|null $endDate
+     *
      * @return PeriodInterface
      */
     public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
+
         return $this;
     }
 
@@ -152,11 +160,13 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param \DateTimeImmutable|null $startDate
+     *
      * @return PeriodInterface
      */
     public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
+
         return $this;
     }
 
@@ -170,11 +180,13 @@ class Period extends AbstractEntity implements PeriodInterface
 
     /**
      * @param null|string $title
+     *
      * @return PeriodInterface
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 }

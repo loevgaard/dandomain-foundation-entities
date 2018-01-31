@@ -9,9 +9,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method null|ManufacturerInterface find($id)
- * @method ManufacturerInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method ManufacturerInterface[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
  * @method null|ManufacturerInterface findOneBy(array $criteria)
- * @method ManufacturerInterface[] findAll()
+ * @method ManufacturerInterface[]    findAll()
  */
 class ManufacturerRepository extends AbstractRepository
 {

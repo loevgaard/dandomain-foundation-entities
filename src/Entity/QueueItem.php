@@ -9,7 +9,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\QueueItemInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\QueueItemTrait;
 
 /**
- * This entity represent a queue item which is queued for synchronization
+ * This entity represent a queue item which is queued for synchronization.
  *
  * @ORM\Entity()
  * @ORM\Table(name="ldf_queue", indexes={@ORM\Index(columns={"type"})})
@@ -81,7 +81,7 @@ class QueueItem implements QueueItemInterface
         Assert::that($this->status)->choice(self::getStatuses());
     }
 
-    public static function getTypes() : array
+    public static function getTypes(): array
     {
         return [
             self::TYPE_ORDER => self::TYPE_ORDER,
@@ -89,7 +89,7 @@ class QueueItem implements QueueItemInterface
         ];
     }
 
-    public static function getStatuses() : array
+    public static function getStatuses(): array
     {
         return [
             self::STATUS_PENDING => self::STATUS_PENDING,
@@ -100,15 +100,16 @@ class QueueItem implements QueueItemInterface
     }
 
     /**
-     * The create method creates a valid queue item object
+     * The create method creates a valid queue item object.
      *
      * @param string $identifier
      * @param string $type
+     *
      * @return QueueItemInterface
      */
-    public static function create(string $identifier, string $type) : QueueItemInterface
+    public static function create(string $identifier, string $type): QueueItemInterface
     {
-        $queueItem = new QueueItem();
+        $queueItem = new self();
         $queueItem
             ->setIdentifier($identifier)
             ->setType($type);
@@ -121,16 +122,18 @@ class QueueItem implements QueueItemInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return QueueItem
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -139,16 +142,18 @@ class QueueItem implements QueueItemInterface
      */
     public function getIdentifier(): string
     {
-        return (string)$this->identifier;
+        return (string) $this->identifier;
     }
 
     /**
      * @param string $identifier
+     *
      * @return QueueItem
      */
     public function setIdentifier(string $identifier)
     {
         $this->identifier = $identifier;
+
         return $this;
     }
 
@@ -157,16 +162,18 @@ class QueueItem implements QueueItemInterface
      */
     public function getType(): string
     {
-        return (string)$this->type;
+        return (string) $this->type;
     }
 
     /**
      * @param string $type
+     *
      * @return QueueItem
      */
     public function setType(string $type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -175,16 +182,18 @@ class QueueItem implements QueueItemInterface
      */
     public function getStatus(): string
     {
-        return (string)$this->status;
+        return (string) $this->status;
     }
 
     /**
      * @param string $status
+     *
      * @return QueueItem
      */
     public function setStatus(string $status)
     {
         $this->status = $status;
+
         return $this;
     }
 }

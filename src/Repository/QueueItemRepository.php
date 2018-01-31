@@ -9,9 +9,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method null|QueueItemInterface find($id)
- * @method QueueItemInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method QueueItemInterface[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
  * @method null|QueueItemInterface findOneBy(array $criteria)
- * @method QueueItemInterface[] findAll()
+ * @method QueueItemInterface[]    findAll()
  */
 class QueueItemRepository extends AbstractRepository
 {

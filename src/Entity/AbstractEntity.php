@@ -10,14 +10,14 @@ use Zend\Hydrator\HydratorInterface;
 abstract class AbstractEntity
 {
     /**
-     * This will hold the conversions applied when calling hydrate
+     * This will hold the conversions applied when calling hydrate.
      *
      * @var array
      */
     protected $hydrateConversions;
 
     /**
-     * This will hold the conversions applied when calling extract
+     * This will hold the conversions applied when calling extract.
      *
      * @var array
      */
@@ -25,8 +25,8 @@ abstract class AbstractEntity
 
     /**
      * @param array $data
-     * @param bool $useConversions
-     * @param bool $scalarsOnly If true, it will only hydrate scalars, i.e. floats, integers, strings, booleans, dates, and money
+     * @param bool  $useConversions
+     * @param bool  $scalarsOnly    If true, it will only hydrate scalars, i.e. floats, integers, strings, booleans, dates, and money
      */
     public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
     {
@@ -47,7 +47,7 @@ abstract class AbstractEntity
         $hydrator->hydrate($data, $this);
     }
 
-    public function extract(bool $useConversions = false) : array
+    public function extract(bool $useConversions = false): array
     {
         $hydrator = $this->getHydrator();
 
@@ -60,7 +60,7 @@ abstract class AbstractEntity
         return $data;
     }
 
-    protected function convert(array $data, $conversions) : array
+    protected function convert(array $data, $conversions): array
     {
         foreach ($conversions as $from => $to) {
             if (isset($data[$to])) {
@@ -77,7 +77,7 @@ abstract class AbstractEntity
         return $data;
     }
 
-    protected function getDateTimeFromJson($val = null) : ?DateTimeImmutable
+    protected function getDateTimeFromJson($val = null): ?DateTimeImmutable
     {
         if (!$val) {
             return null;
@@ -93,7 +93,7 @@ abstract class AbstractEntity
     /**
      * @return HydratorInterface
      */
-    protected function getHydrator() : HydratorInterface
+    protected function getHydrator(): HydratorInterface
     {
         return new ClassMethods(false);
     }

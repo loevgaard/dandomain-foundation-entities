@@ -19,7 +19,7 @@ class Site extends AbstractEntity implements SiteInterface
     use SoftDeletable;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -47,7 +47,7 @@ class Site extends AbstractEntity implements SiteInterface
 
     /**
      * The currency code in the Dandomain API refers in fact to the currencies' field named 'id' or 'code'
-     * Therefore we don't have a currencyCode property, but a currency property
+     * Therefore we don't have a currencyCode property, but a currency property.
      *
      * @var CurrencyInterface|null
      *
@@ -80,16 +80,18 @@ class Site extends AbstractEntity implements SiteInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return SiteInterface
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -98,16 +100,18 @@ class Site extends AbstractEntity implements SiteInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return SiteInterface
      */
     public function setExternalId($externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -121,11 +125,13 @@ class Site extends AbstractEntity implements SiteInterface
 
     /**
      * @param int|null $countryId
+     *
      * @return SiteInterface
      */
     public function setCountryId($countryId)
     {
         $this->countryId = $countryId;
+
         return $this;
     }
 
@@ -139,11 +145,13 @@ class Site extends AbstractEntity implements SiteInterface
 
     /**
      * @param CurrencyInterface|null $currency
+     *
      * @return Site
      */
     public function setCurrency(?CurrencyInterface $currency)
     {
         $this->currency = $currency;
+
         return $this;
     }
 
@@ -157,11 +165,13 @@ class Site extends AbstractEntity implements SiteInterface
 
     /**
      * @param null|string $name
+     *
      * @return SiteInterface
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 }

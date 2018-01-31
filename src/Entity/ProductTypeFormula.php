@@ -67,16 +67,18 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return ProductTypeFormulaInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -85,16 +87,18 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
      */
     public function getExternalId(): string
     {
-        return (string)$this->externalId;
+        return (string) $this->externalId;
     }
 
     /**
      * @param string $externalId
+     *
      * @return ProductTypeFormulaInterface
      */
     public function setExternalId(string $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -108,11 +112,13 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param null|string $formula
+     *
      * @return ProductTypeFormulaInterface
      */
     public function setFormula($formula)
     {
         $this->formula = $formula;
+
         return $this;
     }
 
@@ -126,11 +132,13 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param int|null $productTypeGroupId
+     *
      * @return ProductTypeFormulaInterface
      */
     public function setProductTypeGroupId($productTypeGroupId)
     {
         $this->productTypeGroupId = $productTypeGroupId;
+
         return $this;
     }
 
@@ -144,11 +152,13 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param int|null $siteId
+     *
      * @return ProductTypeFormulaInterface
      */
     public function setSiteId($siteId)
     {
         $this->siteId = $siteId;
+
         return $this;
     }
 
@@ -162,11 +172,13 @@ class ProductTypeFormula extends AbstractEntity implements ProductTypeFormulaInt
 
     /**
      * @param ArrayCollection|ProductType[] $productTypes
+     *
      * @return ProductTypeFormulaInterface
      */
     public function setProductTypes($productTypes)
     {
         $this->productTypes = $productTypes;
+
         return $this;
     }
 }

@@ -32,7 +32,7 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * In Dandomain, the external id and the code has the same contents
-     * I guess it has something to do with backwards compatibility
+     * I guess it has something to do with backwards compatibility.
      *
      * @var string|null
      *
@@ -48,7 +48,7 @@ class Currency extends AbstractEntity implements CurrencyInterface
     protected $code;
 
     /**
-     * @var boolean|null
+     * @var bool|null
      *
      * @ORM\Column(type="boolean")
      */
@@ -83,14 +83,14 @@ class Currency extends AbstractEntity implements CurrencyInterface
     protected $icon;
 
     /**
-     * @var boolean|null
+     * @var bool|null
      *
      * @ORM\Column(name="`default`", type="boolean")
      */
     protected $default;
 
     /**
-     * This is the currency's ISO code
+     * This is the currency's ISO code.
      *
      * @var int|null
      *
@@ -148,10 +148,10 @@ class Currency extends AbstractEntity implements CurrencyInterface
     protected $text;
 
     /**
-     * We have added these two properties (which are not in the Dandomain API)
+     * We have added these two properties (which are not in the Dandomain API).
      */
     /**
-     * This is the currency's ISO code (numeric)
+     * This is the currency's ISO code (numeric).
      *
      * @var int|null
      *
@@ -160,7 +160,7 @@ class Currency extends AbstractEntity implements CurrencyInterface
     protected $isoCodeNumeric;
 
     /**
-     * This is the currency's ISO code (alpha)
+     * This is the currency's ISO code (alpha).
      *
      * @var string|null
      *
@@ -204,11 +204,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param int $id
+     *
      * @return Currency
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -222,11 +224,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param null|string $externalId
+     *
      * @return Currency
      */
     public function setExternalId(?string $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -240,11 +244,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param null|string $code
+     *
      * @return Currency
      */
     public function setCode(?string $code)
     {
         $this->code = $code;
+
         return $this;
     }
 
@@ -258,11 +264,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param bool|null $deActivated
+     *
      * @return Currency
      */
     public function setDeActivated(?bool $deActivated)
     {
         $this->deActivated = $deActivated;
+
         return $this;
     }
 
@@ -276,11 +284,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param null|string $delimiterDecimal
+     *
      * @return Currency
      */
     public function setDelimiterDecimal(?string $delimiterDecimal)
     {
         $this->delimiterDecimal = $delimiterDecimal;
+
         return $this;
     }
 
@@ -294,11 +304,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param null|string $delimiterThousand
+     *
      * @return Currency
      */
     public function setDelimiterThousand(?string $delimiterThousand)
     {
         $this->delimiterThousand = $delimiterThousand;
+
         return $this;
     }
 
@@ -312,11 +324,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param int|null $factor
+     *
      * @return Currency
      */
     public function setFactor(?int $factor)
     {
         $this->factor = $factor;
+
         return $this;
     }
 
@@ -330,11 +344,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param null|string $icon
+     *
      * @return Currency
      */
     public function setIcon(?string $icon)
     {
         $this->icon = $icon;
+
         return $this;
     }
 
@@ -348,11 +364,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param bool|null $default
+     *
      * @return Currency
      */
     public function setDefault(?bool $default)
     {
         $this->default = $default;
+
         return $this;
     }
 
@@ -366,6 +384,7 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param int|null $payCode
+     *
      * @return Currency
      */
     public function setPayCode(?int $payCode)
@@ -392,11 +411,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param int|null $roundCondition
+     *
      * @return Currency
      */
     public function setRoundCondition(?int $roundCondition)
     {
         $this->roundCondition = $roundCondition;
+
         return $this;
     }
 
@@ -410,11 +431,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param int|null $roundDirection
+     *
      * @return Currency
      */
     public function setRoundDirection(?int $roundDirection)
     {
         $this->roundDirection = $roundDirection;
+
         return $this;
     }
 
@@ -428,11 +451,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param null|string $roundParam
+     *
      * @return Currency
      */
     public function setRoundParam(?string $roundParam)
     {
         $this->roundParam = $roundParam;
+
         return $this;
     }
 
@@ -446,11 +471,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param int|null $roundPrices
+     *
      * @return Currency
      */
     public function setRoundPrices(?int $roundPrices)
     {
         $this->roundPrices = $roundPrices;
+
         return $this;
     }
 
@@ -464,11 +491,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param null|string $symbol
+     *
      * @return Currency
      */
     public function setSymbol(?string $symbol)
     {
         $this->symbol = $symbol;
+
         return $this;
     }
 
@@ -482,11 +511,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param int|null $symbolAlign
+     *
      * @return Currency
      */
     public function setSymbolAlign(?int $symbolAlign)
     {
         $this->symbolAlign = $symbolAlign;
+
         return $this;
     }
 
@@ -500,11 +531,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param null|string $text
+     *
      * @return Currency
      */
     public function setText(?string $text)
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -518,11 +551,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param int|null $isoCodeNumeric
+     *
      * @return Currency
      */
     public function setIsoCodeNumeric(?int $isoCodeNumeric)
     {
         $this->isoCodeNumeric = $isoCodeNumeric;
+
         return $this;
     }
 
@@ -536,11 +571,13 @@ class Currency extends AbstractEntity implements CurrencyInterface
 
     /**
      * @param null|string $isoCodeAlpha
+     *
      * @return Currency
      */
     public function setIsoCodeAlpha(?string $isoCodeAlpha)
     {
         $this->isoCodeAlpha = $isoCodeAlpha;
+
         return $this;
     }
 }

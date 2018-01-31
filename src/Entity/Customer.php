@@ -26,7 +26,7 @@ class Customer extends AbstractEntity implements CustomerInterface
     protected $id;
 
     /**
-     * This is the customer id in Dandomain
+     * This is the customer id in Dandomain.
      *
      * @var int
      *
@@ -235,16 +235,18 @@ class Customer extends AbstractEntity implements CustomerInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return CustomerInterface
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -253,16 +255,18 @@ class Customer extends AbstractEntity implements CustomerInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return CustomerInterface
      */
     public function setExternalId($externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -276,11 +280,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $address
+     *
      * @return CustomerInterface
      */
     public function setAddress($address)
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -294,11 +300,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $address2
+     *
      * @return CustomerInterface
      */
     public function setAddress2($address2)
     {
         $this->address2 = $address2;
+
         return $this;
     }
 
@@ -312,11 +320,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $attention
+     *
      * @return CustomerInterface
      */
     public function setAttention($attention)
     {
         $this->attention = $attention;
+
         return $this;
     }
 
@@ -330,11 +340,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $city
+     *
      * @return CustomerInterface
      */
     public function setCity($city)
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -348,11 +360,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $country
+     *
      * @return CustomerInterface
      */
     public function setCountry($country)
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -366,11 +380,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $ean
+     *
      * @return CustomerInterface
      */
     public function setEan($ean)
     {
         $this->ean = $ean;
+
         return $this;
     }
 
@@ -384,11 +400,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $email
+     *
      * @return CustomerInterface
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -402,11 +420,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $fax
+     *
      * @return CustomerInterface
      */
     public function setFax($fax)
     {
         $this->fax = $fax;
+
         return $this;
     }
 
@@ -420,11 +440,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $name
+     *
      * @return CustomerInterface
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -438,11 +460,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $phone
+     *
      * @return CustomerInterface
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -456,11 +480,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $state
+     *
      * @return CustomerInterface
      */
     public function setState($state)
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -474,11 +500,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $zipCode
+     *
      * @return CustomerInterface
      */
     public function setZipCode($zipCode)
     {
         $this->zipCode = $zipCode;
+
         return $this;
     }
 
@@ -492,11 +520,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $cvr
+     *
      * @return CustomerInterface
      */
     public function setCvr($cvr)
     {
         $this->cvr = $cvr;
+
         return $this;
     }
 
@@ -510,11 +540,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $b2bGroupId
+     *
      * @return CustomerInterface
      */
     public function setB2bGroupId($b2bGroupId)
     {
         $this->b2bGroupId = $b2bGroupId;
+
         return $this;
     }
 
@@ -528,11 +560,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $comments
+     *
      * @return CustomerInterface
      */
     public function setComments($comments)
     {
         $this->comments = $comments;
+
         return $this;
     }
 
@@ -546,11 +580,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param int|null $countryId
+     *
      * @return CustomerInterface
      */
     public function setCountryId($countryId)
     {
         $this->countryId = $countryId;
+
         return $this;
     }
 
@@ -564,11 +600,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param \DateTimeImmutable|null $createdDate
+     *
      * @return CustomerInterface
      */
     public function setCreatedDate($createdDate)
     {
         $this->createdDate = $createdDate;
+
         return $this;
     }
 
@@ -582,11 +620,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $customerGroupId
+     *
      * @return CustomerInterface
      */
     public function setCustomerGroupId($customerGroupId)
     {
         $this->customerGroupId = $customerGroupId;
+
         return $this;
     }
 
@@ -600,11 +640,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $customerType
+     *
      * @return CustomerInterface
      */
     public function setCustomerType($customerType)
     {
         $this->customerType = $customerType;
+
         return $this;
     }
 
@@ -618,11 +660,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param bool|null $b2b
+     *
      * @return CustomerInterface
      */
     public function setB2b($b2b)
     {
         $this->b2b = $b2b;
+
         return $this;
     }
 
@@ -636,11 +680,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param \DateTimeImmutable|null $lastLoginDate
+     *
      * @return CustomerInterface
      */
     public function setLastLoginDate($lastLoginDate)
     {
         $this->lastLoginDate = $lastLoginDate;
+
         return $this;
     }
 
@@ -654,11 +700,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param int|null $loginCount
+     *
      * @return CustomerInterface
      */
     public function setLoginCount($loginCount)
     {
         $this->loginCount = $loginCount;
+
         return $this;
     }
 
@@ -672,11 +720,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $password
+     *
      * @return CustomerInterface
      */
     public function setPassword($password)
     {
         $this->password = $password;
+
         return $this;
     }
 
@@ -690,11 +740,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $reservedField1
+     *
      * @return CustomerInterface
      */
     public function setReservedField1($reservedField1)
     {
         $this->reservedField1 = $reservedField1;
+
         return $this;
     }
 
@@ -708,11 +760,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $reservedField2
+     *
      * @return CustomerInterface
      */
     public function setReservedField2($reservedField2)
     {
         $this->reservedField2 = $reservedField2;
+
         return $this;
     }
 
@@ -726,11 +780,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $reservedField3
+     *
      * @return CustomerInterface
      */
     public function setReservedField3($reservedField3)
     {
         $this->reservedField3 = $reservedField3;
+
         return $this;
     }
 
@@ -744,11 +800,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $reservedField4
+     *
      * @return CustomerInterface
      */
     public function setReservedField4($reservedField4)
     {
         $this->reservedField4 = $reservedField4;
+
         return $this;
     }
 
@@ -762,11 +820,13 @@ class Customer extends AbstractEntity implements CustomerInterface
 
     /**
      * @param null|string $reservedField5
+     *
      * @return CustomerInterface
      */
     public function setReservedField5($reservedField5)
     {
         $this->reservedField5 = $reservedField5;
+
         return $this;
     }
 }

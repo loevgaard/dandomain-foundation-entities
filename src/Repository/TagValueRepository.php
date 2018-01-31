@@ -9,9 +9,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method null|TagValueInterface find($id)
- * @method TagValueInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method TagValueInterface[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
  * @method null|TagValueInterface findOneBy(array $criteria)
- * @method TagValueInterface[] findAll()
+ * @method TagValueInterface[]    findAll()
  */
 class TagValueRepository extends AbstractRepository
 {

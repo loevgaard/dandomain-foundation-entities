@@ -9,9 +9,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method null|ProductTypeInterface find($id)
- * @method ProductTypeInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method ProductTypeInterface[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
  * @method null|ProductTypeInterface findOneBy(array $criteria)
- * @method ProductTypeInterface[] findAll()
+ * @method ProductTypeInterface[]    findAll()
  */
 class ProductTypeRepository extends AbstractRepository
 {

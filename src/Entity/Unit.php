@@ -15,7 +15,7 @@ class Unit extends AbstractEntity implements UnitInterface
     use UnitTrait;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -46,16 +46,18 @@ class Unit extends AbstractEntity implements UnitInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return UnitInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -64,16 +66,18 @@ class Unit extends AbstractEntity implements UnitInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return UnitInterface
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -87,11 +91,13 @@ class Unit extends AbstractEntity implements UnitInterface
 
     /**
      * @param null|string $text
+     *
      * @return UnitInterface
      */
     public function setText($text)
     {
         $this->text = $text;
+
         return $this;
     }
 }

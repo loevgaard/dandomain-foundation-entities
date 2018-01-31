@@ -54,7 +54,7 @@ class Price extends AbstractEntity implements PriceInterface
 
     /**
      * The currency code in the Dandomain API refers in fact to the currencies' field named 'id' or 'code'
-     * Therefore we don't have a currencyCode and isoCode property, but a currency property
+     * Therefore we don't have a currencyCode and isoCode property, but a currency property.
      *
      * @var CurrencyInterface|null
      *
@@ -64,7 +64,7 @@ class Price extends AbstractEntity implements PriceInterface
     protected $currency;
 
     /**
-     * The special offer price WITH vat
+     * The special offer price WITH vat.
      *
      * @var int|null
      *
@@ -73,7 +73,7 @@ class Price extends AbstractEntity implements PriceInterface
     protected $specialOfferPrice;
 
     /**
-     * The unit price WITH vat
+     * The unit price WITH vat.
      *
      * @var int|null
      *
@@ -98,22 +98,23 @@ class Price extends AbstractEntity implements PriceInterface
     protected $product;
 
     /**
-     * Creates a valid Price
+     * Creates a valid Price.
      *
-     * @param int $amount
-     * @param int $avance
-     * @param string $b2bGroupId
+     * @param int               $amount
+     * @param int               $avance
+     * @param string            $b2bGroupId
      * @param CurrencyInterface $currency
-     * @param int $specialOfferPrice In cents/ører (in danish)
-     * @param int $unitPrice In cents/ører (in danish)
+     * @param int               $specialOfferPrice In cents/ører (in danish)
+     * @param int               $unitPrice         In cents/ører (in danish)
+     *
      * @return PriceInterface
      */
-    public static function create(int $amount, int $avance, string $b2bGroupId, CurrencyInterface $currency, int $specialOfferPrice, int $unitPrice) : PriceInterface
+    public static function create(int $amount, int $avance, string $b2bGroupId, CurrencyInterface $currency, int $specialOfferPrice, int $unitPrice): PriceInterface
     {
         $specialOfferPrice = new Money($specialOfferPrice, new \Money\Currency($currency->getIsoCodeAlpha()));
         $unitPrice = new Money($unitPrice, new \Money\Currency($currency->getIsoCodeAlpha()));
 
-        $price = new Price();
+        $price = new self();
         $price
             ->setAmount($amount)
             ->setAvance($avance)
@@ -143,11 +144,11 @@ class Price extends AbstractEntity implements PriceInterface
     }
 
     /**
-     * Will copy properties from $price
+     * Will copy properties from $price.
      *
      * @param PriceInterface $price
      */
-    public function copyProperties(PriceInterface $price) : void
+    public function copyProperties(PriceInterface $price): void
     {
         $this->setAmount($price->getAmount());
         $this->setAvance($price->getAvance());
@@ -162,7 +163,7 @@ class Price extends AbstractEntity implements PriceInterface
     /*
      * Helper methods
      */
-    public function getUnitPriceExclVat(float $vat) : ?Money
+    public function getUnitPriceExclVat(float $vat): ?Money
     {
         $unitPrice = $this->getUnitPrice();
 
@@ -172,10 +173,10 @@ class Price extends AbstractEntity implements PriceInterface
 
         $multiplier = BigDecimal::of('100')->exactlyDividedBy(BigDecimal::of('100')->plus($vat));
 
-        return $unitPrice->multiply((string)$multiplier);
+        return $unitPrice->multiply((string) $multiplier);
     }
 
-    public function getSpecialOfferPriceExclVat(float $vat) : ?Money
+    public function getSpecialOfferPriceExclVat(float $vat): ?Money
     {
         $specialOfferPrice = $this->getSpecialOfferPrice();
 
@@ -185,7 +186,7 @@ class Price extends AbstractEntity implements PriceInterface
 
         $multiplier = BigDecimal::of('100')->exactlyDividedBy(BigDecimal::of('100')->plus($vat));
 
-        return $specialOfferPrice->multiply((string)$multiplier);
+        return $specialOfferPrice->multiply((string) $multiplier);
     }
 
     /**
@@ -193,110 +194,122 @@ class Price extends AbstractEntity implements PriceInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return PriceInterface
      */
-    public function setId(int $id) : PriceInterface
+    public function setId(int $id): PriceInterface
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
      * @return int|null
      */
-    public function getAmount() : ?int
+    public function getAmount(): ?int
     {
         return $this->amount;
     }
 
     /**
      * @param int|null $amount
+     *
      * @return PriceInterface
      */
-    public function setAmount(int $amount) : PriceInterface
+    public function setAmount(int $amount): PriceInterface
     {
         $this->amount = $amount;
+
         return $this;
     }
 
     /**
      * @return int|null
      */
-    public function getAvance() : ?int
+    public function getAvance(): ?int
     {
         return $this->avance;
     }
 
     /**
      * @param int|null $avance
+     *
      * @return PriceInterface
      */
-    public function setAvance(int $avance) : PriceInterface
+    public function setAvance(int $avance): PriceInterface
     {
         $this->avance = $avance;
+
         return $this;
     }
 
     /**
      * @return null|string
      */
-    public function getB2bGroupId() : ?string
+    public function getB2bGroupId(): ?string
     {
         return $this->b2bGroupId;
     }
 
     /**
      * @param null|string $b2bGroupId
+     *
      * @return PriceInterface
      */
-    public function setB2bGroupId(string $b2bGroupId) : PriceInterface
+    public function setB2bGroupId(string $b2bGroupId): PriceInterface
     {
         $this->b2bGroupId = $b2bGroupId;
+
         return $this;
     }
 
     /**
      * @return null|CurrencyInterface
      */
-    public function getCurrency() : ?CurrencyInterface
+    public function getCurrency(): ?CurrencyInterface
     {
         return $this->currency;
     }
 
     /**
      * @param null|CurrencyInterface $currency
+     *
      * @return PriceInterface
      */
-    public function setCurrency(CurrencyInterface $currency) : PriceInterface
+    public function setCurrency(CurrencyInterface $currency): PriceInterface
     {
         $this->currency = $currency;
+
         return $this;
     }
 
     /**
      * @return Money|null
      */
-    public function getSpecialOfferPrice() : ?Money
+    public function getSpecialOfferPrice(): ?Money
     {
         if (!$this->currency) {
             return null;
         }
-        return DandomainFoundation\createMoney($this->currency->getIsoCodeAlpha(), (int)$this->specialOfferPrice);
+
+        return DandomainFoundation\createMoney($this->currency->getIsoCodeAlpha(), (int) $this->specialOfferPrice);
     }
 
     /**
      * @param Money|null $specialOfferPrice
+     *
      * @return PriceInterface
      */
-    public function setSpecialOfferPrice(Money $specialOfferPrice) : PriceInterface
+    public function setSpecialOfferPrice(Money $specialOfferPrice): PriceInterface
     {
         // @todo change type from int to string
-        $this->specialOfferPrice = (int)$specialOfferPrice->getAmount();
+        $this->specialOfferPrice = (int) $specialOfferPrice->getAmount();
 
         return $this;
     }
@@ -304,22 +317,24 @@ class Price extends AbstractEntity implements PriceInterface
     /**
      * @return Money|null
      */
-    public function getUnitPrice() : ?Money
+    public function getUnitPrice(): ?Money
     {
         if (!$this->currency) {
             return null;
         }
-        return DandomainFoundation\createMoney($this->currency->getIsoCodeAlpha(), (int)$this->unitPrice);
+
+        return DandomainFoundation\createMoney($this->currency->getIsoCodeAlpha(), (int) $this->unitPrice);
     }
 
     /**
      * @param Money|null $unitPrice
+     *
      * @return PriceInterface
      */
-    public function setUnitPrice(Money $unitPrice) : PriceInterface
+    public function setUnitPrice(Money $unitPrice): PriceInterface
     {
         // @todo change type from int to string
-        $this->unitPrice = (int)$unitPrice->getAmount();
+        $this->unitPrice = (int) $unitPrice->getAmount();
 
         return $this;
     }
@@ -327,36 +342,40 @@ class Price extends AbstractEntity implements PriceInterface
     /**
      * @return Period|null
      */
-    public function getPeriod() : ?PeriodInterface
+    public function getPeriod(): ?PeriodInterface
     {
         return $this->period;
     }
 
     /**
      * @param PeriodInterface|null $period
+     *
      * @return PriceInterface
      */
-    public function setPeriod(?PeriodInterface $period) : PriceInterface
+    public function setPeriod(?PeriodInterface $period): PriceInterface
     {
         $this->period = $period;
+
         return $this;
     }
 
     /**
      * @return ProductInterface
      */
-    public function getProduct() : ?ProductInterface
+    public function getProduct(): ?ProductInterface
     {
         return $this->product;
     }
 
     /**
      * @param ProductInterface|null $product
+     *
      * @return PriceInterface
      */
-    public function setProduct(?ProductInterface $product) : PriceInterface
+    public function setProduct(?ProductInterface $product): PriceInterface
     {
         $this->product = $product;
+
         return $this;
     }
 }

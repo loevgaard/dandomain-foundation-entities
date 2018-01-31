@@ -9,9 +9,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method null|SiteInterface find($id)
- * @method SiteInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method SiteInterface[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
  * @method null|SiteInterface findOneBy(array $criteria)
- * @method SiteInterface[] findAll()
+ * @method SiteInterface[]    findAll()
  */
 class SiteRepository extends AbstractRepository
 {

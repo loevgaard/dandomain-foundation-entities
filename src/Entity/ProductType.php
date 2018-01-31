@@ -16,7 +16,7 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
     use ProductTypeTrait;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -78,16 +78,18 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return ProductTypeInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -96,16 +98,18 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return ProductType
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -119,11 +123,13 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param null|string $name
+     *
      * @return ProductTypeInterface
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -137,11 +143,13 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param ArrayCollection|ProductTypeField[] $productTypeFields
+     *
      * @return ProductTypeInterface
      */
     public function setProductTypeFields($productTypeFields)
     {
         $this->productTypeFields = $productTypeFields;
+
         return $this;
     }
 
@@ -155,11 +163,13 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param ArrayCollection|ProductTypeFormula[] $productTypeFormulas
+     *
      * @return ProductTypeInterface
      */
     public function setProductTypeFormulas($productTypeFormulas)
     {
         $this->productTypeFormulas = $productTypeFormulas;
+
         return $this;
     }
 
@@ -173,11 +183,13 @@ class ProductType extends AbstractEntity implements ProductTypeInterface
 
     /**
      * @param ArrayCollection|ProductTypeVat[] $productTypeVats
+     *
      * @return ProductTypeInterface
      */
     public function setProductTypeVats($productTypeVats)
     {
         $this->productTypeVats = $productTypeVats;
+
         return $this;
     }
 }

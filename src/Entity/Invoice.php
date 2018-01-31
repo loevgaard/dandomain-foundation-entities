@@ -63,16 +63,18 @@ class Invoice extends AbstractEntity implements InvoiceInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return InvoiceInterface
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -86,11 +88,13 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param null|string $creditNoteNumber
+     *
      * @return InvoiceInterface
      */
     public function setCreditNoteNumber($creditNoteNumber)
     {
         $this->creditNoteNumber = $creditNoteNumber;
+
         return $this;
     }
 
@@ -104,11 +108,13 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param \DateTimeImmutable|null $date
+     *
      * @return InvoiceInterface
      */
     public function setDate($date)
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -122,11 +128,13 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param bool|null $isPaid
+     *
      * @return InvoiceInterface
      */
     public function setIsPaid($isPaid)
     {
         $this->isPaid = $isPaid;
+
         return $this;
     }
 
@@ -140,11 +148,13 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param int|null $number
+     *
      * @return InvoiceInterface
      */
     public function setNumber($number)
     {
         $this->number = $number;
+
         return $this;
     }
 
@@ -158,11 +168,13 @@ class Invoice extends AbstractEntity implements InvoiceInterface
 
     /**
      * @param null|string $state
+     *
      * @return InvoiceInterface
      */
     public function setState($state)
     {
         $this->state = $state;
+
         return $this;
     }
 }

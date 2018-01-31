@@ -40,7 +40,7 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
     protected $feeCurrency;
 
     /**
-     * @var integer|null
+     * @var int|null
      *
      * @ORM\Column(nullable=true, type="integer")
      */
@@ -62,7 +62,7 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
 
     public function __toString()
     {
-        return (string)$this->name;
+        return (string) $this->name;
     }
 
     /**
@@ -70,16 +70,18 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return ShippingMethodInterface
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -88,23 +90,25 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return ShippingMethodInterface
      */
     public function setExternalId($externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
     /**
      * @return Money|null
      */
-    public function getFee() : ?Money
+    public function getFee(): ?Money
     {
         if (!$this->feeCurrency) {
             return null;
@@ -115,9 +119,10 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
 
     /**
      * @param Money $money
+     *
      * @return ShippingMethodInterface
      */
-    public function setFee(Money $money) : ShippingMethodInterface
+    public function setFee(Money $money): ShippingMethodInterface
     {
         $this->feeAmount = $money->getAmount();
         $this->feeCurrency = $money->getCurrency()->getCode();
@@ -135,11 +140,13 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
 
     /**
      * @param bool|null $feeInclVat
+     *
      * @return ShippingMethodInterface
      */
     public function setFeeInclVat($feeInclVat)
     {
         $this->feeInclVat = $feeInclVat;
+
         return $this;
     }
 
@@ -153,11 +160,13 @@ class ShippingMethod extends AbstractEntity implements ShippingMethodInterface
 
     /**
      * @param null|string $name
+     *
      * @return ShippingMethodInterface
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 }

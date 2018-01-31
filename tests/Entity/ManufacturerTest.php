@@ -3,8 +3,6 @@
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Loevgaard\DandomainDateTime\DateTimeImmutable;
-use Loevgaard\DandomainFoundation;
 use PHPUnit\Framework\TestCase;
 
 final class ManufacturerTest extends TestCase

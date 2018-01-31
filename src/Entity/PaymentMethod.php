@@ -42,7 +42,7 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
     protected $feeCurrency;
 
     /**
-     * @var integer|null
+     * @var int|null
      *
      * @ORM\Column(nullable=true, type="integer")
      */
@@ -64,7 +64,7 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
 
     public function __toString()
     {
-        return (string)$this->name;
+        return (string) $this->name;
     }
 
     /**
@@ -72,16 +72,18 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return PaymentMethodInterface
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -90,23 +92,25 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return PaymentMethodInterface
      */
     public function setExternalId($externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
     /**
      * @return Money|null
      */
-    public function getFee() : ?Money
+    public function getFee(): ?Money
     {
         if (!$this->feeCurrency) {
             return null;
@@ -117,9 +121,10 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
 
     /**
      * @param Money $money
+     *
      * @return PaymentMethodInterface
      */
-    public function setFee(Money $money) : PaymentMethodInterface
+    public function setFee(Money $money): PaymentMethodInterface
     {
         $this->feeAmount = $money->getAmount();
         $this->feeCurrency = $money->getCurrency()->getCode();
@@ -137,11 +142,13 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
 
     /**
      * @param bool|null $feeInclVat
+     *
      * @return PaymentMethodInterface
      */
     public function setFeeInclVat($feeInclVat)
     {
         $this->feeInclVat = $feeInclVat;
+
         return $this;
     }
 
@@ -155,11 +162,13 @@ class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
 
     /**
      * @param null|string $name
+     *
      * @return PaymentMethodInterface
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 }

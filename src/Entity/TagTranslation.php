@@ -33,11 +33,13 @@ class TagTranslation implements TagTranslationInterface
 
     /**
      * @param null|string $text
+     *
      * @return TagTranslation
      */
     public function setText(?string $text)
     {
         $this->text = $text;
+
         return $this;
     }
 }

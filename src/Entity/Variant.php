@@ -78,16 +78,18 @@ class Variant extends AbstractEntity implements VariantInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return VariantInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -96,16 +98,18 @@ class Variant extends AbstractEntity implements VariantInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return VariantInterface
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -119,11 +123,13 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param int|null $sortOrder
+     *
      * @return VariantInterface
      */
     public function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
         return $this;
     }
 
@@ -137,11 +143,13 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param null|string $text
+     *
      * @return VariantInterface
      */
     public function setText($text)
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -155,11 +163,13 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param ArrayCollection|Product[] $disabledProducts
+     *
      * @return VariantInterface
      */
     public function setDisabledProducts($disabledProducts)
     {
         $this->disabledProducts = $disabledProducts;
+
         return $this;
     }
 
@@ -173,11 +183,13 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param ArrayCollection|Product[] $products
+     *
      * @return VariantInterface
      */
     public function setProducts($products)
     {
         $this->products = $products;
+
         return $this;
     }
 
@@ -191,11 +203,13 @@ class Variant extends AbstractEntity implements VariantInterface
 
     /**
      * @param ArrayCollection|VariantGroup[] $variantGroups
+     *
      * @return VariantInterface
      */
     public function setVariantGroups($variantGroups)
     {
         $this->variantGroups = $variantGroups;
+
         return $this;
     }
 }

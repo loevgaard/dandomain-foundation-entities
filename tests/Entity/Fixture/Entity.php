@@ -7,11 +7,11 @@ use Loevgaard\DandomainFoundation\Entity\AbstractEntity;
 final class Entity extends AbstractEntity
 {
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     protected $extractConversions = [
-        'name' => 'nameConverted'
+        'name' => 'nameConverted',
     ];
 
     protected $date;

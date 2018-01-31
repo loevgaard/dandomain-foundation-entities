@@ -67,16 +67,18 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return ProductTypeFieldInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -85,16 +87,18 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
      */
     public function getExternalId(): string
     {
-        return (string)$this->externalId;
+        return (string) $this->externalId;
     }
 
     /**
      * @param string $externalId
+     *
      * @return ProductTypeFieldInterface
      */
     public function setExternalId(string $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -108,11 +112,13 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param null|string $label
+     *
      * @return ProductTypeFieldInterface
      */
     public function setLabel($label)
     {
         $this->label = $label;
+
         return $this;
     }
 
@@ -126,11 +132,13 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param int|null $languageId
+     *
      * @return ProductTypeFieldInterface
      */
     public function setLanguageId($languageId)
     {
         $this->languageId = $languageId;
+
         return $this;
     }
 
@@ -144,11 +152,13 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param int|null $number
+     *
      * @return ProductTypeFieldInterface
      */
     public function setNumber($number)
     {
         $this->number = $number;
+
         return $this;
     }
 
@@ -162,11 +172,13 @@ class ProductTypeField extends AbstractEntity implements ProductTypeFieldInterfa
 
     /**
      * @param ArrayCollection|ProductType[] $productTypes
+     *
      * @return ProductTypeFieldInterface
      */
     public function setProductTypes($productTypes)
     {
         $this->productTypes = $productTypes;
+
         return $this;
     }
 }

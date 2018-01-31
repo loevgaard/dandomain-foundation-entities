@@ -1,4 +1,5 @@
 <?php
+
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,6 +13,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\TagValueInterface;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ldf_tags")
+ *
  * @method TagTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
 class Tag extends AbstractEntity implements TagInterface
@@ -61,7 +63,7 @@ class Tag extends AbstractEntity implements TagInterface
         $this->tagValues = new ArrayCollection();
     }
 
-    public function addTagValue(TagValueInterface $tagValue) : TagInterface
+    public function addTagValue(TagValueInterface $tagValue): TagInterface
     {
         if (!$this->hasTagValue($tagValue)) {
             $this->tagValues->add($tagValue);
@@ -71,7 +73,7 @@ class Tag extends AbstractEntity implements TagInterface
         return $this;
     }
 
-    public function hasTagValue($tagValue) : bool
+    public function hasTagValue($tagValue): bool
     {
         if ($tagValue instanceof TagValueInterface) {
             $tagValue = $tagValue->getExternalId();
@@ -82,7 +84,7 @@ class Tag extends AbstractEntity implements TagInterface
         });
     }
 
-    public function removeTagValue(TagValueInterface $tagValue) : TagInterface
+    public function removeTagValue(TagValueInterface $tagValue): TagInterface
     {
         $this->tagValues->removeElement($tagValue);
         $tagValue->setTag(null);
@@ -90,7 +92,7 @@ class Tag extends AbstractEntity implements TagInterface
         return $this;
     }
 
-    public function clearTagValues() : TagInterface
+    public function clearTagValues(): TagInterface
     {
         foreach ($this->tagValues as $tagValue) {
             $this->removeTagValue($tagValue);
@@ -104,16 +106,18 @@ class Tag extends AbstractEntity implements TagInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return Tag
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -122,16 +126,18 @@ class Tag extends AbstractEntity implements TagInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return Tag
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -145,11 +151,13 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param null|string $selectorType
+     *
      * @return Tag
      */
     public function setSelectorType(?string $selectorType)
     {
         $this->selectorType = $selectorType;
+
         return $this;
     }
 
@@ -163,11 +171,13 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param int|null $sortOrder
+     *
      * @return Tag
      */
     public function setSortOrder(?int $sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
         return $this;
     }
 
@@ -181,11 +191,13 @@ class Tag extends AbstractEntity implements TagInterface
 
     /**
      * @param ArrayCollection|TagValueInterface[] $tagValues
+     *
      * @return Tag
      */
     public function setTagValues($tagValues)
     {
         $this->tagValues = $tagValues;
+
         return $this;
     }
 }

@@ -28,6 +28,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\VariantInterface;
  *     @ORM\Index(columns={"is_variant_master"})
  * })
  * @ORM\HasLifecycleCallbacks()
+ *
  * @method ProductTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
 class Product extends AbstractEntity implements ProductInterface
@@ -38,7 +39,7 @@ class Product extends AbstractEntity implements ProductInterface
     use Translatable;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -205,7 +206,7 @@ class Product extends AbstractEntity implements ProductInterface
     protected $minBuyAmountB2B;
 
     /**
-     * The product number
+     * The product number.
      *
      * @var string
      *
@@ -339,7 +340,7 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * Some products in Dandomain doesn't have prices because they are not really products, i.e. discounts, shipping info etc
-     * Dandomain treat these as products on an order, which of course is wrong, but we handle them
+     * Dandomain treat these as products on an order, which of course is wrong, but we handle them.
      *
      * @var bool
      *
@@ -383,7 +384,7 @@ class Product extends AbstractEntity implements ProductInterface
     protected $variants;
 
     /**
-     * This is the master for this product
+     * This is the master for this product.
      *
      * @var Product|null
      *
@@ -392,7 +393,7 @@ class Product extends AbstractEntity implements ProductInterface
     protected $parent;
 
     /**
-     * This is the children (i.e. variants) of this products
+     * This is the children (i.e. variants) of this products.
      *
      * @var Product[]|ArrayCollection
      *
@@ -417,7 +418,7 @@ class Product extends AbstractEntity implements ProductInterface
 
     public function __toString()
     {
-        return (string)$this->number;
+        return (string) $this->number;
     }
 
     /**
@@ -457,7 +458,7 @@ class Product extends AbstractEntity implements ProductInterface
      * Collection/relation methods
      */
 
-    public function addDisabledVariant(VariantInterface $variant) : ProductInterface
+    public function addDisabledVariant(VariantInterface $variant): ProductInterface
     {
         if (!$this->disabledVariants->contains($variant)) {
             $this->disabledVariants->add($variant);
@@ -466,7 +467,7 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function addMedium(MediumInterface $medium) : ProductInterface
+    public function addMedium(MediumInterface $medium): ProductInterface
     {
         if (!$this->media->contains($medium)) {
             $this->media->add($medium);
@@ -475,7 +476,7 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function addCategory(CategoryInterface $category) : ProductInterface
+    public function addCategory(CategoryInterface $category): ProductInterface
     {
         if (!$this->categories->contains($category)) {
             $this->categories->add($category);
@@ -484,7 +485,7 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function addManufacturer(ManufacturerInterface $manufacturer) : ProductInterface
+    public function addManufacturer(ManufacturerInterface $manufacturer): ProductInterface
     {
         if (!$this->hasManufacturer($manufacturer)) {
             $this->manufacturers->add($manufacturer);
@@ -493,19 +494,19 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function removeManufacturer(ManufacturerInterface $manufacturer) : bool
+    public function removeManufacturer(ManufacturerInterface $manufacturer): bool
     {
         return $this->manufacturers->removeElement($manufacturer);
     }
 
-    public function hasManufacturer(ManufacturerInterface $manufacturer) : bool
+    public function hasManufacturer(ManufacturerInterface $manufacturer): bool
     {
         return $this->manufacturers->exists(function ($key, ManufacturerInterface $element) use ($manufacturer) {
             return $element->getExternalId() === $manufacturer->getExternalId();
         });
     }
 
-    public function addVariantGroup(VariantGroupInterface $variantGroup) : ProductInterface
+    public function addVariantGroup(VariantGroupInterface $variantGroup): ProductInterface
     {
         if (!$this->hasVariantGroup($variantGroup)) {
             $this->variantGroups->add($variantGroup);
@@ -514,12 +515,12 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function removeVariantGroup(VariantGroupInterface $variantGroup) : bool
+    public function removeVariantGroup(VariantGroupInterface $variantGroup): bool
     {
         return $this->variantGroups->removeElement($variantGroup);
     }
 
-    public function hasVariantGroup($variantGroup) : bool
+    public function hasVariantGroup($variantGroup): bool
     {
         if ($variantGroup instanceof VariantGroupInterface) {
             $variantGroup = $variantGroup->getExternalId();
@@ -530,7 +531,7 @@ class Product extends AbstractEntity implements ProductInterface
         });
     }
 
-    public function addPrice(PriceInterface $price) : ProductInterface
+    public function addPrice(PriceInterface $price): ProductInterface
     {
         if (!$this->prices->contains($price)) {
             $this->prices->add($price);
@@ -543,7 +544,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @param PriceInterface[] $prices
      */
-    public function updatePrices(array $prices) : void
+    public function updatePrices(array $prices): void
     {
         // this holds the final array of prices, whether updated or added
         $finalPrices = [];
@@ -569,19 +570,21 @@ class Product extends AbstractEntity implements ProductInterface
         }
     }
 
-    public function removePrice(PriceInterface $price) : bool
+    public function removePrice(PriceInterface $price): bool
     {
         $price->setProduct(null);
+
         return $this->prices->removeElement($price);
     }
 
     /**
-     * Will try to find a price based on currency
+     * Will try to find a price based on currency.
      *
      * @param string|\Money\Currency|CurrencyInterface $currency
+     *
      * @return PriceInterface|null
      */
-    public function findPriceByCurrency($currency) : ?PriceInterface
+    public function findPriceByCurrency($currency): ?PriceInterface
     {
         if ($currency instanceof \Money\Currency) {
             $currency = $currency->getCode();
@@ -602,7 +605,7 @@ class Product extends AbstractEntity implements ProductInterface
         return null;
     }
 
-    public function addProductRelation(ProductRelationInterface $productRelation) : ProductInterface
+    public function addProductRelation(ProductRelationInterface $productRelation): ProductInterface
     {
         if (!$this->productRelations->contains($productRelation)) {
             $this->productRelations->add($productRelation);
@@ -611,7 +614,7 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function addSegment(SegmentInterface $segment) : ProductInterface
+    public function addSegment(SegmentInterface $segment): ProductInterface
     {
         if (!$this->segments->contains($segment)) {
             $this->segments->add($segment);
@@ -620,7 +623,7 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function addVariant(VariantInterface $variant) : ProductInterface
+    public function addVariant(VariantInterface $variant): ProductInterface
     {
         if (!$this->variants->contains($variant)) {
             $this->variants->add($variant);
@@ -629,7 +632,7 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function addChild(ProductInterface $product) : ProductInterface
+    public function addChild(ProductInterface $product): ProductInterface
     {
         if (!$this->hasChild($product)) {
             $this->children->add($product);
@@ -639,13 +642,14 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
-    public function removeChild(ProductInterface $product) : bool
+    public function removeChild(ProductInterface $product): bool
     {
         $product->setParent(null);
+
         return $this->children->removeElement($product);
     }
 
-    public function hasChild($product) : bool
+    public function hasChild($product): bool
     {
         if ($product instanceof ProductInterface) {
             $product = $product->getExternalId();
@@ -659,21 +663,24 @@ class Product extends AbstractEntity implements ProductInterface
     /*
      * Getters / Setters
      */
+
     /**
      * @return int
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return ProductInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -682,16 +689,18 @@ class Product extends AbstractEntity implements ProductInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return ProductInterface
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -705,11 +714,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $barCodeNumber
+     *
      * @return ProductInterface
      */
     public function setBarCodeNumber($barCodeNumber)
     {
         $this->barCodeNumber = $barCodeNumber;
+
         return $this;
     }
 
@@ -723,11 +734,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param array|null $categoryIdList
+     *
      * @return ProductInterface
      */
     public function setCategoryIdList($categoryIdList)
     {
         $this->categoryIdList = $categoryIdList;
+
         return $this;
     }
 
@@ -741,11 +754,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $comments
+     *
      * @return ProductInterface
      */
     public function setComments($comments)
     {
         $this->comments = $comments;
+
         return $this;
     }
 
@@ -759,11 +774,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param float|null $costPrice
+     *
      * @return ProductInterface
      */
     public function setCostPrice($costPrice)
     {
         $this->costPrice = $costPrice;
+
         return $this;
     }
 
@@ -777,11 +794,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param \DateTimeImmutable|null $created
+     *
      * @return ProductInterface
      */
     public function setCreated($created)
     {
         $this->created = $created;
+
         return $this;
     }
 
@@ -795,11 +814,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $createdBy
+     *
      * @return ProductInterface
      */
     public function setCreatedBy($createdBy)
     {
         $this->createdBy = $createdBy;
+
         return $this;
     }
 
@@ -813,11 +834,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $defaultCategoryId
+     *
      * @return ProductInterface
      */
     public function setDefaultCategoryId($defaultCategoryId)
     {
         $this->defaultCategoryId = $defaultCategoryId;
+
         return $this;
     }
 
@@ -831,11 +854,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param array|null $disabledVariantIdList
+     *
      * @return ProductInterface
      */
     public function setDisabledVariantIdList($disabledVariantIdList)
     {
         $this->disabledVariantIdList = $disabledVariantIdList;
+
         return $this;
     }
 
@@ -849,11 +874,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $edbPriserProductNumber
+     *
      * @return ProductInterface
      */
     public function setEdbPriserProductNumber($edbPriserProductNumber)
     {
         $this->edbPriserProductNumber = $edbPriserProductNumber;
+
         return $this;
     }
 
@@ -867,11 +894,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $fileSaleLink
+     *
      * @return ProductInterface
      */
     public function setFileSaleLink($fileSaleLink)
     {
         $this->fileSaleLink = $fileSaleLink;
+
         return $this;
     }
 
@@ -885,11 +914,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $googleFeedCategory
+     *
      * @return ProductInterface
      */
     public function setGoogleFeedCategory($googleFeedCategory)
     {
         $this->googleFeedCategory = $googleFeedCategory;
+
         return $this;
     }
 
@@ -903,11 +934,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param bool|null $isGiftCertificate
+     *
      * @return ProductInterface
      */
     public function setIsGiftCertificate($isGiftCertificate)
     {
         $this->isGiftCertificate = $isGiftCertificate;
+
         return $this;
     }
 
@@ -921,11 +954,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param bool|null $isModified
+     *
      * @return ProductInterface
      */
     public function setIsModified($isModified)
     {
         $this->isModified = $isModified;
+
         return $this;
     }
 
@@ -939,11 +974,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param bool|null $isRateVariants
+     *
      * @return ProductInterface
      */
     public function setIsRateVariants($isRateVariants)
     {
         $this->isRateVariants = $isRateVariants;
+
         return $this;
     }
 
@@ -957,11 +994,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param bool|null $isReviewVariants
+     *
      * @return ProductInterface
      */
     public function setIsReviewVariants($isReviewVariants)
     {
         $this->isReviewVariants = $isReviewVariants;
+
         return $this;
     }
 
@@ -975,11 +1014,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param bool|null $isVariantMaster
+     *
      * @return ProductInterface
      */
     public function setIsVariantMaster($isVariantMaster)
     {
         $this->isVariantMaster = $isVariantMaster;
+
         return $this;
     }
 
@@ -993,11 +1034,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $locationNumber
+     *
      * @return ProductInterface
      */
     public function setLocationNumber($locationNumber)
     {
         $this->locationNumber = $locationNumber;
+
         return $this;
     }
 
@@ -1011,11 +1054,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param array|null $manufacturereIdList
+     *
      * @return ProductInterface
      */
     public function setManufacturereIdList($manufacturereIdList)
     {
         $this->manufacturereIdList = $manufacturereIdList;
+
         return $this;
     }
 
@@ -1029,11 +1074,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $maxBuyAmount
+     *
      * @return ProductInterface
      */
     public function setMaxBuyAmount($maxBuyAmount)
     {
         $this->maxBuyAmount = $maxBuyAmount;
+
         return $this;
     }
 
@@ -1047,11 +1094,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $minBuyAmount
+     *
      * @return ProductInterface
      */
     public function setMinBuyAmount($minBuyAmount)
     {
         $this->minBuyAmount = $minBuyAmount;
+
         return $this;
     }
 
@@ -1065,11 +1114,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $minBuyAmountB2B
+     *
      * @return ProductInterface
      */
     public function setMinBuyAmountB2B($minBuyAmountB2B)
     {
         $this->minBuyAmountB2B = $minBuyAmountB2B;
+
         return $this;
     }
 
@@ -1078,16 +1129,18 @@ class Product extends AbstractEntity implements ProductInterface
      */
     public function getNumber()
     {
-        return (string)$this->number;
+        return (string) $this->number;
     }
 
     /**
      * @param string $number
+     *
      * @return ProductInterface
      */
     public function setNumber(string $number)
     {
         $this->number = $number;
+
         return $this;
     }
 
@@ -1101,11 +1154,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $picture
+     *
      * @return ProductInterface
      */
     public function setPicture($picture)
     {
         $this->picture = $picture;
+
         return $this;
     }
 
@@ -1119,11 +1174,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $salesCount
+     *
      * @return ProductInterface
      */
     public function setSalesCount($salesCount)
     {
         $this->salesCount = $salesCount;
+
         return $this;
     }
 
@@ -1137,11 +1194,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param array|null $segmentIdList
+     *
      * @return ProductInterface
      */
     public function setSegmentIdList($segmentIdList)
     {
         $this->segmentIdList = $segmentIdList;
+
         return $this;
     }
 
@@ -1155,11 +1214,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $sortOrder
+     *
      * @return ProductInterface
      */
     public function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
         return $this;
     }
 
@@ -1173,11 +1234,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $stockCount
+     *
      * @return ProductInterface
      */
     public function setStockCount($stockCount)
     {
         $this->stockCount = $stockCount;
+
         return $this;
     }
 
@@ -1191,11 +1254,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $stockLimit
+     *
      * @return ProductInterface
      */
     public function setStockLimit($stockLimit)
     {
         $this->stockLimit = $stockLimit;
+
         return $this;
     }
 
@@ -1209,11 +1274,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $typeId
+     *
      * @return ProductInterface
      */
     public function setTypeId($typeId)
     {
         $this->typeId = $typeId;
+
         return $this;
     }
 
@@ -1227,11 +1294,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param \DateTimeImmutable|null $updated
+     *
      * @return ProductInterface
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
+
         return $this;
     }
 
@@ -1245,11 +1314,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $updatedBy
+     *
      * @return ProductInterface
      */
     public function setUpdatedBy($updatedBy)
     {
         $this->updatedBy = $updatedBy;
+
         return $this;
     }
 
@@ -1263,11 +1334,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param array|null $variantGroupIdList
+     *
      * @return ProductInterface
      */
     public function setVariantGroupIdList($variantGroupIdList)
     {
         $this->variantGroupIdList = $variantGroupIdList;
+
         return $this;
     }
 
@@ -1281,11 +1354,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param array|null $variantIdList
+     *
      * @return ProductInterface
      */
     public function setVariantIdList($variantIdList)
     {
         $this->variantIdList = $variantIdList;
+
         return $this;
     }
 
@@ -1299,11 +1374,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $variantMasterId
+     *
      * @return ProductInterface
      */
     public function setVariantMasterId($variantMasterId)
     {
         $this->variantMasterId = $variantMasterId;
+
         return $this;
     }
 
@@ -1317,11 +1394,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param null|string $vendorNumber
+     *
      * @return ProductInterface
      */
     public function setVendorNumber($vendorNumber)
     {
         $this->vendorNumber = $vendorNumber;
+
         return $this;
     }
 
@@ -1335,11 +1414,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param int|null $weight
+     *
      * @return ProductInterface
      */
     public function setWeight($weight)
     {
         $this->weight = $weight;
+
         return $this;
     }
 
@@ -1353,11 +1434,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|Category[] $categories
+     *
      * @return ProductInterface
      */
     public function setCategories($categories)
     {
         $this->categories = $categories;
+
         return $this;
     }
 
@@ -1371,11 +1454,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|Variant[] $disabledVariants
+     *
      * @return ProductInterface
      */
     public function setDisabledVariants($disabledVariants)
     {
         $this->disabledVariants = $disabledVariants;
+
         return $this;
     }
 
@@ -1389,11 +1474,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|Manufacturer[] $manufacturers
+     *
      * @return ProductInterface
      */
     public function setManufacturers($manufacturers)
     {
         $this->manufacturers = $manufacturers;
+
         return $this;
     }
 
@@ -1407,11 +1494,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|Medium[] $media
+     *
      * @return ProductInterface
      */
     public function setMedia($media)
     {
         $this->media = $media;
+
         return $this;
     }
 
@@ -1425,11 +1514,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param bool $priceLess
+     *
      * @return Product
      */
     public function setPriceLess(bool $priceLess)
     {
         $this->priceLess = $priceLess;
+
         return $this;
     }
 
@@ -1443,11 +1534,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|Price[] $prices
+     *
      * @return ProductInterface
      */
     public function setPrices($prices)
     {
         $this->prices = $prices;
+
         return $this;
     }
 
@@ -1461,11 +1554,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|ProductRelation[] $productRelations
+     *
      * @return ProductInterface
      */
     public function setProductRelations($productRelations)
     {
         $this->productRelations = $productRelations;
+
         return $this;
     }
 
@@ -1479,11 +1574,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ProductType $productType
+     *
      * @return ProductInterface
      */
     public function setProductType(ProductType $productType)
     {
         $this->productType = $productType;
+
         return $this;
     }
 
@@ -1497,11 +1594,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|Segment[] $segments
+     *
      * @return ProductInterface
      */
     public function setSegments($segments)
     {
         $this->segments = $segments;
+
         return $this;
     }
 
@@ -1515,11 +1614,13 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|VariantGroup[] $variantGroups
+     *
      * @return ProductInterface
      */
     public function setVariantGroups($variantGroups)
     {
         $this->variantGroups = $variantGroups;
+
         return $this;
     }
 
@@ -1533,29 +1634,33 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|Variant[] $variants
+     *
      * @return ProductInterface
      */
     public function setVariants($variants)
     {
         $this->variants = $variants;
+
         return $this;
     }
 
     /**
      * @return Product|null
      */
-    public function getParent(): ?Product
+    public function getParent(): ?self
     {
         return $this->parent;
     }
 
     /**
      * @param Product|null $parent
+     *
      * @return Product
      */
-    public function setParent(?Product $parent)
+    public function setParent(?self $parent)
     {
         $this->parent = $parent;
+
         return $this;
     }
 
@@ -1569,21 +1674,24 @@ class Product extends AbstractEntity implements ProductInterface
 
     /**
      * @param ArrayCollection|Product[] $children
+     *
      * @return Product
      */
     public function setChildren($children)
     {
         $this->children = $children;
+
         return $this;
     }
 
     /**
-     * This method will try to find a price based on the unique constraint defined in price
+     * This method will try to find a price based on the unique constraint defined in price.
      *
      * @param PriceInterface $searchPrice
+     *
      * @return PriceInterface|null
      */
-    protected function findPrice(PriceInterface $searchPrice) : ?PriceInterface
+    protected function findPrice(PriceInterface $searchPrice): ?PriceInterface
     {
         foreach ($this->prices as $price) {
             if ($price->getAmount() == $searchPrice->getAmount() && $price->getB2bGroupId() == $searchPrice->getB2bGroupId() && $price->getCurrency()->getId() == $searchPrice->getCurrency()->getId()) {

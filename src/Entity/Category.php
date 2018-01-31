@@ -14,6 +14,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\CategoryTranslationInterface;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ldf_categories")
+ *
  * @method CategoryTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
 class Category extends AbstractEntity implements CategoryInterface
@@ -37,7 +38,7 @@ class Category extends AbstractEntity implements CategoryInterface
     protected $id;
 
     /**
-     * This is the internal id in the API
+     * This is the internal id in the API.
      *
      * @var int
      *
@@ -116,7 +117,7 @@ class Category extends AbstractEntity implements CategoryInterface
     protected $modified;
 
     /**
-     * The parent 'id' really refers to the parent number
+     * The parent 'id' really refers to the parent number.
      *
      * @var array|null
      *
@@ -185,7 +186,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /*
      * Collection methods
      */
-    public function addParentCategory(CategoryInterface $category) : CategoryInterface
+    public function addParentCategory(CategoryInterface $category): CategoryInterface
     {
         if (!$this->hasParentCategory($category)) {
             $this->parentCategories->add($category);
@@ -196,9 +197,10 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param CategoryInterface|int $category
+     *
      * @return bool
      */
-    public function hasParentCategory($category) : bool
+    public function hasParentCategory($category): bool
     {
         if ($category instanceof CategoryInterface) {
             $category = $category->getExternalId();
@@ -209,14 +211,14 @@ class Category extends AbstractEntity implements CategoryInterface
         });
     }
 
-    public function removeParentCategory(CategoryInterface $category) : CategoryInterface
+    public function removeParentCategory(CategoryInterface $category): CategoryInterface
     {
         $this->parentCategories->removeElement($category);
 
         return $this;
     }
 
-    public function clearParentCategories() : CategoryInterface
+    public function clearParentCategories(): CategoryInterface
     {
         $this->parentCategories->clear();
 
@@ -226,21 +228,24 @@ class Category extends AbstractEntity implements CategoryInterface
     /*
      * Getters / Setters
      */
+
     /**
      * @return int
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return CategoryInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -249,16 +254,18 @@ class Category extends AbstractEntity implements CategoryInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return CategoryInterface
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -267,16 +274,18 @@ class Category extends AbstractEntity implements CategoryInterface
      */
     public function getNumber(): string
     {
-        return (string)$this->number;
+        return (string) $this->number;
     }
 
     /**
      * @param string $number
+     *
      * @return CategoryInterface
      */
     public function setNumber(string $number)
     {
         $this->number = $number;
+
         return $this;
     }
 
@@ -290,11 +299,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param null|string $b2bGroupId
+     *
      * @return CategoryInterface
      */
     public function setB2bGroupId($b2bGroupId)
     {
         $this->b2bGroupId = $b2bGroupId;
+
         return $this;
     }
 
@@ -308,11 +319,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param \DateTimeImmutable|null $createdDate
+     *
      * @return CategoryInterface
      */
     public function setCreatedDate($createdDate)
     {
         $this->createdDate = $createdDate;
+
         return $this;
     }
 
@@ -326,11 +339,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $customInfoLayout
+     *
      * @return CategoryInterface
      */
     public function setCustomInfoLayout($customInfoLayout)
     {
         $this->customInfoLayout = $customInfoLayout;
+
         return $this;
     }
 
@@ -344,11 +359,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $customListLayout
+     *
      * @return CategoryInterface
      */
     public function setCustomListLayout($customListLayout)
     {
         $this->customListLayout = $customListLayout;
+
         return $this;
     }
 
@@ -362,11 +379,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $defaultParentId
+     *
      * @return CategoryInterface
      */
     public function setDefaultParentId($defaultParentId)
     {
         $this->defaultParentId = $defaultParentId;
+
         return $this;
     }
 
@@ -380,11 +399,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param \DateTimeImmutable|null $editedDate
+     *
      * @return CategoryInterface
      */
     public function setEditedDate($editedDate)
     {
         $this->editedDate = $editedDate;
+
         return $this;
     }
 
@@ -398,11 +419,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $infoLayout
+     *
      * @return CategoryInterface
      */
     public function setInfoLayout($infoLayout)
     {
         $this->infoLayout = $infoLayout;
+
         return $this;
     }
 
@@ -416,11 +439,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param int|null $listLayout
+     *
      * @return CategoryInterface
      */
     public function setListLayout($listLayout)
     {
         $this->listLayout = $listLayout;
+
         return $this;
     }
 
@@ -434,11 +459,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param bool|null $modified
+     *
      * @return CategoryInterface
      */
     public function setModified($modified)
     {
         $this->modified = $modified;
+
         return $this;
     }
 
@@ -452,11 +479,13 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param array|null $parentIdList
+     *
      * @return CategoryInterface
      */
     public function setParentIdList($parentIdList)
     {
         $this->parentIdList = $parentIdList;
+
         return $this;
     }
 
@@ -470,83 +499,93 @@ class Category extends AbstractEntity implements CategoryInterface
 
     /**
      * @param array|null $segmentIdList
+     *
      * @return CategoryInterface
      */
     public function setSegmentIdList($segmentIdList)
     {
         $this->segmentIdList = $segmentIdList;
+
         return $this;
     }
 
     /**
      * @return ArrayCollection|Category[]
      */
-    public function getChildrenCategories() : ArrayCollection
+    public function getChildrenCategories(): ArrayCollection
     {
         return $this->childrenCategories;
     }
 
     /**
      * @param ArrayCollection|Category[] $childrenCategories
+     *
      * @return CategoryInterface
      */
     public function setChildrenCategories($childrenCategories)
     {
         $this->childrenCategories = $childrenCategories;
+
         return $this;
     }
 
     /**
      * @return ArrayCollection|Category[]
      */
-    public function getParentCategories() : ArrayCollection
+    public function getParentCategories(): ArrayCollection
     {
         return $this->parentCategories;
     }
 
     /**
      * @param ArrayCollection|Category[] $parentCategories
+     *
      * @return CategoryInterface
      */
     public function setParentCategories($parentCategories)
     {
         $this->parentCategories = $parentCategories;
+
         return $this;
     }
 
     /**
      * @return Product[]|ArrayCollection
      */
-    public function getProducts() : ArrayCollection
+    public function getProducts(): ArrayCollection
     {
         return $this->products;
     }
 
     /**
      * @param Product[] $products
+     *
      * @return CategoryInterface
      */
     public function setProducts($products)
     {
         $this->products = $products;
+
         return $this;
     }
 
     /**
      * @return ArrayCollection|Segment[]
      */
-    public function getSegments() : ArrayCollection
+    public function getSegments(): ArrayCollection
     {
         return $this->segments;
     }
 
     /**
      * @param ArrayCollection|Segment[] $segments
+     *
      * @return CategoryInterface
      */
     public function setSegments($segments)
     {
         $this->segments = $segments;
+
         return $this;
     }
 }

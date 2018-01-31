@@ -93,7 +93,7 @@ final class OrderLineTest extends TestCase
         $this->assertSame('12995', $orderLine->getTotalPriceInclVat()->getAmount());
     }
 
-    protected function getOrder(string $currency) : Order
+    protected function getOrder(string $currency): Order
     {
         $c = new Currency();
         $c->setIsoCodeAlpha($currency);

@@ -102,16 +102,18 @@ class Medium extends AbstractEntity implements MediumInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return MediumInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -120,16 +122,18 @@ class Medium extends AbstractEntity implements MediumInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return MediumInterface
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -143,11 +147,13 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $height
+     *
      * @return MediumInterface
      */
     public function setHeight($height)
     {
         $this->height = $height;
+
         return $this;
     }
 
@@ -161,11 +167,13 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param array|null $mediaTranslations
+     *
      * @return MediumInterface
      */
     public function setMediaTranslations($mediaTranslations)
     {
         $this->mediaTranslations = $mediaTranslations;
+
         return $this;
     }
 
@@ -179,11 +187,13 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param int|null $sortOrder
+     *
      * @return MediumInterface
      */
     public function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
         return $this;
     }
 
@@ -197,11 +207,13 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $thumbnail
+     *
      * @return MediumInterface
      */
     public function setThumbnail($thumbnail)
     {
         $this->thumbnail = $thumbnail;
+
         return $this;
     }
 
@@ -215,11 +227,13 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $thumbnailHeight
+     *
      * @return MediumInterface
      */
     public function setThumbnailHeight($thumbnailHeight)
     {
         $this->thumbnailHeight = $thumbnailHeight;
+
         return $this;
     }
 
@@ -233,11 +247,13 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $thumbnailWidth
+     *
      * @return MediumInterface
      */
     public function setThumbnailWidth($thumbnailWidth)
     {
         $this->thumbnailWidth = $thumbnailWidth;
+
         return $this;
     }
 
@@ -251,11 +267,13 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $url
+     *
      * @return MediumInterface
      */
     public function setUrl($url)
     {
         $this->url = $url;
+
         return $this;
     }
 
@@ -269,11 +287,13 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param null|string $width
+     *
      * @return MediumInterface
      */
     public function setWidth($width)
     {
         $this->width = $width;
+
         return $this;
     }
 
@@ -287,11 +307,13 @@ class Medium extends AbstractEntity implements MediumInterface
 
     /**
      * @param ArrayCollection|Product[] $products
+     *
      * @return MediumInterface
      */
     public function setProducts($products)
     {
         $this->products = $products;
+
         return $this;
     }
 }

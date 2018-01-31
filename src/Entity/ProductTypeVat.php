@@ -67,16 +67,18 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return ProductTypeVatInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -90,11 +92,13 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param null|string $country
+     *
      * @return ProductTypeVatInterface
      */
     public function setCountry($country)
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -108,11 +112,13 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param int|null $countryId
+     *
      * @return ProductTypeVatInterface
      */
     public function setCountryId($countryId)
     {
         $this->countryId = $countryId;
+
         return $this;
     }
 
@@ -126,11 +132,13 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param int|null $siteId
+     *
      * @return ProductTypeVatInterface
      */
     public function setSiteId($siteId)
     {
         $this->siteId = $siteId;
+
         return $this;
     }
 
@@ -144,11 +152,13 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param null|string $vatPct
+     *
      * @return ProductTypeVatInterface
      */
     public function setVatPct($vatPct)
     {
         $this->vatPct = $vatPct;
+
         return $this;
     }
 
@@ -162,11 +172,13 @@ class ProductTypeVat extends AbstractEntity implements ProductTypeVatInterface
 
     /**
      * @param ArrayCollection|ProductType[] $productTypes
+     *
      * @return ProductTypeVatInterface
      */
     public function setProductTypes($productTypes)
     {
         $this->productTypes = $productTypes;
+
         return $this;
     }
 }

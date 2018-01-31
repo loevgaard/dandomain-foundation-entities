@@ -16,7 +16,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
     use ManufacturerTrait;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -70,7 +70,7 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     public function __toString()
     {
-        return (string)$this->name;
+        return (string) $this->name;
     }
 
     /**
@@ -78,16 +78,18 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return ManufacturerInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -96,16 +98,18 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
      */
     public function getExternalId(): string
     {
-        return (string)$this->externalId;
+        return (string) $this->externalId;
     }
 
     /**
      * @param string $externalId
+     *
      * @return ManufacturerInterface
      */
     public function setExternalId(string $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -119,11 +123,13 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param null|string $link
+     *
      * @return ManufacturerInterface
      */
     public function setLink($link)
     {
         $this->link = $link;
+
         return $this;
     }
 
@@ -137,11 +143,13 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param null|string $linkText
+     *
      * @return ManufacturerInterface
      */
     public function setLinkText($linkText)
     {
         $this->linkText = $linkText;
+
         return $this;
     }
 
@@ -155,11 +163,13 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param null|string $name
+     *
      * @return ManufacturerInterface
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -173,11 +183,13 @@ class Manufacturer extends AbstractEntity implements ManufacturerInterface
 
     /**
      * @param ArrayCollection|Product[] $products
+     *
      * @return ManufacturerInterface
      */
     public function setProducts($products)
     {
         $this->products = $products;
+
         return $this;
     }
 }

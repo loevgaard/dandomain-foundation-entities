@@ -1,4 +1,5 @@
 <?php
+
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -32,11 +33,13 @@ class TagValueTranslation implements TagValueTranslationInterface
 
     /**
      * @param null|string $text
+     *
      * @return TagValueTranslation
      */
     public function setText(?string $text)
     {
         $this->text = $text;
+
         return $this;
     }
 }

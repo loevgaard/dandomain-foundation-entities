@@ -15,7 +15,7 @@ class State extends AbstractEntity implements StateInterface
     use StateTrait;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -57,7 +57,7 @@ class State extends AbstractEntity implements StateInterface
 
     public function __toString()
     {
-        return (string)$this->name;
+        return (string) $this->name;
     }
 
     /**
@@ -65,16 +65,18 @@ class State extends AbstractEntity implements StateInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return StateInterface
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -83,16 +85,18 @@ class State extends AbstractEntity implements StateInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return StateInterface
      */
     public function setExternalId($externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -106,11 +110,13 @@ class State extends AbstractEntity implements StateInterface
 
     /**
      * @param bool|null $exclStatistics
+     *
      * @return StateInterface
      */
     public function setExclStatistics($exclStatistics)
     {
         $this->exclStatistics = $exclStatistics;
+
         return $this;
     }
 
@@ -124,11 +130,13 @@ class State extends AbstractEntity implements StateInterface
 
     /**
      * @param bool|null $isDefault
+     *
      * @return StateInterface
      */
     public function setIsDefault($isDefault)
     {
         $this->isDefault = $isDefault;
+
         return $this;
     }
 
@@ -142,11 +150,13 @@ class State extends AbstractEntity implements StateInterface
 
     /**
      * @param null|string $name
+     *
      * @return StateInterface
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 }

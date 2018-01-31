@@ -20,7 +20,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     protected $hydrateConversions = [
         'id' => 'externalId',
-        'productId' => 'productNumber'
+        'productId' => 'productNumber',
     ];
 
     /**
@@ -68,7 +68,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     protected $quantity;
 
     /**
-     * This number is excl vat
+     * This number is excl vat.
      *
      * @var int|null
      *
@@ -77,7 +77,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     protected $unitPrice;
 
     /**
-     * This number is excl vat
+     * This number is excl vat.
      *
      * @var int|null
      *
@@ -142,11 +142,11 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     }
 
     /**
-     * This method copies properties from $orderLine onto this order line
+     * This method copies properties from $orderLine onto this order line.
      *
      * @param OrderLineInterface $orderLine
      */
-    public function copyProperties(OrderLineInterface $orderLine) : void
+    public function copyProperties(OrderLineInterface $orderLine): void
     {
         $this->setExternalId($orderLine->getExternalId());
         $this->setFileUrl($orderLine->getFileUrl());
@@ -165,7 +165,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     /*
      * Helper methods
      */
-    public function getUnitPriceInclVat() : ?Money
+    public function getUnitPriceInclVat(): ?Money
     {
         $unitPrice = $this->getUnitPrice();
         if (!$unitPrice) {
@@ -174,15 +174,15 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
         $multiplier = BigDecimal::of('100')->plus($this->vatPct)->exactlyDividedBy('100');
 
-        return $unitPrice->multiply((string)$multiplier);
+        return $unitPrice->multiply((string) $multiplier);
     }
 
-    public function getUnitPriceExclVat() : ?Money
+    public function getUnitPriceExclVat(): ?Money
     {
         return $this->getUnitPrice();
     }
 
-    public function getTotalPriceInclVat() : ?Money
+    public function getTotalPriceInclVat(): ?Money
     {
         $totalPrice = $this->getTotalPrice();
         if (!$totalPrice) {
@@ -191,10 +191,10 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
         $multiplier = BigDecimal::of('100')->plus($this->vatPct)->exactlyDividedBy('100');
 
-        return $totalPrice->multiply((string)$multiplier);
+        return $totalPrice->multiply((string) $multiplier);
     }
 
-    public function getTotalPriceExclVat() : ?Money
+    public function getTotalPriceExclVat(): ?Money
     {
         return $this->getTotalPrice();
     }
@@ -204,16 +204,18 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return OrderLineInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -222,16 +224,18 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return OrderLineInterface
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -245,11 +249,13 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param null|string $fileUrl
+     *
      * @return OrderLineInterface
      */
     public function setFileUrl($fileUrl)
     {
         $this->fileUrl = $fileUrl;
+
         return $this;
     }
 
@@ -263,11 +269,13 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param int|null $productNumber
+     *
      * @return OrderLineInterface
      */
     public function setProductNumber($productNumber)
     {
         $this->productNumber = $productNumber;
+
         return $this;
     }
 
@@ -281,11 +289,13 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param null|string $productName
+     *
      * @return OrderLineInterface
      */
     public function setProductName($productName)
     {
         $this->productName = $productName;
+
         return $this;
     }
 
@@ -299,11 +309,13 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param int|null $quantity
+     *
      * @return OrderLineInterface
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -312,11 +324,12 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
      */
     public function getTotalPrice()
     {
-        return DandomainFoundation\createMoney($this->getCurrencyCode(), (int)$this->totalPrice);
+        return DandomainFoundation\createMoney($this->getCurrencyCode(), (int) $this->totalPrice);
     }
 
     /**
      * @param Money|null $totalPrice
+     *
      * @return OrderLineInterface
      */
     public function setTotalPrice(Money $totalPrice = null)
@@ -331,16 +344,18 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
      */
     public function getUnitPrice()
     {
-        return DandomainFoundation\createMoney($this->getCurrencyCode(), (int)$this->unitPrice);
+        return DandomainFoundation\createMoney($this->getCurrencyCode(), (int) $this->unitPrice);
     }
 
     /**
      * @param Money|null $unitPrice
+     *
      * @return OrderLineInterface
      */
     public function setUnitPrice(Money $unitPrice = null)
     {
         $this->unitPrice = $unitPrice ? $unitPrice->getAmount() : $unitPrice;
+
         return $this;
     }
 
@@ -354,11 +369,13 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param float|null $vatPct
+     *
      * @return OrderLineInterface
      */
     public function setVatPct($vatPct)
     {
         $this->vatPct = $vatPct;
+
         return $this;
     }
 
@@ -372,11 +389,13 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param null|string $variant
+     *
      * @return OrderLineInterface
      */
     public function setVariant($variant)
     {
         $this->variant = $variant;
+
         return $this;
     }
 
@@ -390,11 +409,13 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param null|string $xmlParams
+     *
      * @return OrderLineInterface
      */
     public function setXmlParams($xmlParams)
     {
         $this->xmlParams = $xmlParams;
+
         return $this;
     }
 
@@ -408,11 +429,13 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param Order|null $order
+     *
      * @return OrderLineInterface
      */
     public function setOrder(?Order $order)
     {
         $this->order = $order;
+
         return $this;
     }
 
@@ -426,15 +449,17 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
 
     /**
      * @param ProductInterface|null $product
+     *
      * @return OrderLineInterface
      */
     public function setProduct(ProductInterface $product = null)
     {
         $this->product = $product;
+
         return $this;
     }
 
-    protected function getCurrencyCode() : string
+    protected function getCurrencyCode(): string
     {
         return $this->getOrder()->getCurrency()->getIsoCodeAlpha();
     }

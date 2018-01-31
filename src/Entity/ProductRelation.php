@@ -57,16 +57,18 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return ProductRelationInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -80,11 +82,13 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
 
     /**
      * @param int|null $productNumber
+     *
      * @return ProductRelationInterface
      */
     public function setProductNumber($productNumber)
     {
         $this->productNumber = $productNumber;
+
         return $this;
     }
 
@@ -98,11 +102,13 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
 
     /**
      * @param int|null $relatedType
+     *
      * @return ProductRelationInterface
      */
     public function setRelatedType($relatedType)
     {
         $this->relatedType = $relatedType;
+
         return $this;
     }
 
@@ -116,11 +122,13 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
 
     /**
      * @param int|null $sortOrder
+     *
      * @return ProductRelationInterface
      */
     public function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
         return $this;
     }
 
@@ -134,11 +142,13 @@ class ProductRelation extends AbstractEntity implements ProductRelationInterface
 
     /**
      * @param ArrayCollection|Product[] $products
+     *
      * @return ProductRelationInterface
      */
     public function setProducts($products)
     {
         $this->products = $products;
+
         return $this;
     }
 }

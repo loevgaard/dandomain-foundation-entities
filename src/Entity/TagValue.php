@@ -1,4 +1,5 @@
 <?php
+
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -11,6 +12,7 @@ use Loevgaard\DandomainFoundation\Entity\Generated\TagValueTranslationInterface;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ldf_tag_values")
+ *
  * @method TagValueTranslationInterface translate(string $locale = null, bool $fallbackToDefault = true)
  */
 class TagValue extends AbstractEntity implements TagValueInterface
@@ -54,16 +56,18 @@ class TagValue extends AbstractEntity implements TagValueInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return TagValue
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -72,16 +76,18 @@ class TagValue extends AbstractEntity implements TagValueInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return TagValue
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -95,13 +101,16 @@ class TagValue extends AbstractEntity implements TagValueInterface
 
     /**
      * @param int|null $sortOrder
+     *
      * @return TagValue
      */
     public function setSortOrder(?int $sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
         return $this;
     }
+
     /**
      * @return TagInterface
      */
@@ -112,11 +121,13 @@ class TagValue extends AbstractEntity implements TagValueInterface
 
     /**
      * @param TagInterface $tag
+     *
      * @return TagValueInterface
      */
     public function setTag(?TagInterface $tag)
     {
         $this->tag = $tag;
+
         return $this;
     }
 }

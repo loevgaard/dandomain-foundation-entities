@@ -133,16 +133,18 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return CategoryTranslationInterface
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -156,11 +158,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $categoryNumber
+     *
      * @return CategoryTranslationInterface
      */
     public function setCategoryNumber(?string $categoryNumber)
     {
         $this->categoryNumber = $categoryNumber;
+
         return $this;
     }
 
@@ -174,11 +178,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $description
+     *
      * @return CategoryTranslationInterface
      */
     public function setDescription(?string $description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -192,11 +198,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param bool|null $hidden
+     *
      * @return CategoryTranslationInterface
      */
     public function setHidden(?bool $hidden)
     {
         $this->hidden = $hidden;
+
         return $this;
     }
 
@@ -210,11 +218,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param bool|null $hiddenMobile
+     *
      * @return CategoryTranslationInterface
      */
     public function setHiddenMobile(?bool $hiddenMobile)
     {
         $this->hiddenMobile = $hiddenMobile;
+
         return $this;
     }
 
@@ -228,11 +238,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $icon
+     *
      * @return CategoryTranslationInterface
      */
     public function setIcon(?string $icon)
     {
         $this->icon = $icon;
+
         return $this;
     }
 
@@ -246,11 +258,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $image
+     *
      * @return CategoryTranslationInterface
      */
     public function setImage(?string $image)
     {
         $this->image = $image;
+
         return $this;
     }
 
@@ -264,11 +278,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $keywords
+     *
      * @return CategoryTranslationInterface
      */
     public function setKeywords(?string $keywords)
     {
         $this->keywords = $keywords;
+
         return $this;
     }
 
@@ -282,11 +298,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $link
+     *
      * @return CategoryTranslationInterface
      */
     public function setLink(?string $link)
     {
         $this->link = $link;
+
         return $this;
     }
 
@@ -300,11 +318,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $metaDescription
+     *
      * @return CategoryTranslationInterface
      */
     public function setMetaDescription(?string $metaDescription)
     {
         $this->metaDescription = $metaDescription;
+
         return $this;
     }
 
@@ -318,11 +338,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $name
+     *
      * @return CategoryTranslationInterface
      */
     public function setName(?string $name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -336,11 +358,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param int|null $siteId
+     *
      * @return CategoryTranslationInterface
      */
     public function setSiteId(?int $siteId)
     {
         $this->siteId = $siteId;
+
         return $this;
     }
 
@@ -354,11 +378,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param int|null $sortOrder
+     *
      * @return CategoryTranslationInterface
      */
     public function setSortOrder(?int $sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
         return $this;
     }
 
@@ -372,11 +398,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $string
+     *
      * @return CategoryTranslationInterface
      */
     public function setString(?string $string)
     {
         $this->string = $string;
+
         return $this;
     }
 
@@ -390,11 +418,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $title
+     *
      * @return CategoryTranslationInterface
      */
     public function setTitle(?string $title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -408,11 +438,13 @@ class CategoryTranslation extends AbstractEntity implements CategoryTranslationI
 
     /**
      * @param null|string $urlName
+     *
      * @return CategoryTranslationInterface
      */
     public function setUrlName(?string $urlName)
     {
         $this->urlName = $urlName;
+
         return $this;
     }
 }

@@ -16,7 +16,7 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
     use VariantGroupTrait;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -107,16 +107,18 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return VariantGroupInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -125,16 +127,18 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
      */
     public function getExternalId(): int
     {
-        return (int)$this->externalId;
+        return (int) $this->externalId;
     }
 
     /**
      * @param int $externalId
+     *
      * @return VariantGroupInterface
      */
     public function setExternalId(int $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -148,11 +152,13 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param null|string $groupName
+     *
      * @return VariantGroupInterface
      */
     public function setGroupName($groupName)
     {
         $this->groupName = $groupName;
+
         return $this;
     }
 
@@ -166,11 +172,13 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param null|string $headline
+     *
      * @return VariantGroupInterface
      */
     public function setHeadline($headline)
     {
         $this->headline = $headline;
+
         return $this;
     }
 
@@ -184,11 +192,13 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param null|string $selectText
+     *
      * @return VariantGroupInterface
      */
     public function setSelectText($selectText)
     {
         $this->selectText = $selectText;
+
         return $this;
     }
 
@@ -202,11 +212,13 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param int|null $siteId
+     *
      * @return VariantGroupInterface
      */
     public function setSiteId($siteId)
     {
         $this->siteId = $siteId;
+
         return $this;
     }
 
@@ -220,11 +232,13 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param int|null $sortOrder
+     *
      * @return VariantGroupInterface
      */
     public function setSortOrder($sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
         return $this;
     }
 
@@ -238,11 +252,13 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param null|string $text
+     *
      * @return VariantGroupInterface
      */
     public function setText($text)
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -256,11 +272,13 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param int|null $variantType
+     *
      * @return VariantGroupInterface
      */
     public function setVariantType($variantType)
     {
         $this->variantType = $variantType;
+
         return $this;
     }
 
@@ -274,11 +292,13 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param ArrayCollection|Product[] $products
+     *
      * @return VariantGroupInterface
      */
     public function setProducts($products)
     {
         $this->products = $products;
+
         return $this;
     }
 
@@ -292,11 +312,13 @@ class VariantGroup extends AbstractEntity implements VariantGroupInterface
 
     /**
      * @param ArrayCollection|Variant[] $variants
+     *
      * @return VariantGroupInterface
      */
     public function setVariants($variants)
     {
         $this->variants = $variants;
+
         return $this;
     }
 }

@@ -16,7 +16,7 @@ class Segment extends AbstractEntity implements SegmentInterface
     use SegmentTrait;
 
     protected $hydrateConversions = [
-        'id' => 'externalId'
+        'id' => 'externalId',
     ];
 
     /**
@@ -61,16 +61,18 @@ class Segment extends AbstractEntity implements SegmentInterface
      */
     public function getId(): int
     {
-        return (int)$this->id;
+        return (int) $this->id;
     }
 
     /**
      * @param int $id
+     *
      * @return SegmentInterface
      */
     public function setId(int $id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -79,16 +81,18 @@ class Segment extends AbstractEntity implements SegmentInterface
      */
     public function getExternalId(): string
     {
-        return (string)$this->externalId;
+        return (string) $this->externalId;
     }
 
     /**
      * @param string $externalId
+     *
      * @return SegmentInterface
      */
     public function setExternalId(string $externalId)
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 
@@ -102,11 +106,13 @@ class Segment extends AbstractEntity implements SegmentInterface
 
     /**
      * @param ArrayCollection|Category[] $categories
+     *
      * @return SegmentInterface
      */
     public function setCategories($categories)
     {
         $this->categories = $categories;
+
         return $this;
     }
 
@@ -120,11 +126,13 @@ class Segment extends AbstractEntity implements SegmentInterface
 
     /**
      * @param ArrayCollection|Product[] $products
+     *
      * @return SegmentInterface
      */
     public function setProducts($products)
     {
         $this->products = $products;
+
         return $this;
     }
 
@@ -138,11 +146,13 @@ class Segment extends AbstractEntity implements SegmentInterface
 
     /**
      * @param array $segmentOptions
+     *
      * @return SegmentInterface
      */
     public function setSegmentOptions(array $segmentOptions)
     {
         $this->segmentOptions = $segmentOptions;
+
         return $this;
     }
 }

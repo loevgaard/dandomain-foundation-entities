@@ -9,9 +9,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method null|VariantGroupInterface find($id)
- * @method VariantGroupInterface[] findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
+ * @method VariantGroupInterface[]    findBy(array $criteria, array $orderBy = null, int $limit = null, int $offset = null)
  * @method null|VariantGroupInterface findOneBy(array $criteria)
- * @method VariantGroupInterface[] findAll()
+ * @method VariantGroupInterface[]    findAll()
  */
 class VariantGroupRepository extends AbstractRepository
 {

@@ -2,9 +2,9 @@
 
 namespace Loevgaard\DandomainFoundation\Entity;
 
+use PHPUnit\Framework\TestCase;
 use function Loevgaard\DandomainFoundation\createMoney;
 use function Loevgaard\DandomainFoundation\createMoneyFromFloat;
-use PHPUnit\Framework\TestCase;
 
 final class FunctionsTest extends TestCase
 {

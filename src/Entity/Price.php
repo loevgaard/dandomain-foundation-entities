@@ -6,11 +6,11 @@ use Assert\Assert;
 use Brick\Math\BigDecimal;
 use Doctrine\ORM\Mapping as ORM;
 use Loevgaard\DandomainFoundation;
-use Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
-use Loevgaard\DandomainFoundation\Entity\Generated\PeriodInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\CurrencyInterface;
+use Loevgaard\DandomainFoundation\Entity\Generated\PeriodInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\PriceInterface;
 use Loevgaard\DandomainFoundation\Entity\Generated\PriceTrait;
+use Loevgaard\DandomainFoundation\Entity\Generated\ProductInterface;
 use Money\Money;
 
 /**
@@ -166,7 +166,7 @@ class Price extends AbstractEntity implements PriceInterface
     {
         $unitPrice = $this->getUnitPrice();
 
-        if(!$unitPrice) {
+        if (!$unitPrice) {
             return null;
         }
 
@@ -179,7 +179,7 @@ class Price extends AbstractEntity implements PriceInterface
     {
         $specialOfferPrice = $this->getSpecialOfferPrice();
 
-        if(!$specialOfferPrice) {
+        if (!$specialOfferPrice) {
             return null;
         }
 
@@ -283,7 +283,7 @@ class Price extends AbstractEntity implements PriceInterface
      */
     public function getSpecialOfferPrice() : ?Money
     {
-        if(!$this->currency) {
+        if (!$this->currency) {
             return null;
         }
         return DandomainFoundation\createMoney($this->currency->getIsoCodeAlpha(), (int)$this->specialOfferPrice);
@@ -306,7 +306,7 @@ class Price extends AbstractEntity implements PriceInterface
      */
     public function getUnitPrice() : ?Money
     {
-        if(!$this->currency) {
+        if (!$this->currency) {
             return null;
         }
         return DandomainFoundation\createMoney($this->currency->getIsoCodeAlpha(), (int)$this->unitPrice);

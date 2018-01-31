@@ -81,8 +81,10 @@ class ProductRepository extends AbstractRepository
             if (!isset($variantMasterIdCache[$product->getVariantMasterId()])) {
                 try {
                     /** @var ProductInterface $parent */
-                    $parent = $innerQb->setParameter('number',
-                        $product->getVariantMasterId())->getQuery()->getSingleResult();
+                    $parent = $innerQb->setParameter(
+                        'number',
+                        $product->getVariantMasterId()
+                    )->getQuery()->getSingleResult();
                     $parent = $parent->getId();
                 } catch (UnexpectedResultException $e) {
                     $parent = null;

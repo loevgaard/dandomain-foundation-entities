@@ -435,7 +435,7 @@ class Product extends AbstractEntity implements ProductInterface
             Assert::that($this->isDeleted())->true('The external id can only be null if the product is marked as deleted', 'externalId');
         }
 
-        if(!$this->priceLess) {
+        if (!$this->priceLess) {
             Assert::that($this->prices->count())->greaterThan(0, 'When the product is not "price less" the product needs to have at least one price');
         }
     }
@@ -532,7 +532,7 @@ class Product extends AbstractEntity implements ProductInterface
 
     public function addPrice(PriceInterface $price) : ProductInterface
     {
-        if(!$this->prices->contains($price)) {
+        if (!$this->prices->contains($price)) {
             $this->prices->add($price);
             $price->setProduct($this);
         }
@@ -551,7 +551,7 @@ class Product extends AbstractEntity implements ProductInterface
         foreach ($prices as $price) {
             $existingPrice = $this->findPrice($price);
 
-            if($existingPrice) {
+            if ($existingPrice) {
                 $existingPrice->copyProperties($price);
                 $existingPrice->setProduct($this);
                 $finalPrices[] = $existingPrice;
@@ -563,7 +563,7 @@ class Product extends AbstractEntity implements ProductInterface
         }
 
         foreach ($this->prices as $price) {
-            if(!in_array($price, $finalPrices, true)) {
+            if (!in_array($price, $finalPrices, true)) {
                 $this->removePrice($price);
             }
         }
@@ -576,23 +576,6 @@ class Product extends AbstractEntity implements ProductInterface
     }
 
     /**
-     * This method will try to find a price based on the unique constraint defined in price
-     *
-     * @param PriceInterface $searchPrice
-     * @return PriceInterface|null
-     */
-    protected function findPrice(PriceInterface $searchPrice) : ?PriceInterface
-    {
-        foreach ($this->prices as $price) {
-            if($price->getAmount() == $searchPrice->getAmount() && $price->getB2bGroupId() == $searchPrice->getB2bGroupId() && $price->getCurrency()->getId() == $searchPrice->getCurrency()->getId()) {
-                return $price;
-            }
-        }
-
-        return null;
-    }
-
-    /**
      * Will try to find a price based on currency
      *
      * @param string|\Money\Currency|CurrencyInterface $currency
@@ -600,18 +583,18 @@ class Product extends AbstractEntity implements ProductInterface
      */
     public function findPriceByCurrency($currency) : ?PriceInterface
     {
-        if($currency instanceof \Money\Currency) {
+        if ($currency instanceof \Money\Currency) {
             $currency = $currency->getCode();
         } elseif ($currency instanceof CurrencyInterface) {
             $currency = $currency->getIsoCodeAlpha();
         }
 
-        if(!is_string($currency)) {
+        if (!is_string($currency)) {
             throw new \InvalidArgumentException('$currency has to be a string');
         }
 
         foreach ($this->prices as $price) {
-            if($price->getCurrency()->getIsoCodeAlpha() === $currency) {
+            if ($price->getCurrency()->getIsoCodeAlpha() === $currency) {
                 return $price;
             }
         }
@@ -1592,5 +1575,22 @@ class Product extends AbstractEntity implements ProductInterface
     {
         $this->children = $children;
         return $this;
+    }
+
+    /**
+     * This method will try to find a price based on the unique constraint defined in price
+     *
+     * @param PriceInterface $searchPrice
+     * @return PriceInterface|null
+     */
+    protected function findPrice(PriceInterface $searchPrice) : ?PriceInterface
+    {
+        foreach ($this->prices as $price) {
+            if ($price->getAmount() == $searchPrice->getAmount() && $price->getB2bGroupId() == $searchPrice->getB2bGroupId() && $price->getCurrency()->getId() == $searchPrice->getCurrency()->getId()) {
+                return $price;
+            }
+        }
+
+        return null;
     }
 }

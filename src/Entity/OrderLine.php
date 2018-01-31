@@ -141,6 +141,27 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
         parent::hydrate($data, $useConversions, $scalarsOnly);
     }
 
+    /**
+     * This method copies properties from $orderLine onto this order line
+     *
+     * @param OrderLineInterface $orderLine
+     */
+    public function copyProperties(OrderLineInterface $orderLine) : void
+    {
+        $this->setExternalId($orderLine->getExternalId());
+        $this->setFileUrl($orderLine->getFileUrl());
+        $this->setProductNumber($orderLine->getProductNumber());
+        $this->setProductName($orderLine->getProductName());
+        $this->setQuantity($orderLine->getQuantity());
+        $this->setUnitPrice($orderLine->getUnitPrice());
+        $this->setTotalPrice($orderLine->getTotalPrice());
+        $this->setVatPct($orderLine->getVatPct());
+        $this->setVariant($orderLine->getVariant());
+        $this->setXmlParams($orderLine->getXmlParams());
+        $this->setOrder($orderLine->getOrder());
+        $this->setProduct($orderLine->getProduct());
+    }
+
     /*
      * Helper methods
      */
@@ -389,7 +410,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
      * @param Order|null $order
      * @return OrderLineInterface
      */
-    public function setOrder(Order $order)
+    public function setOrder(?Order $order)
     {
         $this->order = $order;
         return $this;

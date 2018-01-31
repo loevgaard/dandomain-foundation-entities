@@ -80,7 +80,7 @@ class Order extends AbstractEntity implements OrderInterface
     protected $invoice;
 
     /**
-     * @var OrderLine[]|ArrayCollection
+     * @var OrderLineInterface[]|ArrayCollection
      *
      * @ORM\OneToMany(mappedBy="order", targetEntity="OrderLine", cascade={"persist", "remove"}, orphanRemoval=true)
      */
@@ -434,6 +434,7 @@ class Order extends AbstractEntity implements OrderInterface
 
     public function removeOrderLine(OrderLineInterface $orderLine) : OrderInterface
     {
+        $orderLine->setOrder(null);
         $this->orderLines->removeElement($orderLine);
 
         return $this;
@@ -442,10 +443,38 @@ class Order extends AbstractEntity implements OrderInterface
     public function clearOrderLines() : OrderInterface
     {
         foreach ($this->orderLines as $orderLine) {
-            $this->removeOrderLine($orderLine);
+            $orderLine->setOrder(null);
         }
 
+        $this->orderLines->clear();
+
         return $this;
+    }
+
+    /**
+     * @param OrderLineInterface[] $orderLines
+     */
+    public function updateOrderLines(array $orderLines) : void
+    {
+        // this holds the final array of order lines, whether updated or added
+        $final = [];
+        foreach ($orderLines as $orderLine) {
+            $existing = $this->findOrderLine($orderLine);
+            if ($existing) {
+                $existing->copyProperties($orderLine);
+                $existing->setOrder($this);
+                $final[] = $existing;
+            } else {
+                $this->addOrderLine($orderLine);
+                $final[] = $orderLine;
+            }
+        }
+        
+        foreach ($this->orderLines as $orderLine) {
+            if (!in_array($orderLine, $final, true)) {
+                $this->removeOrderLine($orderLine);
+            }
+        }
     }
 
     /*
@@ -1140,6 +1169,17 @@ class Order extends AbstractEntity implements OrderInterface
         return $this;
     }
 
+    protected function findOrderLine(OrderLineInterface $orderLine) : ?OrderLineInterface
+    {
+        foreach ($this->orderLines as $ol) {
+            if ($orderLine->getExternalId() === $ol->getExternalId()) {
+                return $ol;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * A helper method for creating a Money object from a float based on the shared currency
      *
@@ -1148,7 +1188,7 @@ class Order extends AbstractEntity implements OrderInterface
      */
     private function createMoney(int $amount = 0) : ?Money
     {
-        if(!$this->currency) {
+        if (!$this->currency) {
             return null;
         }
 

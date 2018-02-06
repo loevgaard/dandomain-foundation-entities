@@ -104,32 +104,45 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
         $this->options = [];
 
         if($options['iterate']) {
-            $em = $this->getEntityManager();
-
-            $result = $qb->getQuery()->iterate();
-            $i = 1;
-            foreach ($result as $item) {
-                $obj = $item[0];
-                yield $obj;
-
-                if ($options['update']) {
-                    if (0 == $i % $options['bulkSize']) {
-                        $em->flush();
-                        $em->clear();
-                    }
-                } else {
-                    $em->detach($obj);
-                }
-
-                ++$i;
-            }
-
-            if ($options['update']) {
-                $em->flush();
-                $em->clear();
-            }
+            return $this->generator($qb, $options);
         } else {
             return $qb->getQuery()->getResult();
+        }
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param array $options
+     * @return \Generator
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    protected function generator(QueryBuilder $qb, array $options) : \Generator
+    {
+        $em = $this->getEntityManager();
+
+        $result = $qb->getQuery()->iterate();
+        $i = 1;
+        foreach ($result as $item) {
+            $obj = $item[0];
+            yield $obj;
+
+            if ($options['update']) {
+                if (0 == $i % $options['bulkSize']) {
+                    $em->flush();
+                    $em->clear();
+                }
+            } else {
+                $em->detach($obj);
+            }
+
+            ++$i;
+        }
+
+        if ($options['update']) {
+            $em->flush();
+            $em->clear();
         }
     }
 

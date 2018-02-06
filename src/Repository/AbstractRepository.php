@@ -126,6 +126,7 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
 
             if ($options['update']) {
                 $em->flush();
+                $em->clear();
             }
         } else {
             return $qb->getQuery()->getResult();

@@ -3,6 +3,8 @@
 namespace Loevgaard\DandomainFoundation\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 use Loevgaard\DandomainDateTime\DateTimeImmutable;
 use Loevgaard\DandomainFoundation\Repository\Generated\AbstractRepositoryTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,8 +14,20 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
     use AbstractRepositoryTrait;
 
     /**
-     * @param $entity
-     *
+     * @var array
+     */
+    protected $options;
+
+    public function __construct(ManagerRegistry $registry, string $entityClass)
+    {
+        $this->options = [];
+
+        parent::__construct($registry, $entityClass);
+    }
+
+    /**
+     * @param object $entity
+     * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save($entity)
@@ -24,42 +38,17 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
 
     /**
      * @param array $options
-     *
      * @return \Generator
-     *
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function iterate(array $options = []): \Generator
     {
-        $resolver = new OptionsResolver();
-        $this->configureIterateOptions($resolver);
-        $options = $resolver->resolve($options);
+        $options['iterate'] = true;
+        $this->setOptions($options);
 
-        $em = $this->getEntityManager();
-
-        $qb = $this->createQueryBuilder('c');
-
-        $result = $qb->getQuery()->iterate();
-        $i = 1;
-        foreach ($result as $item) {
-            $obj = $item[0];
-            yield $obj;
-
-            if ($options['update']) {
-                if (0 == $i % $options['bulkSize']) {
-                    $em->flush();
-                    $em->clear();
-                }
-            } else {
-                $em->detach($obj);
-            }
-
-            ++$i;
-        }
-
-        if ($options['update']) {
-            $em->flush();
-        }
+        return $this->result($this->createQueryBuilder('c'));
     }
 
     /**
@@ -98,6 +87,54 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
         $qb->getQuery()->execute();
     }
 
+    /**
+     * @param QueryBuilder $qb
+     * @return \Generator|mixed
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    protected function result(QueryBuilder $qb)
+    {
+        $resolver = new OptionsResolver();
+        $this->configureOptions($resolver);
+        $options = $resolver->resolve($this->options);
+
+        // reset options
+        $this->options = [];
+
+        if($options['iterate']) {
+            $em = $this->getEntityManager();
+
+            $result = $qb->getQuery()->iterate();
+            $i = 1;
+            foreach ($result as $item) {
+                $obj = $item[0];
+                yield $obj;
+
+                if ($options['update']) {
+                    if (0 == $i % $options['bulkSize']) {
+                        $em->flush();
+                        $em->clear();
+                    }
+                } else {
+                    $em->detach($obj);
+                }
+
+                ++$i;
+            }
+
+            if ($options['update']) {
+                $em->flush();
+            }
+        } else {
+            return $qb->getQuery()->getResult();
+        }
+    }
+
+    /**
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     */
     public function clearAll()
     {
         $this->getEntityManager()->clear();
@@ -113,6 +150,16 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
     public function getReference($id)
     {
         return $this->getEntityManager()->getReference($this->getClassName(), $id);
+    }
+
+    /**
+     * @param array $options
+     * @return AbstractRepository
+     */
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+        return $this;
     }
 
     /**
@@ -133,10 +180,11 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
         return $obj;
     }
 
-    protected function configureIterateOptions(OptionsResolver $resolver)
+    protected function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'update' => true,
+            'iterate' => false,
+            'update' => false,
             'bulkSize' => 50,
         ]);
     }

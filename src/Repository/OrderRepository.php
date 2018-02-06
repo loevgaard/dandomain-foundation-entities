@@ -29,4 +29,22 @@ class OrderRepository extends AbstractRepository
 
         return $obj;
     }
+
+    /**
+     * @param \DateTimeInterface $start
+     * @param \DateTimeInterface $end
+     * @return OrderInterface[]
+     */
+    public function findByInterval(\DateTimeInterface $start, \DateTimeInterface $end)
+    {
+        $qb = $this->createQueryBuilder('o');
+        $qb->where($qb->expr()->between('o.createdAt', ':start', ':end'))
+            ->setParameters([
+                'start' => $start,
+                'end' => $end
+            ])
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

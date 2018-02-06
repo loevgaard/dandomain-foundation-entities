@@ -433,14 +433,14 @@ class Product extends AbstractEntity implements ProductInterface
         Assert::that($this->number)
             ->string('The number needs to be string', 'number')
             ->maxLength(191, 'The number must have a max length of 191');
-        Assert::thatNullOr($this->externalId)->integer('The external id can only be null or an integer', 'externalId');
+        Assert::thatNullOr($this->externalId)->integer('['.$this->number.'] The external id can only be null or an integer', 'externalId');
 
         if (is_null($this->externalId)) {
-            Assert::that($this->isDeleted())->true('The external id can only be null if the product is marked as deleted', 'externalId');
+            Assert::that($this->isDeleted())->true('['.$this->number.'] The external id can only be null if the product is marked as deleted', 'externalId');
         }
 
         if (!$this->priceLess) {
-            Assert::that($this->prices->count())->greaterThan(0, 'When the product is not "price less" the product needs to have at least one price');
+            Assert::that($this->prices->count())->greaterThan(0, '['.$this->number.'] When the product is not "price less" the product needs to have at least one price');
         }
     }
 

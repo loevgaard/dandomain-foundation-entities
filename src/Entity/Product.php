@@ -590,6 +590,15 @@ class Product extends AbstractEntity implements ProductInterface
         return $this->prices->removeElement($price);
     }
 
+    public function clearPrices() : void
+    {
+        foreach ($this->prices as $price) {
+            $price->setProduct(null);
+        }
+
+        $this->prices->clear();
+    }
+
     /**
      * Will try to find a price based on currency.
      *

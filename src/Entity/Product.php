@@ -523,6 +523,11 @@ class Product extends AbstractEntity implements ProductInterface
         return $this->variantGroups->removeElement($variantGroup);
     }
 
+    public function clearVariantGroups() : void
+    {
+        $this->variantGroups->clear();
+    }
+
     public function hasVariantGroup($variantGroup): bool
     {
         if ($variantGroup instanceof VariantGroupInterface) {

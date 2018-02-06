@@ -25,7 +25,10 @@ use Loevgaard\DandomainFoundation\Entity\Generated\VariantInterface;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ldf_products", indexes={
- *     @ORM\Index(columns={"is_variant_master"})
+ *     @ORM\Index(name="is_variant_master", columns={"is_variant_master"})
+ * }, uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="external_id", columns={"external_id"}),
+ *     @ORM\UniqueConstraint(name="number", columns={"number"})
  * })
  * @ORM\HasLifecycleCallbacks()
  *
@@ -54,7 +57,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=true, unique=true)
+     * @ORM\Column(name="external_id", type="integer", nullable=true)
      */
     protected $externalId;
 
@@ -210,7 +213,7 @@ class Product extends AbstractEntity implements ProductInterface
      *
      * @var string
      *
-     * @ORM\Column(type="string", length=191, unique=true)
+     * @ORM\Column(name="number", type="string", length=191)
      */
     protected $number;
 

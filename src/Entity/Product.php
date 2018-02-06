@@ -509,6 +509,11 @@ class Product extends AbstractEntity implements ProductInterface
         });
     }
 
+    public function clearManufacturers() : void
+    {
+        $this->manufacturers->clear();
+    }
+
     public function addVariantGroup(VariantGroupInterface $variantGroup): ProductInterface
     {
         if (!$this->hasVariantGroup($variantGroup)) {

@@ -25,7 +25,9 @@ use Money\Money;
  * We use the Money library for amounts, and we use a shared currency, namely the property $currencyCode.
  *
  * @ORM\Entity()
- * @ORM\Table(name="ldf_orders")
+ * @ORM\Table(name="ldf_orders", uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="external_id", columns={"external_id"})
+ * })
  */
 class Order extends AbstractEntity implements OrderInterface
 {
@@ -51,7 +53,7 @@ class Order extends AbstractEntity implements OrderInterface
      *
      * @var int
      *
-     * @ORM\Column(type="integer", unique=true)
+     * @ORM\Column(type="integer")
      */
     protected $externalId;
 

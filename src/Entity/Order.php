@@ -685,7 +685,7 @@ class Order extends AbstractEntity implements OrderInterface
     }
 
     /**
-     * @return ArrayCollection|null
+     * @return ArrayCollection|OrderLineInterface[]
      */
     public function getOrderLines()
     {

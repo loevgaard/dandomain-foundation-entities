@@ -26,6 +26,25 @@ abstract class AbstractRepository extends ServiceEntityRepository implements Rep
     }
 
     /**
+     * @param $object
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function persist($object) : void
+    {
+        $this->getEntityManager()->persist($object);
+    }
+
+    /**
+     * @param null|object|array $entity
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function flush($entity = null) : void
+    {
+        $this->getEntityManager()->flush($entity);
+    }
+
+    /**
      * @param object $entity
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException

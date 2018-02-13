@@ -47,7 +47,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     protected $fileUrl;
 
     /**
-     * @var int|null
+     * @var string|null
      *
      * @ORM\Column(nullable=true, type="string", length=191)
      */
@@ -260,7 +260,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
     public function getProductNumber()
     {
@@ -268,7 +268,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     }
 
     /**
-     * @param int|null $productNumber
+     * @param string|null $productNumber
      *
      * @return OrderLineInterface
      */

@@ -512,7 +512,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @return ArrayCollection|Category[]
      */
-    public function getChildrenCategories(): ArrayCollection
+    public function getChildrenCategories()
     {
         return $this->childrenCategories;
     }
@@ -532,7 +532,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @return ArrayCollection|Category[]
      */
-    public function getParentCategories(): ArrayCollection
+    public function getParentCategories()
     {
         return $this->parentCategories;
     }
@@ -552,7 +552,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @return Product[]|ArrayCollection
      */
-    public function getProducts(): ArrayCollection
+    public function getProducts()
     {
         return $this->products;
     }
@@ -572,7 +572,7 @@ class Category extends AbstractEntity implements CategoryInterface
     /**
      * @return ArrayCollection|Segment[]
      */
-    public function getSegments(): ArrayCollection
+    public function getSegments()
     {
         return $this->segments;
     }

@@ -31,4 +31,12 @@ class CategoryRepository extends AbstractRepository
 
         return $obj;
     }
+
+    public function findOneByExternalId(int $externalId): ?CategoryInterface
+    {
+        /** @var CategoryInterface $obj */
+        $obj = $this->_findOneByExternalId($externalId);
+
+        return $obj;
+    }
 }

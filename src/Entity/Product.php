@@ -469,11 +469,37 @@ class Product extends AbstractEntity implements ProductInterface
      */
     public function addCategory(CategoryInterface $category): ProductInterface
     {
-        if (!$this->hasCategory($category)) {
+        if (!$this->categories->contains($category)) {
             $this->categories->add($category);
         }
 
         return $this;
+    }
+
+    /**
+     * @param CategoryInterface[] $categories
+     */
+    public function updateCategories(array $categories): void
+    {
+        // this holds the final array of categories, whether updated or added
+        $final = [];
+
+        foreach ($categories as $category) {
+            $existing = $this->findCategory($category);
+
+            if ($existing) {
+                $final[] = $existing;
+            } else {
+                $this->addCategory($category);
+                $final[] = $category;
+            }
+        }
+
+        foreach ($this->categories as $category) {
+            if (!in_array($category, $final, true)) {
+                $this->removeCategory($category);
+            }
+        }
     }
 
     public function removeCategory(CategoryInterface $category): bool
@@ -481,16 +507,28 @@ class Product extends AbstractEntity implements ProductInterface
         return $this->categories->removeElement($category);
     }
 
-    public function hasCategory(CategoryInterface $category): bool
-    {
-        return $this->categories->exists(function ($key, CategoryInterface $element) use ($category) {
-            return $element->getExternalId() === $category->getExternalId();
-        });
-    }
-
     public function clearCategories() : void
     {
         $this->categories->clear();
+    }
+
+    /**
+     * This method will try to find a category based on the number (which is unique)
+     * Returns null if it does not exist
+     *
+     * @param CategoryInterface $searchCategory
+     *
+     * @return CategoryInterface|null
+     */
+    public function findCategory(CategoryInterface $searchCategory): ?CategoryInterface
+    {
+        foreach ($this->categories as $category) {
+            if($category->getNumber() === $searchCategory->getNumber()) {
+                return $category;
+            }
+        }
+
+        return null;
     }
 
     /*

@@ -481,6 +481,11 @@ class Product extends AbstractEntity implements ProductInterface
      */
     public function updateCategories(array $categories): void
     {
+        if(empty($categories)) {
+            $this->clearCategories();
+            return;
+        }
+
         // this holds the final array of categories, whether updated or added
         $final = [];
 

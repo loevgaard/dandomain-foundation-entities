@@ -318,7 +318,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @var Category[]|ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="products")
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="products", cascade={"persist"})
      * @ORM\JoinTable(name="ldf_products_categories")
      */
     protected $categories;
@@ -331,8 +331,8 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @var Manufacturer[]|ArrayCollection
      *
+     * @ORM\ManyToMany(inversedBy="products", targetEntity="Manufacturer", cascade={"persist"})
      * @ORM\JoinTable(name="ldf_product_manufacturer")
-     * @ORM\ManyToMany(cascade={"persist"}, inversedBy="products", targetEntity="Manufacturer")
      */
     protected $manufacturers;
 
@@ -464,15 +464,38 @@ class Product extends AbstractEntity implements ProductInterface
         return $this;
     }
 
+    /*
+     * Category collection methods
+     */
     public function addCategory(CategoryInterface $category): ProductInterface
     {
-        if (!$this->categories->contains($category)) {
+        if (!$this->hasCategory($category)) {
             $this->categories->add($category);
         }
 
         return $this;
     }
 
+    public function removeCategory(CategoryInterface $category): bool
+    {
+        return $this->categories->removeElement($category);
+    }
+
+    public function hasCategory(CategoryInterface $category): bool
+    {
+        return $this->categories->exists(function ($key, CategoryInterface $element) use ($category) {
+            return $element->getExternalId() === $category->getExternalId();
+        });
+    }
+
+    public function clearCategories() : void
+    {
+        $this->categories->clear();
+    }
+
+    /*
+     * Manufacturer collection methods
+     */
     public function addManufacturer(ManufacturerInterface $manufacturer): ProductInterface
     {
         if (!$this->hasManufacturer($manufacturer)) {
@@ -499,6 +522,9 @@ class Product extends AbstractEntity implements ProductInterface
         $this->manufacturers->clear();
     }
 
+    /*
+     * Variant group collection methods
+     */
     public function addVariantGroup(VariantGroupInterface $variantGroup): ProductInterface
     {
         if (!$this->hasVariantGroup($variantGroup)) {
@@ -529,6 +555,9 @@ class Product extends AbstractEntity implements ProductInterface
         });
     }
 
+    /*
+     * Price collection methods
+     */
     public function addPrice(PriceInterface $price): ProductInterface
     {
         if (!$this->prices->contains($price)) {

@@ -113,16 +113,16 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
     protected $customField10;
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var string|null
      *
-     * @ORM\Column(nullable=true, type="datetime_immutable")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $expectedDeliveryTime;
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var string|null
      *
-     * @ORM\Column(nullable=true, type="datetime_immutable")
+     * @ORM\Column(nullable=true, type="string", length=191)
      */
     protected $expectedDeliveryTimeNotInStock;
 
@@ -296,14 +296,6 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
 
     public function hydrate(array $data, bool $useConversions = false, $scalarsOnly = true)
     {
-        if (isset($data['expectedDeliveryTime'])) {
-            $data['expectedDeliveryTime'] = $this->getDateTimeFromJson($data['expectedDeliveryTime']);
-        }
-
-        if (isset($data['expectedDeliveryTimeNotInStock'])) {
-            $data['expectedDeliveryTimeNotInStock'] = $this->getDateTimeFromJson($data['expectedDeliveryTimeNotInStock']);
-        }
-
         parent::hydrate($data, $useConversions, $scalarsOnly);
     }
 
@@ -588,19 +580,19 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return string|null
      */
-    public function getExpectedDeliveryTime(): ?\DateTimeImmutable
+    public function getExpectedDeliveryTime(): ?string
     {
         return $this->expectedDeliveryTime;
     }
 
     /**
-     * @param \DateTimeImmutable|null $expectedDeliveryTime
+     * @param string|null $expectedDeliveryTime
      *
      * @return ProductTranslationInterface
      */
-    public function setExpectedDeliveryTime(?\DateTimeImmutable $expectedDeliveryTime)
+    public function setExpectedDeliveryTime(?string $expectedDeliveryTime)
     {
         $this->expectedDeliveryTime = $expectedDeliveryTime;
 
@@ -608,19 +600,19 @@ class ProductTranslation extends AbstractEntity implements ProductTranslationInt
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return string|null
      */
-    public function getExpectedDeliveryTimeNotInStock(): ?\DateTimeImmutable
+    public function getExpectedDeliveryTimeNotInStock(): ?string
     {
         return $this->expectedDeliveryTimeNotInStock;
     }
 
     /**
-     * @param \DateTimeImmutable|null $expectedDeliveryTimeNotInStock
+     * @param string|null $expectedDeliveryTimeNotInStock
      *
      * @return ProductTranslationInterface
      */
-    public function setExpectedDeliveryTimeNotInStock(?\DateTimeImmutable $expectedDeliveryTimeNotInStock)
+    public function setExpectedDeliveryTimeNotInStock(?string $expectedDeliveryTimeNotInStock)
     {
         $this->expectedDeliveryTimeNotInStock = $expectedDeliveryTimeNotInStock;
 

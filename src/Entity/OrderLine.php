@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Loevgaard\DandomainFoundation\Entity;
 
 use Brick\Math\BigDecimal;
@@ -360,11 +362,11 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     }
 
     /**
-     * @return float|null
+     * @return float
      */
-    public function getVatPct()
+    public function getVatPct() : float
     {
-        return $this->vatPct;
+        return (float)$this->vatPct;
     }
 
     /**

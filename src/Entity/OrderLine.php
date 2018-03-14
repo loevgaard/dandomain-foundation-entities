@@ -424,7 +424,7 @@ class OrderLine extends AbstractEntity implements OrderLineInterface
     /**
      * @return Order
      */
-    public function getOrder(): Order
+    public function getOrder(): ?Order
     {
         return $this->order;
     }

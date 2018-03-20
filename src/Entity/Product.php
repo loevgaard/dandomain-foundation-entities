@@ -25,7 +25,10 @@ use Loevgaard\DandomainFoundation\Entity\Generated\VariantInterface;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ldf_products", indexes={
- *     @ORM\Index(name="is_variant_master", columns={"is_variant_master"})
+ *     @ORM\Index(name="is_variant_master", columns={"is_variant_master"}),
+ *     @ORM\Index(name="bar_code_number", columns={"bar_code_number"}),
+ *     @ORM\Index(name="created", columns={"created"}),
+ *     @ORM\Index(name="vendor_number", columns={"vendor_number"})
  * }, uniqueConstraints={
  *     @ORM\UniqueConstraint(name="external_id", columns={"external_id"}),
  *     @ORM\UniqueConstraint(name="number", columns={"number"})

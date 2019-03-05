@@ -70,13 +70,13 @@ class Unit extends AbstractEntity implements UnitInterface
     }
 
     /**
-     * @param int $externalId
+     * @param mixed $externalId
      *
      * @return UnitInterface
      */
-    public function setExternalId(int $externalId)
+    public function setExternalId($externalId)
     {
-        $this->externalId = $externalId;
+        $this->externalId = (int) $externalId;
 
         return $this;
     }

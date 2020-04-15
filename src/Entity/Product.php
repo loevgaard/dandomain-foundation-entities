@@ -531,7 +531,7 @@ class Product extends AbstractEntity implements ProductInterface
     public function findCategory(CategoryInterface $searchCategory): ?CategoryInterface
     {
         foreach ($this->categories as $category) {
-            if($category->getNumber() === $searchCategory->getNumber()) {
+            if($category->getExternalId() === $searchCategory->getExternalId()) {
                 return $category;
             }
         }

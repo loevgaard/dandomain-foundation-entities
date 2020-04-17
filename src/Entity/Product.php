@@ -109,7 +109,7 @@ class Product extends AbstractEntity implements ProductInterface
     /**
      * @var int|null
      *
-     * @ORM\Column(nullable=true, type="integer")
+     * @ORM\Column(nullable=true, type="bigint")
      */
     protected $defaultCategoryId;
 

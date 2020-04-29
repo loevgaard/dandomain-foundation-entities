@@ -42,7 +42,7 @@ class Category extends AbstractEntity implements CategoryInterface
      *
      * @var int
      *
-     * @ORM\Column(type="integer", unique=true)
+     * @ORM\Column(type="bigint", unique=true)
      */
     protected $externalId;
 

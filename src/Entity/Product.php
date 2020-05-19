@@ -385,6 +385,7 @@ class Product extends AbstractEntity implements ProductInterface
      * @var Product|null
      *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="children")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $parent;
 
